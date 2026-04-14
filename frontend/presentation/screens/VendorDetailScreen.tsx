@@ -9,11 +9,13 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 
 import { getVendorBySlug } from "@/mock/vendors";
-import { colors, layout, typography } from "@/presentation/theme";
+import { TopBar } from "@/presentation/components/TopBar";
+import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 import { fetchAvailability } from "@/services/availability";
 
 type VendorDetailScreenProps = {
@@ -22,6 +24,10 @@ type VendorDetailScreenProps = {
 
 export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
   const router = useRouter();
+  const { theme } = useAppTheme();
+  const styles = createStyles(theme);
+  const { width } = useWindowDimensions();
+  const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
   const vendor = getVendorBySlug(slug);
   const [loading, setLoading] = useState(false);
   const [availabilitySummary, setAvailabilitySummary] = useState<string[]>([]);
@@ -31,6 +37,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.emptyState}>
+          <TopBar showBack title="Vendor detail" />
           <Text style={styles.emptyTitle}>Vendor not found</Text>
           <Pressable onPress={() => router.replace("/")} style={styles.primaryButton}>
             <Text style={styles.primaryButtonText}>Back home</Text>
@@ -54,249 +61,292 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent} testID="vendor-detail-screen">
-        <View style={styles.container}>
-          <Image source={{ uri: vendor.image }} style={styles.heroImage} />
-
-          <View style={styles.headerBlock}>
-            <View style={styles.categoryChip}>
-              <Text style={styles.categoryText}>{vendor.category}</Text>
+        <View style={[styles.container, { width: contentWidth }]}> 
+          <View style={styles.heroShell}>
+            <Image source={{ uri: vendor.image }} style={styles.heroImage} testID="vendor-detail-hero-image" />
+            <View style={styles.heroOverlay} />
+            <View style={styles.heroTopBar}>
+              <TopBar overlay showBack subtitle="Vendor detail" title={vendor.name} />
             </View>
-            <Text style={styles.title}>{vendor.name}</Text>
-            <Text style={styles.description}>{vendor.description}</Text>
-          </View>
-
-          <View style={styles.infoRow}>
-            <View style={styles.infoChip}>
-              <Feather color={colors.gold} name="map-pin" size={16} />
-              <Text style={styles.infoText}>{vendor.location}</Text>
-            </View>
-            <View style={styles.infoChip}>
-              <Feather color={colors.gold} name="heart" size={16} />
-              <Text style={styles.infoText}>From {vendor.startingPrice}</Text>
-            </View>
-          </View>
-
-          <View style={styles.packageCard}>
-            <Text style={styles.cardTitle}>Packages</Text>
-            {vendor.packages.map((item) => (
-              <View key={item.name} style={styles.packageRow}>
-                <View style={styles.packageTextWrap}>
-                  <Text style={styles.packageTitle}>{item.label}</Text>
-                  <Text style={styles.packageDescription}>{item.description}</Text>
-                </View>
-                <Text style={styles.packagePrice}>{item.price}</Text>
+            <View style={styles.heroContent}>
+              <View style={styles.categoryChip}>
+                <Text style={styles.categoryText}>{vendor.category}</Text>
               </View>
-            ))}
+              <Text style={styles.heroTitle}>{vendor.name}</Text>
+              <Text style={styles.heroDescription}>{vendor.description}</Text>
+            </View>
           </View>
 
-          <View style={styles.packageCard}>
-            <Text style={styles.cardTitle}>Availability sync</Text>
-            <Text style={styles.helperText}>{helperText}</Text>
-            {availabilitySummary.length > 0 ? (
-              <View style={styles.dateWrap}>
-                {availabilitySummary.map((date) => (
-                  <View key={date} style={styles.dateChip}>
-                    <Text style={styles.dateText}>{date}</Text>
+          <View style={styles.surfaceCard}>
+            <View style={styles.infoRow}>
+              <View style={styles.infoChip}>
+                <Feather color={theme.colors.accent} name="map-pin" size={16} />
+                <Text style={styles.infoText}>{vendor.location}</Text>
+              </View>
+              <View style={styles.infoChip}>
+                <Feather color={theme.colors.accent} name="heart" size={16} />
+                <Text style={styles.infoText}>From {vendor.startingPrice}</Text>
+              </View>
+            </View>
+
+            <View style={styles.packageCard}>
+              <Text style={styles.cardTitle}>Packages</Text>
+              {vendor.packages.map((item) => (
+                <View key={item.name} style={styles.packageRow}>
+                  <View style={styles.packageTextWrap}>
+                    <Text style={styles.packageTitle}>{item.label}</Text>
+                    <Text style={styles.packageDescription}>{item.description}</Text>
                   </View>
-                ))}
-              </View>
-            ) : null}
+                  <Text style={styles.packagePrice}>{item.price}</Text>
+                </View>
+              ))}
+            </View>
+
+            <View style={styles.packageCard}>
+              <Text style={styles.cardTitle}>Availability sync</Text>
+              <Text style={styles.helperText}>{helperText}</Text>
+              {availabilitySummary.length > 0 ? (
+                <View style={styles.dateWrap}>
+                  {availabilitySummary.map((date) => (
+                    <View key={date} style={styles.dateChip}>
+                      <Text style={styles.dateText}>{date}</Text>
+                    </View>
+                  ))}
+                </View>
+              ) : null}
+
+              <Pressable
+                onPress={checkAvailability}
+                style={({ pressed }) => [styles.primaryButton, pressed && styles.pressedButton]}
+                testID="check-availability-button"
+              >
+                {loading ? (
+                  <ActivityIndicator color="#FFFFFF" />
+                ) : (
+                  <Text style={styles.primaryButtonText}>Check availability</Text>
+                )}
+              </Pressable>
+            </View>
 
             <Pressable
-              onPress={checkAvailability}
-              style={({ pressed }) => [styles.primaryButton, pressed && styles.pressedButton]}
-              testID="check-availability-button"
+              onPress={() => router.push(`/booking?slug=${vendor.slug}` as Href)}
+              style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressedButton]}
+              testID="start-booking-button"
             >
-              {loading ? (
-                <ActivityIndicator color={colors.textPrimary} />
-              ) : (
-                <Text style={styles.primaryButtonText}>Check availability</Text>
-              )}
+              <Text style={styles.secondaryButtonText}>Continue to booking</Text>
             </Pressable>
           </View>
-
-          <Pressable
-            onPress={() => router.push(`/booking?slug=${vendor.slug}` as Href)}
-            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressedButton]}
-            testID="start-booking-button"
-          >
-            <Text style={styles.secondaryButtonText}>Continue to booking</Text>
-          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: colors.background,
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 36,
-    paddingTop: 20,
-  },
-  container: {
-    gap: 20,
-    paddingHorizontal: layout.screenPadding,
-  },
-  heroImage: {
-    borderRadius: layout.imageRadius,
-    height: 280,
-    width: "100%",
-  },
-  headerBlock: {
-    gap: 12,
-  },
-  categoryChip: {
-    alignSelf: "flex-start",
-    backgroundColor: colors.roseTint,
-    borderRadius: layout.buttonRadius,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-  categoryText: {
-    color: colors.gold,
-    fontSize: typography.small,
-    fontWeight: "700",
-    letterSpacing: 0.8,
-    textTransform: "uppercase",
-  },
-  title: {
-    color: colors.textPrimary,
-    fontFamily: "Georgia",
-    fontSize: typography.hero,
-    fontWeight: "700",
-  },
-  description: {
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 25,
-  },
-  infoRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-  },
-  infoChip: {
-    alignItems: "center",
-    backgroundColor: colors.card,
-    borderColor: colors.border,
-    borderRadius: layout.buttonRadius,
-    borderWidth: 1,
-    flexDirection: "row",
-    gap: 8,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  infoText: {
-    color: colors.textPrimary,
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  packageCard: {
-    backgroundColor: colors.card,
-    borderRadius: layout.cardRadius,
-    gap: 16,
-    padding: 20,
-  },
-  cardTitle: {
-    color: colors.textPrimary,
-    fontFamily: "Georgia",
-    fontSize: typography.section,
-    fontWeight: "700",
-  },
-  packageRow: {
-    borderTopColor: colors.border,
-    borderTopWidth: 1,
-    flexDirection: "row",
-    gap: 12,
-    justifyContent: "space-between",
-    paddingTop: 16,
-  },
-  packageTextWrap: {
-    flex: 1,
-    gap: 6,
-  },
-  packageTitle: {
-    color: colors.textPrimary,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  packageDescription: {
-    color: colors.textSecondary,
-    fontSize: 14,
-    lineHeight: 22,
-  },
-  packagePrice: {
-    color: colors.gold,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  helperText: {
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 24,
-  },
-  dateWrap: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-  },
-  dateChip: {
-    backgroundColor: colors.roseTint,
-    borderRadius: layout.buttonRadius,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-  },
-  dateText: {
-    color: colors.textPrimary,
-    fontSize: 13,
-    fontWeight: "600",
-  },
-  primaryButton: {
-    alignItems: "center",
-    backgroundColor: colors.blush,
-    borderRadius: layout.buttonRadius,
-    minHeight: 54,
-    justifyContent: "center",
-    paddingHorizontal: 20,
-  },
-  primaryButtonText: {
-    color: colors.textPrimary,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  secondaryButton: {
-    alignItems: "center",
-    borderColor: colors.gold,
-    borderRadius: layout.buttonRadius,
-    borderWidth: 1,
-    justifyContent: "center",
-    minHeight: 54,
-    paddingHorizontal: 20,
-  },
-  secondaryButtonText: {
-    color: colors.textPrimary,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  pressedButton: {
-    opacity: 0.9,
-    transform: [{ scale: 0.985 }],
-  },
-  emptyState: {
-    alignItems: "center",
-    flex: 1,
-    gap: 18,
-    justifyContent: "center",
-    padding: 24,
-  },
-  emptyTitle: {
-    color: colors.textPrimary,
-    fontFamily: "Georgia",
-    fontSize: typography.title,
-    fontWeight: "700",
-  },
-});
+const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
+  StyleSheet.create({
+    safeArea: {
+      backgroundColor: theme.colors.background,
+      flex: 1,
+    },
+    scrollContent: {
+      alignItems: "center",
+      paddingBottom: 44,
+      paddingTop: 18,
+    },
+    container: {
+      gap: 0,
+    },
+    heroShell: {
+      borderRadius: theme.layout.imageRadius,
+      height: 420,
+      overflow: "hidden",
+      position: "relative",
+    },
+    heroImage: {
+      height: 420,
+      width: "100%",
+    },
+    heroOverlay: {
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: theme.colors.overlay,
+    },
+    heroTopBar: {
+      left: 18,
+      position: "absolute",
+      right: 18,
+      top: 18,
+    },
+    heroContent: {
+      bottom: 22,
+      gap: 12,
+      left: 22,
+      position: "absolute",
+      right: 22,
+    },
+    categoryChip: {
+      alignSelf: "flex-start",
+      backgroundColor: "rgba(255,255,255,0.14)",
+      borderRadius: theme.layout.buttonRadius,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+    },
+    categoryText: {
+      color: "#FFFFFF",
+      fontSize: theme.typography.small,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    heroTitle: {
+      color: "#FFFFFF",
+      fontFamily: "Georgia",
+      fontSize: theme.typography.hero,
+      fontWeight: "700",
+      lineHeight: 42,
+    },
+    heroDescription: {
+      color: "rgba(255,255,255,0.82)",
+      fontSize: theme.typography.body,
+      lineHeight: 25,
+      maxWidth: 360,
+    },
+    surfaceCard: {
+      backgroundColor: theme.colors.background,
+      borderTopLeftRadius: 32,
+      borderTopRightRadius: 32,
+      gap: 18,
+      marginTop: -34,
+      paddingTop: 22,
+    },
+    infoRow: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 10,
+      paddingHorizontal: theme.layout.screenPadding,
+    },
+    infoChip: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.buttonRadius,
+      borderWidth: 1,
+      flexDirection: "row",
+      gap: 8,
+      paddingHorizontal: 14,
+      paddingVertical: 10,
+    },
+    infoText: {
+      color: theme.colors.textPrimary,
+      fontSize: 14,
+      fontWeight: "700",
+    },
+    packageCard: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.cardRadius,
+      borderWidth: 1,
+      gap: 16,
+      marginHorizontal: theme.layout.screenPadding,
+      padding: 20,
+    },
+    cardTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: theme.typography.section,
+      fontWeight: "700",
+    },
+    packageRow: {
+      borderTopColor: theme.colors.border,
+      borderTopWidth: 1,
+      flexDirection: "row",
+      gap: 12,
+      justifyContent: "space-between",
+      paddingTop: 16,
+    },
+    packageTextWrap: {
+      flex: 1,
+      gap: 6,
+    },
+    packageTitle: {
+      color: theme.colors.textPrimary,
+      fontSize: 16,
+      fontWeight: "700",
+    },
+    packageDescription: {
+      color: theme.colors.textSecondary,
+      fontSize: 14,
+      lineHeight: 22,
+    },
+    packagePrice: {
+      color: theme.colors.accent,
+      fontSize: 16,
+      fontWeight: "800",
+    },
+    helperText: {
+      color: theme.colors.textSecondary,
+      fontSize: theme.typography.body,
+      lineHeight: 24,
+    },
+    dateWrap: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 10,
+    },
+    dateChip: {
+      backgroundColor: theme.colors.surfaceMuted,
+      borderRadius: theme.layout.buttonRadius,
+      paddingHorizontal: 12,
+      paddingVertical: 10,
+    },
+    dateText: {
+      color: theme.colors.textPrimary,
+      fontSize: 13,
+      fontWeight: "700",
+    },
+    primaryButton: {
+      alignItems: "center",
+      backgroundColor: theme.colors.accent,
+      borderRadius: theme.layout.buttonRadius,
+      justifyContent: "center",
+      minHeight: 56,
+      paddingHorizontal: 20,
+    },
+    primaryButtonText: {
+      color: "#FFFFFF",
+      fontSize: 16,
+      fontWeight: "800",
+    },
+    secondaryButton: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.accent,
+      borderRadius: theme.layout.buttonRadius,
+      borderWidth: 1,
+      justifyContent: "center",
+      marginHorizontal: theme.layout.screenPadding,
+      minHeight: 56,
+      paddingHorizontal: 20,
+    },
+    secondaryButtonText: {
+      color: theme.colors.textPrimary,
+      fontSize: 16,
+      fontWeight: "700",
+    },
+    pressedButton: {
+      opacity: 0.92,
+      transform: [{ scale: 0.985 }],
+    },
+    emptyState: {
+      alignItems: "center",
+      flex: 1,
+      gap: 18,
+      justifyContent: "center",
+      padding: 24,
+    },
+    emptyTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: theme.typography.title,
+      fontWeight: "700",
+    },
+  });

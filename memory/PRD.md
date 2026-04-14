@@ -17,6 +17,11 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Vendor detail screen dengan gambar hero, paket, dan tombol cek availability
 - Booking screen dengan custom calendar grid dan form nama/telepon/paket
 - Success screen dengan ringkasan booking
+- Redesign visual menyeluruh dengan gaya **minimal luxury**
+- Sistem warna baru **Midnight plum + copper** untuk light/dark theme
+- Dark mode **auto + manual toggle** (cycle AUTO / DARK / LIGHT) dengan penyimpanan preferensi lokal
+- Layout dibuat lebih responsif dan seimbang untuk mobile + web preview
+- Animasi halus untuk entrance card dan state sukses
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -32,10 +37,14 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Tanggal tersedia berhasil dipilih
 - Submit booking berhasil menuju Success screen
 - Backend endpoint health, availability, dan booking mengembalikan respons valid
+- Redesign baru tervalidasi secara visual lewat static web build lokal pada Home, Vendor Detail, dan Booking
+- Manual dark mode toggle tervalidasi berjalan
+- TypeScript frontend lulus `tsc --noEmit`
 
 ## Current Status
 - App demo end-to-end berfungsi
 - Integrasi n8n masih **MOCKED** sampai webhook live diberikan/diaktifkan
+- Public preview Expo masih dapat terganggu oleh limit tunnel eksternal, tetapi build statis lokal berhasil diekspor dan tervalidasi
 
 ## Backlog
 ### P0
@@ -45,6 +54,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Ganti webhook mock dengan webhook n8n live saat URL final tersedia
 - Tambahkan navigasi bulan berikutnya/sebelumnya pada calendar grid
 - Tambahkan state error/loading yang lebih eksplisit untuk submit booking
+- Validasi ulang redesign pada preview publik ketika tunnel kembali stabil
 
 ### P2
 - Simpan riwayat booking demo per device

@@ -101,3 +101,54 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+user_problem_statement: "Redesign wedding rental demo app to be more elegant and responsive on mobile/web preview with Midnight plum + copper colors, minimal luxury style, dark mode (auto + manual toggle), and subtle animations."
+backend:
+  - task: "mock booking api remains stable after redesign"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Backend endpoints previously verified and redesign work did not modify backend."
+frontend:
+  - task: "luxury responsive redesign across core screens"
+    implemented: true
+    working: true
+    file: "/app/frontend/presentation/screens/HomeScreen.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Applied Midnight plum + copper redesign, updated cards/layout, and visually validated Home, Vendor Detail, and Booking on local static export."
+  - task: "dark mode auto plus manual toggle"
+    implemented: true
+    working: true
+    file: "/app/frontend/presentation/providers/ThemeProvider.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added AUTO/DARK/LIGHT toggle with AsyncStorage persistence and validated manual switch on local static export."
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+test_plan:
+  current_focus:
+    - "luxury responsive redesign across core screens"
+    - "dark mode auto plus manual toggle"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+agent_communication:
+  - agent: "main"
+    message: "Please validate the redesigned frontend. Public preview may return 502 because Expo/ngrok tunnel is unstable, but local static build is available at http://127.0.0.1:3456 and has already passed a main-agent visual smoke test."

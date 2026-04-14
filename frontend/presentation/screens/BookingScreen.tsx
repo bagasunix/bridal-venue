@@ -10,13 +10,15 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 
 import { getVendorBySlug } from "@/mock/vendors";
 import { CalendarGrid } from "@/presentation/components/CalendarGrid";
 import { FormField } from "@/presentation/components/FormField";
-import { colors, layout, typography } from "@/presentation/theme";
+import { TopBar } from "@/presentation/components/TopBar";
+import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 import { fetchAvailability } from "@/services/availability";
 import { submitBooking } from "@/services/webhook";
 import { formatPrettyDate } from "@/utils/calendar";
@@ -27,6 +29,10 @@ type BookingScreenProps = {
 
 export function BookingScreen({ slug }: BookingScreenProps) {
   const router = useRouter();
+  const { theme } = useAppTheme();
+  const styles = createStyles(theme);
+  const { width } = useWindowDimensions();
+  const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
   const vendor = useMemo(() => getVendorBySlug(slug), [slug]);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -62,6 +68,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centeredState}>
+          <TopBar showBack title="Booking" />
           <Text style={styles.emptyTitle}>This booking option is unavailable.</Text>
           <Pressable onPress={() => router.replace("/")} style={styles.primaryButton}>
             <Text style={styles.primaryButtonText}>Back home</Text>
@@ -115,7 +122,9 @@ export function BookingScreen({ slug }: BookingScreenProps) {
         style={styles.flex}
       >
         <ScrollView contentContainerStyle={styles.scrollContent} testID="booking-screen">
-          <View style={styles.container}>
+          <View style={[styles.container, { width: contentWidth }]}> 
+            <TopBar showBack subtitle="Refined booking" title="Secure your date" />
+
             <View style={styles.summaryCard}>
               <Text style={styles.label}>Booking form</Text>
               <Text style={styles.title}>{vendor.name}</Text>
@@ -182,7 +191,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
 
             {loadingAvailability ? (
               <View style={styles.loadingCard}>
-                <ActivityIndicator color={colors.gold} />
+                <ActivityIndicator color={theme.colors.accent} />
                 <Text style={styles.loadingText}>Checking this month’s dates...</Text>
               </View>
             ) : (
@@ -195,14 +204,14 @@ export function BookingScreen({ slug }: BookingScreenProps) {
 
             {availabilityHint ? (
               <View style={styles.noteCard}>
-                <Feather color={colors.gold} name="info" size={16} />
+                <Feather color={theme.colors.accent} name="info" size={16} />
                 <Text style={styles.noteText}>{availabilityHint}</Text>
               </View>
             ) : null}
 
             {selectedDate ? (
               <View style={styles.noteCard}>
-                <Feather color={colors.success} name="check-circle" size={18} />
+                <Feather color={theme.colors.success} name="check-circle" size={18} />
                 <Text style={styles.noteText}>Selected date: {formatPrettyDate(selectedDate)}</Text>
               </View>
             ) : null}
@@ -224,7 +233,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
               testID="submit-booking-button"
             >
               {submitting ? (
-                <ActivityIndicator color={colors.textPrimary} />
+                <ActivityIndicator color="#FFFFFF" />
               ) : (
                 <Text style={styles.primaryButtonText}>Confirm booking</Text>
               )}
@@ -236,190 +245,199 @@ export function BookingScreen({ slug }: BookingScreenProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: colors.background,
-    flex: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 36,
-    paddingTop: 20,
-  },
-  container: {
-    gap: 20,
-    paddingHorizontal: layout.screenPadding,
-  },
-  summaryCard: {
-    backgroundColor: colors.card,
-    borderRadius: layout.cardRadius,
-    gap: 10,
-    padding: 20,
-  },
-  label: {
-    color: colors.gold,
-    fontSize: typography.small,
-    fontWeight: "700",
-    letterSpacing: 0.8,
-    textTransform: "uppercase",
-  },
-  title: {
-    color: colors.textPrimary,
-    fontFamily: "Georgia",
-    fontSize: typography.title,
-    fontWeight: "700",
-  },
-  copy: {
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 24,
-  },
-  formCard: {
-    backgroundColor: colors.card,
-    borderRadius: layout.cardRadius,
-    gap: 18,
-    padding: 20,
-  },
-  fieldBlock: {
-    gap: 12,
-  },
-  fieldLabel: {
-    color: colors.gold,
-    fontSize: typography.small,
-    fontWeight: "700",
-    letterSpacing: 0.8,
-    textTransform: "uppercase",
-  },
-  packageWrap: {
-    gap: 10,
-  },
-  packageChip: {
-    backgroundColor: colors.background,
-    borderColor: colors.border,
-    borderRadius: 22,
-    borderWidth: 1,
-    gap: 4,
-    padding: 16,
-  },
-  packageChipActive: {
-    backgroundColor: colors.gold,
-    borderColor: colors.gold,
-  },
-  packageChipTitle: {
-    color: colors.textPrimary,
-    fontSize: 15,
-    fontWeight: "700",
-  },
-  packageChipTitleActive: {
-    color: colors.card,
-  },
-  packageChipPrice: {
-    color: colors.textSecondary,
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  legendRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-  },
-  legendChip: {
-    alignItems: "center",
-    backgroundColor: colors.card,
-    borderRadius: layout.buttonRadius,
-    flexDirection: "row",
-    gap: 8,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  availableDot: {
-    backgroundColor: colors.card,
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    height: 12,
-    width: 12,
-  },
-  bookedDot: {
-    backgroundColor: colors.roseTint,
-    borderRadius: 999,
-    height: 12,
-    width: 12,
-  },
-  legendText: {
-    color: colors.textPrimary,
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  loadingCard: {
-    alignItems: "center",
-    backgroundColor: colors.card,
-    borderRadius: layout.cardRadius,
-    gap: 12,
-    padding: 26,
-  },
-  loadingText: {
-    color: colors.textSecondary,
-    fontSize: typography.body,
-  },
-  noteCard: {
-    alignItems: "center",
-    backgroundColor: colors.card,
-    borderRadius: 20,
-    flexDirection: "row",
-    gap: 10,
-    padding: 16,
-  },
-  noteText: {
-    color: colors.textSecondary,
-    flex: 1,
-    fontSize: 14,
-    lineHeight: 22,
-  },
-  errorCard: {
-    backgroundColor: colors.roseTint,
-    borderRadius: 20,
-    padding: 16,
-  },
-  errorText: {
-    color: colors.error,
-    fontSize: 14,
-    fontWeight: "700",
-  },
-  primaryButton: {
-    alignItems: "center",
-    backgroundColor: colors.blush,
-    borderRadius: layout.buttonRadius,
-    justifyContent: "center",
-    minHeight: 56,
-    paddingHorizontal: 20,
-  },
-  primaryButtonText: {
-    color: colors.textPrimary,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  disabledButton: {
-    opacity: 0.5,
-  },
-  pressedButton: {
-    opacity: 0.9,
-    transform: [{ scale: 0.985 }],
-  },
-  centeredState: {
-    alignItems: "center",
-    flex: 1,
-    gap: 18,
-    justifyContent: "center",
-    padding: 24,
-  },
-  emptyTitle: {
-    color: colors.textPrimary,
-    fontFamily: "Georgia",
-    fontSize: typography.title,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-});
+const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
+  StyleSheet.create({
+    safeArea: {
+      backgroundColor: theme.colors.background,
+      flex: 1,
+    },
+    flex: {
+      flex: 1,
+    },
+    scrollContent: {
+      alignItems: "center",
+      paddingBottom: 44,
+      paddingTop: 18,
+    },
+    container: {
+      gap: 18,
+    },
+    summaryCard: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.cardRadius,
+      borderWidth: 1,
+      gap: 10,
+      padding: 20,
+    },
+    label: {
+      color: theme.colors.accent,
+      fontSize: theme.typography.small,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    title: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: theme.typography.title,
+      fontWeight: "700",
+    },
+    copy: {
+      color: theme.colors.textSecondary,
+      fontSize: theme.typography.body,
+      lineHeight: 24,
+    },
+    formCard: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.cardRadius,
+      borderWidth: 1,
+      gap: 18,
+      padding: 20,
+    },
+    fieldBlock: {
+      gap: 12,
+    },
+    fieldLabel: {
+      color: theme.colors.accent,
+      fontSize: theme.typography.small,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    packageWrap: {
+      gap: 10,
+    },
+    packageChip: {
+      backgroundColor: theme.colors.surfaceMuted,
+      borderColor: theme.colors.border,
+      borderRadius: 24,
+      borderWidth: 1,
+      gap: 4,
+      padding: 16,
+    },
+    packageChipActive: {
+      backgroundColor: theme.colors.accent,
+      borderColor: theme.colors.accent,
+    },
+    packageChipTitle: {
+      color: theme.colors.textPrimary,
+      fontSize: 15,
+      fontWeight: "700",
+    },
+    packageChipTitleActive: {
+      color: "#FFFFFF",
+    },
+    packageChipPrice: {
+      color: theme.colors.textSecondary,
+      fontSize: 14,
+      fontWeight: "700",
+    },
+    legendRow: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 10,
+    },
+    legendChip: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.buttonRadius,
+      borderWidth: 1,
+      flexDirection: "row",
+      gap: 8,
+      paddingHorizontal: 14,
+      paddingVertical: 10,
+    },
+    availableDot: {
+      backgroundColor: theme.colors.success,
+      borderRadius: 999,
+      height: 12,
+      width: 12,
+    },
+    bookedDot: {
+      backgroundColor: theme.colors.booked,
+      borderRadius: 999,
+      height: 12,
+      width: 12,
+    },
+    legendText: {
+      color: theme.colors.textPrimary,
+      fontSize: 14,
+      fontWeight: "700",
+    },
+    loadingCard: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.cardRadius,
+      borderWidth: 1,
+      gap: 12,
+      padding: 26,
+    },
+    loadingText: {
+      color: theme.colors.textSecondary,
+      fontSize: theme.typography.body,
+    },
+    noteCard: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 22,
+      borderWidth: 1,
+      flexDirection: "row",
+      gap: 10,
+      padding: 16,
+    },
+    noteText: {
+      color: theme.colors.textSecondary,
+      flex: 1,
+      fontSize: 14,
+      lineHeight: 22,
+    },
+    errorCard: {
+      backgroundColor: theme.isDark ? "rgba(167, 90, 111, 0.18)" : "rgba(139, 74, 92, 0.12)",
+      borderRadius: 22,
+      padding: 16,
+    },
+    errorText: {
+      color: theme.colors.booked,
+      fontSize: 14,
+      fontWeight: "800",
+    },
+    primaryButton: {
+      alignItems: "center",
+      backgroundColor: theme.colors.accent,
+      borderRadius: theme.layout.buttonRadius,
+      justifyContent: "center",
+      minHeight: 56,
+      paddingHorizontal: 20,
+    },
+    primaryButtonText: {
+      color: "#FFFFFF",
+      fontSize: 16,
+      fontWeight: "800",
+    },
+    disabledButton: {
+      opacity: 0.45,
+    },
+    pressedButton: {
+      opacity: 0.92,
+      transform: [{ scale: 0.985 }],
+    },
+    centeredState: {
+      alignItems: "center",
+      flex: 1,
+      gap: 18,
+      justifyContent: "center",
+      padding: 24,
+    },
+    emptyTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: theme.typography.title,
+      fontWeight: "700",
+      textAlign: "center",
+    },
+  });
