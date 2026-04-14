@@ -70,7 +70,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
         <View style={styles.centeredState}>
           <TopBar showBack title="Booking" />
           <Text style={styles.emptyTitle}>This booking option is unavailable.</Text>
-          <Pressable onPress={() => router.replace("/")} style={styles.primaryButton}>
+          <Pressable onPress={() => router.replace("/")} style={styles.primaryButton} testID="booking-not-found-back-button">
             <Text style={styles.primaryButtonText}>Back home</Text>
           </Pressable>
         </View>

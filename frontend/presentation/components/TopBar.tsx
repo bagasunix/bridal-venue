@@ -68,9 +68,9 @@ const createStyles = (
       borderColor: theme.colors.border,
       borderRadius: 999,
       borderWidth: 1,
-      height: 42,
+      height: 46,
       justifyContent: "center",
-      width: 42,
+      width: 46,
     },
     titleWrap: {
       flex: 1,

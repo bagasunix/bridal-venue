@@ -3,7 +3,7 @@ import Constants from "expo-constants";
 const extra = (Constants.expoConfig?.extra ?? {}) as { backendUrl?: string };
 
 const backendRoot =
-  extra.backendUrl ?? process.env.EXPO_PUBLIC_BACKEND_URL ?? "";
+  extra.backendUrl ?? process.env.EXPO_PUBLIC_BACKEND_URL ?? process.env.EXPO_BACKEND_URL ?? "";
 
 export const apiRoot = backendRoot
   ? `${backendRoot.replace(/\/+$/, "")}/api`

@@ -3,6 +3,7 @@ import { type Href, useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
 import {
   Animated,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -24,21 +25,22 @@ export function HomeScreen() {
   const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
+  const useNativeDriver = Platform.OS !== "web";
 
   useEffect(() => {
     Animated.parallel([
       Animated.timing(introOpacity, {
         duration: 360,
         toValue: 1,
-        useNativeDriver: true,
+        useNativeDriver,
       }),
       Animated.timing(introTranslate, {
         duration: 360,
         toValue: 0,
-        useNativeDriver: true,
+        useNativeDriver,
       }),
     ]).start();
-  }, [introOpacity, introTranslate]);
+  }, [introOpacity, introTranslate, useNativeDriver]);
 
   return (
     <SafeAreaView style={styles.safeArea}>

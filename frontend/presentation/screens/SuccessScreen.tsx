@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
 import {
   Animated,
+  Platform,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -34,6 +35,7 @@ export function SuccessScreen({
   const { width } = useWindowDimensions();
   const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
   const pulse = useRef(new Animated.Value(0.94)).current;
+  const useNativeDriver = Platform.OS !== "web";
 
   useEffect(() => {
     Animated.loop(
@@ -41,16 +43,16 @@ export function SuccessScreen({
         Animated.timing(pulse, {
           duration: 1100,
           toValue: 1,
-          useNativeDriver: true,
+          useNativeDriver,
         }),
         Animated.timing(pulse, {
           duration: 1100,
           toValue: 0.94,
-          useNativeDriver: true,
+          useNativeDriver,
         }),
       ]),
     ).start();
-  }, [pulse]);
+  }, [pulse, useNativeDriver]);
 
   return (
     <SafeAreaView style={styles.safeArea}>

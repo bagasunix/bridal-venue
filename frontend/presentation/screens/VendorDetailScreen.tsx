@@ -1,9 +1,9 @@
 import { Feather } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { type Href, useRouter } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
-  Image,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -15,6 +15,7 @@ import {
 
 import { getVendorBySlug } from "@/mock/vendors";
 import { TopBar } from "@/presentation/components/TopBar";
+import { useResolvedImageSource } from "@/presentation/hooks/useResolvedImageSource";
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 import { fetchAvailability } from "@/services/availability";
 
@@ -29,6 +30,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
   const { width } = useWindowDimensions();
   const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
   const vendor = getVendorBySlug(slug);
+  const imageSource = useResolvedImageSource(vendor?.image ?? "");
   const [loading, setLoading] = useState(false);
   const [availabilitySummary, setAvailabilitySummary] = useState<string[]>([]);
   const [helperText, setHelperText] = useState("Tap below to sync this month’s booked dates.");
@@ -39,7 +41,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
         <View style={styles.emptyState}>
           <TopBar showBack title="Vendor detail" />
           <Text style={styles.emptyTitle}>Vendor not found</Text>
-          <Pressable onPress={() => router.replace("/")} style={styles.primaryButton}>
+          <Pressable onPress={() => router.replace("/")} style={styles.primaryButton} testID="vendor-not-found-back-button">
             <Text style={styles.primaryButtonText}>Back home</Text>
           </Pressable>
         </View>
@@ -63,7 +65,11 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
       <ScrollView contentContainerStyle={styles.scrollContent} testID="vendor-detail-screen">
         <View style={[styles.container, { width: contentWidth }]}> 
           <View style={styles.heroShell}>
-            <Image source={{ uri: vendor.image }} style={styles.heroImage} testID="vendor-detail-hero-image" />
+            {imageSource ? (
+              <Image contentFit="cover" source={imageSource} style={styles.heroImage} testID="vendor-detail-hero-image" />
+            ) : (
+              <View style={styles.heroImagePlaceholder} testID="vendor-detail-hero-image" />
+            )}
             <View style={styles.heroOverlay} />
             <View style={styles.heroTopBar}>
               <TopBar overlay showBack subtitle="Vendor detail" title={vendor.name} />
@@ -163,6 +169,11 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       position: "relative",
     },
     heroImage: {
+      height: 420,
+      width: "100%",
+    },
+    heroImagePlaceholder: {
+      backgroundColor: theme.colors.surfaceMuted,
       height: 420,
       width: "100%",
     },

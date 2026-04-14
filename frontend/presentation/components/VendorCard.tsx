@@ -1,8 +1,9 @@
 import { Feather } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useEffect, useRef } from "react";
 import {
   Animated,
-  Image,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
+import { useResolvedImageSource } from "@/presentation/hooks/useResolvedImageSource";
 import type { Vendor } from "@/types";
 
 type VendorCardProps = {
@@ -23,6 +25,8 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
   const styles = createStyles(theme);
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(20)).current;
+  const useNativeDriver = Platform.OS !== "web";
+  const imageSource = useResolvedImageSource(vendor.image);
 
   useEffect(() => {
     Animated.parallel([
@@ -30,16 +34,16 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
         duration: 380,
         delay: 70 * index,
         toValue: 1,
-        useNativeDriver: true,
+        useNativeDriver,
       }),
       Animated.timing(translateY, {
         duration: 380,
         delay: 70 * index,
         toValue: 0,
-        useNativeDriver: true,
+        useNativeDriver,
       }),
     ]).start();
-  }, [index, opacity, translateY]);
+  }, [index, opacity, translateY, useNativeDriver]);
 
   return (
     <Animated.View style={{ opacity, transform: [{ translateY }] }}>
@@ -49,11 +53,16 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
         style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
         testID={`vendor-card-${vendor.slug}`}
       >
-        <Image
-          source={{ uri: vendor.image }}
-          style={styles.image}
-          testID={`vendor-card-image-${vendor.slug}`}
-        />
+        {imageSource ? (
+          <Image
+            contentFit="cover"
+            source={imageSource}
+            style={styles.image}
+            testID={`vendor-card-image-${vendor.slug}`}
+          />
+        ) : (
+          <View style={styles.imagePlaceholder} testID={`vendor-card-image-${vendor.slug}`} />
+        )}
         <View style={styles.overlay} />
         <View style={styles.body}>
           <View style={styles.headerRow}>
@@ -101,6 +110,11 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       transform: [{ scale: 0.985 }],
     },
     image: {
+      height: 360,
+      width: "100%",
+    },
+    imagePlaceholder: {
+      backgroundColor: theme.colors.surfaceMuted,
       height: 360,
       width: "100%",
     },
