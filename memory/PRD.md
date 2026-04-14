@@ -18,13 +18,15 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Booking screen dengan custom calendar grid dan form nama/telepon/paket
 - Success screen dengan ringkasan booking
 - Redesign visual menyeluruh dengan gaya **minimal luxury**
-- Sistem warna baru **Midnight plum + copper** untuk light/dark theme
+- Sistem warna baru **Warm champagne + mocha** untuk light theme dan mode gelap yang tetap konsisten
 - Dark mode **auto + manual toggle** (cycle AUTO / DARK / LIGHT) dengan penyimpanan preferensi lokal
 - Layout dibuat lebih responsif dan seimbang untuk mobile + web preview
 - Animasi halus untuk entrance card dan state sukses
 - Toggle vendor **Grid / List** pada Home screen
 - Calendar sekarang punya **month switcher** (prev/next) pada Booking screen
 - Sanitasi base64 image asset di layer `imageAssets.ts` untuk membersihkan asset yang malformed
+- Seluruh copy utama diubah ke Bahasa Indonesia dengan tone hangat dan mewah
+- Home web dirombak agar terasa seperti landing page boutique wedding brand, bukan tampilan mobile yang dipaksa ke browser
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -46,6 +48,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - QA finding yang sudah diperbaiki: touch target back button >= 44x44, fallback not-found buttons sekarang punya `testID`, dan fallback env frontend diperluas agar lebih aman
 - Toggle Grid / List tervalidasi berjalan
 - Month switcher kalender tervalidasi berjalan dan touch target-nya >= 44x44
+- Landing page versi browser tervalidasi secara visual dengan hero split layout, trust section, dan copy Indonesia yang lebih natural
+- Flow mobile Home → Detail → Booking tetap berjalan setelah redesign baru
 
 ## Current Status
 - App demo end-to-end berfungsi
@@ -61,6 +65,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Ganti webhook mock dengan webhook n8n live saat URL final tersedia
 - Tambahkan state error/loading yang lebih eksplisit untuk submit booking
 - Validasi ulang redesign pada preview publik ketika tunnel kembali stabil
+- Bila perlu, poles lagi section vendor collection desktop agar makin editorial dengan variasi layout antar kartu
 
 ### P2
 - Simpan riwayat booking demo per device

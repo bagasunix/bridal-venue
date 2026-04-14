@@ -57,15 +57,15 @@ export function SuccessScreen({
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={[styles.container, { width: contentWidth }]} testID="success-screen">
-        <TopBar subtitle="Booking complete" title="Confirmation" />
+        <TopBar subtitle="Langkah terakhir" title="Permintaan Anda sudah masuk" />
 
         <Animated.View style={[styles.iconWrap, { transform: [{ scale: pulse }] }]}>
           <Feather color="#FFFFFF" name="check" size={30} />
         </Animated.View>
 
-        <Text style={styles.title}>Booking request sent</Text>
+        <Text style={styles.title}>Kami sudah menerima pilihan Anda</Text>
         <Text style={styles.copy}>
-          Your wedding inquiry is ready, and the selected date has been reserved for this demo flow.
+          Tanggal yang Anda pilih sudah kami tandai untuk alur demo ini. Selanjutnya, tinggal lanjutkan percakapan dengan vendor yang paling sesuai dengan hari istimewa Anda.
         </Text>
 
         <View style={styles.summaryCard}>
@@ -74,21 +74,21 @@ export function SuccessScreen({
             <Text style={styles.summaryValue}>{vendorName}</Text>
           </View>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Date</Text>
+            <Text style={styles.summaryLabel}>Tanggal</Text>
             <Text style={styles.summaryValue}>{formatPrettyDate(date)}</Text>
           </View>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Package</Text>
+            <Text style={styles.summaryLabel}>Paket</Text>
             <Text style={styles.summaryValue}>{packageName}</Text>
           </View>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Reference</Text>
+            <Text style={styles.summaryLabel}>Kode referensi</Text>
             <Text style={styles.summaryValue}>{bookingId}</Text>
           </View>
         </View>
 
         <Pressable onPress={() => router.replace("/")} style={styles.primaryButton} testID="back-home-button">
-          <Text style={styles.primaryButtonText}>Back to vendors</Text>
+          <Text style={styles.primaryButtonText}>Kembali ke koleksi</Text>
         </Pressable>
       </View>
     </SafeAreaView>

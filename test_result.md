@@ -126,6 +126,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Applied Midnight plum + copper redesign, updated cards/layout, and visually validated Home, Vendor Detail, and Booking on local static export."
+      - working: true
+        agent: "main"
+        comment: "Second redesign pass applied based on user feedback: all major copy rewritten to natural Indonesian, light theme changed to warm champagne + mocha, and web Home restructured to feel like a boutique wedding landing page."
   - task: "dark mode auto plus manual toggle"
     implemented: true
     working: true
@@ -137,18 +140,32 @@ frontend:
       - working: true
         agent: "main"
         comment: "Added AUTO/DARK/LIGHT toggle with AsyncStorage persistence and validated manual switch on local static export."
+  - task: "indonesian copy and premium web landing page refinement"
+    implemented: true
+    working: true
+    file: "/app/frontend/presentation/screens/HomeScreen.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated Home, Vendor Detail, Booking, Success, ThemeToggle, FormField, and vendor mock copy to Indonesian human tone. Also verified desktop landing-page feel and mobile booking flow on local static export."
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
   run_ui: true
 test_plan:
   current_focus:
     - "luxury responsive redesign across core screens"
     - "dark mode auto plus manual toggle"
+    - "indonesian copy and premium web landing page refinement"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 agent_communication:
   - agent: "main"
     message: "Please validate the redesigned frontend. Public preview may return 502 because Expo/ngrok tunnel is unstable, but local static build is available at http://127.0.0.1:3456 and has already passed a main-agent visual smoke test."
+  - agent: "main"
+    message: "Please test the latest redesign on local static build http://127.0.0.1:3456. Focus on: warm champagne + mocha light theme, Indonesian human copy, desktop landing-page feel on Home, and preserved mobile flow Home -> Detail -> Booking."

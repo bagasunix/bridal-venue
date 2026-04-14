@@ -74,6 +74,18 @@ export function VendorCard({ compact = false, index = 0, vendor, onPress }: Vend
             {vendor.description}
           </Text>
 
+          {!compact ? (
+            <View style={styles.highlightRow}>
+              {vendor.highlights.slice(0, 2).map((item) => (
+                <View key={item} style={styles.highlightChip}>
+                  <Text numberOfLines={1} style={styles.highlightText}>
+                    {item}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          ) : null}
+
           <View style={styles.metaRow}>
             <View style={styles.metaChip}>
               <Feather color={theme.colors.accent} name="map-pin" size={13} />
@@ -83,7 +95,7 @@ export function VendorCard({ compact = false, index = 0, vendor, onPress }: Vend
             </View>
             <View style={styles.metaChip}>
               <Feather color={theme.colors.accent} name="heart" size={13} />
-              <Text style={styles.metaText}>From {vendor.startingPrice}</Text>
+              <Text style={styles.metaText}>Mulai {vendor.startingPrice}</Text>
             </View>
           </View>
         </View>
@@ -163,6 +175,22 @@ const createStyles = (
       color: "rgba(255,255,255,0.82)",
       fontSize: compact ? 13 : theme.typography.body,
       lineHeight: compact ? 18 : 24,
+    },
+    highlightRow: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 8,
+    },
+    highlightChip: {
+      backgroundColor: "rgba(255, 255, 255, 0.12)",
+      borderRadius: theme.layout.buttonRadius,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+    },
+    highlightText: {
+      color: "#FFFFFF",
+      fontSize: 12,
+      fontWeight: "700",
     },
     metaRow: {
       flexDirection: "row",

@@ -2,18 +2,18 @@ export type ThemeMode = "system" | "light" | "dark";
 export type ResolvedTheme = "light" | "dark";
 
 const lightColors = {
-  background: "#F6F0F6",
-  surface: "#FFFCFE",
-  surfaceMuted: "#F1E6F0",
-  primary: "#5E2A63",
-  accent: "#C07A3A",
-  accentSoft: "#EAD6C5",
-  textPrimary: "#1F1524",
-  textSecondary: "#6B5B73",
-  border: "#DACADD",
-  success: "#5E896B",
-  booked: "#8B4A5C",
-  overlay: "rgba(20, 10, 26, 0.36)",
+  background: "#F7F1E9",
+  surface: "#FFFDF9",
+  surfaceMuted: "#EFE3D5",
+  primary: "#6E5444",
+  accent: "#A88262",
+  accentSoft: "#E8D6C2",
+  textPrimary: "#2E2621",
+  textSecondary: "#786A5F",
+  border: "#E6D9CA",
+  success: "#6D7C67",
+  booked: "#A16D6A",
+  overlay: "rgba(55, 39, 28, 0.28)",
 } as const;
 
 const darkColors = {
@@ -53,6 +53,7 @@ export const layout = {
   imageRadius: 30,
   buttonRadius: 999,
   maxContentWidth: 520,
+  webLandingWidth: 1180,
 } as const;
 
 export const typography = {

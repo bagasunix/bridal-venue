@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { type Href, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -23,12 +24,16 @@ export function HomeScreen() {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
-  const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const isDesktop = Platform.OS === "web" && width >= 980;
+  const contentWidth = isDesktop
+    ? Math.min(width - 72, theme.layout.webLandingWidth)
+    : Math.min(width - 24, theme.layout.maxContentWidth);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
   const useNativeDriver = Platform.OS !== "web";
   const isGrid = viewMode === "grid";
+  const heroVendor = vendors[0];
 
   useEffect(() => {
     Animated.parallel([
@@ -49,39 +54,83 @@ export function HomeScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent} testID="home-screen">
         <View style={[styles.container, { width: contentWidth }]}>
-          <TopBar subtitle="Curated rentals" title="Wedding Atelier" />
+          <TopBar subtitle="Kurasi butik" title="Atelier Hari Bahagia" />
 
           <Animated.View
             style={[
               styles.heroCard,
+              isDesktop && styles.heroCardDesktop,
               { opacity: introOpacity, transform: [{ translateY: introTranslate }] },
             ]}
           >
-            <View style={styles.heroAccent} />
-            <View style={styles.labelRow}>
-              <Text style={styles.label}>Midnight plum collection</Text>
-              <Feather color={theme.colors.accent} name="star" size={16} />
-            </View>
-            <Text style={styles.title}>Elegant rentals with a richer, darker wedding mood.</Text>
-            <Text style={styles.copy}>
-              Jelajahi vendor pilihan, cek tanggal unavailable secara instan, dan booking dalam alur yang terasa premium di mobile maupun web preview.
-            </Text>
-            <View style={styles.metricsRow}>
-              <View style={styles.metricChip}>
-                <Text style={styles.metricValue}>4</Text>
-                <Text style={styles.metricLabel}>Premium vendors</Text>
+            <View style={[styles.heroCopyWrap, isDesktop && styles.heroCopyWrapDesktop]}>
+              <View style={styles.heroAccent} />
+              <View style={styles.labelRow}>
+                <Text style={styles.label} testID="home-hero-label">Kurasi butik pernikahan</Text>
+                <Feather color={theme.colors.accent} name="star" size={16} />
               </View>
-              <View style={styles.metricChip}>
-                <Text style={styles.metricValue}>Auto</Text>
-                <Text style={styles.metricLabel}>Dark mode ready</Text>
+              <Text style={styles.title} testID="home-hero-title">
+                Merancang hari bahagia yang terasa anggun sejak pandangan pertama.
+              </Text>
+              <Text style={styles.copy} testID="home-hero-copy">
+                Temukan lokasi, dekorasi, fotografi, dan jamuan yang dipilih dengan rasa—hangat, tenang, dan tetap berkelas untuk cerita yang sedang kalian siapkan.
+              </Text>
+              <View style={styles.metricsRow}>
+                <View style={styles.metricChip} testID="home-metric-curated">
+                  <Text style={styles.metricValue}>4</Text>
+                  <Text style={styles.metricLabel}>Partner terkurasi</Text>
+                </View>
+                <View style={styles.metricChip} testID="home-metric-booking">
+                  <Text style={styles.metricValue}>Mudah</Text>
+                  <Text style={styles.metricLabel}>Alur booking ringkas</Text>
+                </View>
+                <View style={styles.metricChip} testID="home-metric-theme">
+                  <Text style={styles.metricValue}>Fleksibel</Text>
+                  <Text style={styles.metricLabel}>Terang dan gelap</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={[styles.heroVisualWrap, isDesktop && styles.heroVisualWrapDesktop]}>
+              <Image
+                contentFit="cover"
+                source={{ uri: heroVendor.image }}
+                style={styles.heroImage}
+                testID="home-hero-image"
+              />
+              <View style={styles.heroImageOverlay} />
+              <View style={styles.heroCaptionCard}>
+                <Text style={styles.heroCaptionEyebrow}>Pilihan utama minggu ini</Text>
+                <Text style={styles.heroCaptionTitle}>{heroVendor.name}</Text>
+                <Text style={styles.heroCaptionCopy}>
+                  Tempat yang cocok untuk akad hangat, jamuan intim, dan foto senja yang terasa mahal tanpa berlebihan.
+                </Text>
               </View>
             </View>
           </Animated.View>
 
+          <View style={[styles.trustSection, isDesktop && styles.trustSectionDesktop]}>
+            {[
+              { icon: "feather", title: "Kurasi rapi", copy: "Setiap partner dipilih supaya tampilannya serasi dan prosesnya terasa ringan." },
+              { icon: "shield", title: "Proses jelas", copy: "Tanggal yang sudah terisi terlihat cepat, jadi Anda tidak membuang waktu." },
+              { icon: "heart", title: "Rasa yang hangat", copy: "Bahasa, warna, dan detailnya dibuat agar terasa dekat, bukan seperti template." },
+            ].map((item) => (
+              <View key={item.title} style={styles.trustCard} testID={`trust-card-${item.title.toLowerCase().replace(/\s+/g, "-")}`}>
+                <View style={styles.trustIconWrap}>
+                  <Feather color={theme.colors.accent} name={item.icon as never} size={18} />
+                </View>
+                <Text style={styles.trustTitle}>{item.title}</Text>
+                <Text style={styles.trustCopy}>{item.copy}</Text>
+              </View>
+            ))}
+          </View>
+
           <View style={styles.sectionHeaderRow}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>Curated vendors</Text>
-              <Text style={styles.sectionCopy}>Choose a wedding partner and continue to a richer booking flow.</Text>
+              <Text style={styles.sectionTitle}>Pilihan untuk hari yang ingin dikenang</Text>
+              <Text style={styles.sectionCopy}>
+                Jelajahi partner yang siap membantu suasana pernikahan Anda terasa utuh, cantik, dan tetap nyaman dinikmati.
+              </Text>
             </View>
 
             <View style={styles.viewToggle} testID="vendor-view-toggle">
@@ -95,7 +144,7 @@ export function HomeScreen() {
                 testID="vendor-view-grid-button"
               >
                 <Feather color={isGrid ? "#FFFFFF" : theme.colors.textPrimary} name="grid" size={14} />
-                <Text style={[styles.viewButtonLabel, isGrid && styles.viewButtonLabelActive]}>Grid</Text>
+                <Text style={[styles.viewButtonLabel, isGrid && styles.viewButtonLabelActive]}>Ringkas</Text>
               </Pressable>
 
               <Pressable
@@ -108,7 +157,7 @@ export function HomeScreen() {
                 testID="vendor-view-list-button"
               >
                 <Feather color={!isGrid ? "#FFFFFF" : theme.colors.textPrimary} name="list" size={14} />
-                <Text style={[styles.viewButtonLabel, !isGrid && styles.viewButtonLabelActive]}>List</Text>
+                <Text style={[styles.viewButtonLabel, !isGrid && styles.viewButtonLabelActive]}>Detail</Text>
               </Pressable>
             </View>
           </View>
@@ -144,16 +193,20 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       paddingTop: 18,
     },
     container: {
-      gap: theme.layout.sectionGap,
+      gap: 28,
     },
     heroCard: {
       backgroundColor: theme.colors.surface,
       borderColor: theme.colors.border,
       borderRadius: theme.layout.cardRadius,
       borderWidth: 1,
-      gap: 16,
+      gap: 18,
       overflow: "hidden",
-      padding: 22,
+      padding: 20,
+    },
+    heroCardDesktop: {
+      flexDirection: "row",
+      gap: 22,
     },
     heroAccent: {
       backgroundColor: theme.isDark ? "rgba(192,122,58,0.16)" : theme.colors.accentSoft,
@@ -163,6 +216,18 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       right: -32,
       top: -32,
       width: 160,
+    },
+    heroCopyWrap: {
+      gap: 16,
+      overflow: "hidden",
+      padding: 10,
+      position: "relative",
+    },
+    heroCopyWrapDesktop: {
+      flex: 1,
+      justifyContent: "center",
+      paddingHorizontal: 20,
+      paddingVertical: 28,
     },
     labelRow: {
       alignItems: "center",
@@ -179,16 +244,16 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     title: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: theme.typography.hero,
+      fontSize: 40,
       fontWeight: "700",
-      lineHeight: 42,
-      maxWidth: 340,
+      lineHeight: 50,
+      maxWidth: 520,
     },
     copy: {
       color: theme.colors.textSecondary,
       fontSize: theme.typography.body,
-      lineHeight: 25,
-      maxWidth: 390,
+      lineHeight: 28,
+      maxWidth: 470,
     },
     metricsRow: {
       flexDirection: "row",
@@ -216,6 +281,85 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       fontSize: 13,
       fontWeight: "600",
     },
+    heroVisualWrap: {
+      borderRadius: 28,
+      height: 320,
+      overflow: "hidden",
+      position: "relative",
+    },
+    heroVisualWrapDesktop: {
+      flex: 1,
+      height: 460,
+      minWidth: 420,
+    },
+    heroImage: {
+      height: "100%",
+      width: "100%",
+    },
+    heroImageOverlay: {
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: theme.colors.overlay,
+    },
+    heroCaptionCard: {
+      backgroundColor: "rgba(255, 253, 249, 0.92)",
+      borderRadius: 26,
+      bottom: 18,
+      gap: 8,
+      left: 18,
+      padding: 18,
+      position: "absolute",
+      right: 18,
+    },
+    heroCaptionEyebrow: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    heroCaptionTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: 24,
+      fontWeight: "700",
+    },
+    heroCaptionCopy: {
+      color: theme.colors.textSecondary,
+      fontSize: 14,
+      lineHeight: 22,
+    },
+    trustSection: {
+      gap: 14,
+    },
+    trustSectionDesktop: {
+      flexDirection: "row",
+    },
+    trustCard: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 26,
+      borderWidth: 1,
+      gap: 10,
+      padding: 18,
+    },
+    trustIconWrap: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surfaceMuted,
+      borderRadius: 999,
+      height: 38,
+      justifyContent: "center",
+      width: 38,
+    },
+    trustTitle: {
+      color: theme.colors.textPrimary,
+      fontSize: 17,
+      fontWeight: "700",
+    },
+    trustCopy: {
+      color: theme.colors.textSecondary,
+      fontSize: 14,
+      lineHeight: 22,
+    },
     sectionHeader: {
       gap: 6,
     },
@@ -226,7 +370,7 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     sectionTitle: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: theme.typography.title,
+      fontSize: 28,
       fontWeight: "700",
     },
     sectionCopy: {

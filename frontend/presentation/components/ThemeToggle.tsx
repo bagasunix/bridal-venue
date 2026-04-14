@@ -4,9 +4,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 
 const LABELS = {
-  dark: "DARK",
-  light: "LIGHT",
-  system: "AUTO",
+  dark: "GELAP",
+  light: "TERANG",
+  system: "OTOMATIS",
 } as const;
 
 const ICONS = {

@@ -31,16 +31,16 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
   const vendor = getVendorBySlug(slug);
   const [loading, setLoading] = useState(false);
   const [availabilitySummary, setAvailabilitySummary] = useState<string[]>([]);
-  const [helperText, setHelperText] = useState("Tap below to sync this month’s booked dates.");
+  const [helperText, setHelperText] = useState("Lihat tanggal yang sudah terisi sebelum Anda melangkah ke proses pemesanan.");
 
   if (!vendor) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.emptyState}>
-          <TopBar showBack title="Vendor detail" />
-          <Text style={styles.emptyTitle}>Vendor not found</Text>
+          <TopBar showBack title="Detail vendor" />
+          <Text style={styles.emptyTitle}>Vendor yang Anda cari belum tersedia.</Text>
           <Pressable onPress={() => router.replace("/")} style={styles.primaryButton} testID="vendor-not-found-back-button">
-            <Text style={styles.primaryButtonText}>Back home</Text>
+            <Text style={styles.primaryButtonText}>Kembali ke beranda</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -53,7 +53,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
     setAvailabilitySummary(response.booked_dates);
     setHelperText(
       response.error_message ??
-        `${response.booked_dates.length} unavailable date${response.booked_dates.length === 1 ? "" : "s"} found for ${vendor.name}.`,
+        `${response.booked_dates.length} tanggal sudah terisi untuk ${vendor.name}.`,
     );
     setLoading(false);
   };
@@ -66,7 +66,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
             <Image contentFit="cover" source={{ uri: vendor.image }} style={styles.heroImage} testID="vendor-detail-hero-image" />
             <View style={styles.heroOverlay} />
             <View style={styles.heroTopBar}>
-              <TopBar overlay showBack subtitle="Vendor detail" title={vendor.name} />
+              <TopBar overlay showBack subtitle="Pilihan Anda" title={vendor.name} />
             </View>
             <View style={styles.heroContent}>
               <View style={styles.categoryChip}>
@@ -85,12 +85,12 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
               </View>
               <View style={styles.infoChip}>
                 <Feather color={theme.colors.accent} name="heart" size={16} />
-                <Text style={styles.infoText}>From {vendor.startingPrice}</Text>
+                <Text style={styles.infoText}>Mulai {vendor.startingPrice}</Text>
               </View>
             </View>
 
             <View style={styles.packageCard}>
-              <Text style={styles.cardTitle}>Packages</Text>
+              <Text style={styles.cardTitle}>Pilihan paket</Text>
               {vendor.packages.map((item) => (
                 <View key={item.name} style={styles.packageRow}>
                   <View style={styles.packageTextWrap}>
@@ -103,7 +103,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
             </View>
 
             <View style={styles.packageCard}>
-              <Text style={styles.cardTitle}>Availability sync</Text>
+              <Text style={styles.cardTitle}>Ketersediaan tanggal</Text>
               <Text style={styles.helperText}>{helperText}</Text>
               {availabilitySummary.length > 0 ? (
                 <View style={styles.dateWrap}>
@@ -123,7 +123,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
                 {loading ? (
                   <ActivityIndicator color="#FFFFFF" />
                 ) : (
-                  <Text style={styles.primaryButtonText}>Check availability</Text>
+                  <Text style={styles.primaryButtonText}>Cek ketersediaan</Text>
                 )}
               </Pressable>
             </View>
@@ -133,7 +133,7 @@ export function VendorDetailScreen({ slug }: VendorDetailScreenProps) {
               style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressedButton]}
               testID="start-booking-button"
             >
-              <Text style={styles.secondaryButtonText}>Continue to booking</Text>
+              <Text style={styles.secondaryButtonText}>Lanjut ke pemesanan</Text>
             </Pressable>
           </View>
         </View>

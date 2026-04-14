@@ -88,10 +88,10 @@ export function BookingScreen({ slug }: BookingScreenProps) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.centeredState}>
-          <TopBar showBack title="Booking" />
-          <Text style={styles.emptyTitle}>This booking option is unavailable.</Text>
+          <TopBar showBack title="Pemesanan" />
+          <Text style={styles.emptyTitle}>Pilihan pemesanan ini belum tersedia.</Text>
           <Pressable onPress={() => router.replace("/")} style={styles.primaryButton} testID="booking-not-found-back-button">
-            <Text style={styles.primaryButtonText}>Back home</Text>
+            <Text style={styles.primaryButtonText}>Kembali ke beranda</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -129,7 +129,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
         `/success?bookingId=${encodeURIComponent(result.booking_id)}&date=${encodeURIComponent(selectedDate)}&packageName=${encodeURIComponent(packageLabel)}&vendorName=${encodeURIComponent(vendor.name)}` as Href,
       );
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Unable to submit booking.");
+      setErrorMessage(error instanceof Error ? error.message : "Pemesanan belum berhasil dikirim.");
     } finally {
       setSubmitting(false);
     }
@@ -143,34 +143,34 @@ export function BookingScreen({ slug }: BookingScreenProps) {
       >
         <ScrollView contentContainerStyle={styles.scrollContent} testID="booking-screen">
           <View style={[styles.container, { width: contentWidth }]}> 
-            <TopBar showBack subtitle="Refined booking" title="Secure your date" />
+            <TopBar showBack subtitle="Atur hari Anda" title="Pilih tanggal yang paling pas" />
 
             <View style={styles.summaryCard}>
-              <Text style={styles.label}>Booking form</Text>
+              <Text style={styles.label}>Form pemesanan</Text>
               <Text style={styles.title}>{vendor.name}</Text>
-              <Text style={styles.copy}>Choose your package, then pick a date that is still open.</Text>
+              <Text style={styles.copy}>Pilih paket yang paling cocok, lalu tentukan tanggal yang masih tersedia.</Text>
             </View>
 
             <View style={styles.formCard}>
               <FormField
-                label="Your name"
+                label="Nama lengkap"
                 onChangeText={setName}
-                placeholder="Ava Thompson"
+                placeholder="Nama Anda"
                 testID="booking-name-input"
                 value={name}
               />
               <FormField
                 autoCapitalize="none"
                 keyboardType="phone-pad"
-                label="Phone"
+                label="Nomor WhatsApp"
                 onChangeText={setPhone}
-                placeholder="(555) 012-3456"
+                placeholder="08xxxxxxxxxx"
                 testID="booking-phone-input"
                 value={phone}
               />
 
               <View style={styles.fieldBlock}>
-                <Text style={styles.fieldLabel}>Package</Text>
+                <Text style={styles.fieldLabel}>Pilihan paket</Text>
                 <View style={styles.packageWrap}>
                   {vendor.packages.map((item) => {
                     const active = item.name === selectedPackage;
@@ -201,18 +201,18 @@ export function BookingScreen({ slug }: BookingScreenProps) {
             <View style={styles.legendRow}>
               <View style={styles.legendChip}>
                 <View style={styles.availableDot} />
-                <Text style={styles.legendText}>Available</Text>
+                <Text style={styles.legendText}>Tersedia</Text>
               </View>
               <View style={styles.legendChip}>
                 <View style={styles.bookedDot} />
-                <Text style={styles.legendText}>Booked</Text>
+                <Text style={styles.legendText}>Sudah terisi</Text>
               </View>
             </View>
 
             {loadingAvailability ? (
               <View style={styles.loadingCard}>
                 <ActivityIndicator color={theme.colors.accent} />
-                <Text style={styles.loadingText}>Checking this month’s dates...</Text>
+                <Text style={styles.loadingText}>Sedang memuat ketersediaan bulan ini...</Text>
               </View>
             ) : (
               <CalendarGrid
@@ -236,7 +236,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
             {selectedDate ? (
               <View style={styles.noteCard}>
                 <Feather color={theme.colors.success} name="check-circle" size={18} />
-                <Text style={styles.noteText}>Selected date: {formatPrettyDate(selectedDate)}</Text>
+                <Text style={styles.noteText}>Tanggal pilihan Anda: {formatPrettyDate(selectedDate)}</Text>
               </View>
             ) : null}
 
@@ -259,7 +259,7 @@ export function BookingScreen({ slug }: BookingScreenProps) {
               {submitting ? (
                 <ActivityIndicator color="#FFFFFF" />
               ) : (
-                <Text style={styles.primaryButtonText}>Confirm booking</Text>
+                <Text style={styles.primaryButtonText}>Kirim permintaan</Text>
               )}
             </Pressable>
           </View>

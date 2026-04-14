@@ -60,13 +60,12 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       textTransform: "uppercase",
     },
     input: {
-      backgroundColor: theme.colors.surface,
-      borderColor: theme.colors.border,
-      borderRadius: 22,
-      borderWidth: 1,
+      backgroundColor: "transparent",
+      borderBottomColor: theme.colors.border,
+      borderBottomWidth: 1,
       color: theme.colors.textPrimary,
       fontSize: theme.typography.body,
       minHeight: 56,
-      paddingHorizontal: 18,
+      paddingHorizontal: 2,
     },
   });
