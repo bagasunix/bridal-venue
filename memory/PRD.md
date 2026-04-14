@@ -40,11 +40,13 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Redesign baru tervalidasi secara visual lewat static web build lokal pada Home, Vendor Detail, dan Booking
 - Manual dark mode toggle tervalidasi berjalan
 - TypeScript frontend lulus `tsc --noEmit`
+- QA finding yang sudah diperbaiki: touch target back button >= 44x44, fallback not-found buttons sekarang punya `testID`, dan fallback env frontend diperluas agar lebih aman
 
 ## Current Status
 - App demo end-to-end berfungsi
 - Integrasi n8n masih **MOCKED** sampai webhook live diberikan/diaktifkan
 - Public preview Expo masih dapat terganggu oleh limit tunnel eksternal, tetapi build statis lokal berhasil diekspor dan tervalidasi
+- Masih ada **minor web-only console warning** `ERR_INVALID_URL` untuk sebagian embedded base64 image pada static web preview; visual image tetap tampil dan flow UI tetap berjalan
 
 ## Backlog
 ### P0
@@ -55,6 +57,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Tambahkan navigasi bulan berikutnya/sebelumnya pada calendar grid
 - Tambahkan state error/loading yang lebih eksplisit untuk submit booking
 - Validasi ulang redesign pada preview publik ketika tunnel kembali stabil
+- Investigasi lanjutan warning console web pada embedded base64 image bila ingin console benar-benar bersih
 
 ### P2
 - Simpan riwayat booking demo per device

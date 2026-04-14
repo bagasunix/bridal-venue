@@ -11,7 +11,6 @@ import {
 } from "react-native";
 
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
-import { useResolvedImageSource } from "@/presentation/hooks/useResolvedImageSource";
 import type { Vendor } from "@/types";
 
 type VendorCardProps = {
@@ -26,7 +25,6 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(20)).current;
   const useNativeDriver = Platform.OS !== "web";
-  const imageSource = useResolvedImageSource(vendor.image);
 
   useEffect(() => {
     Animated.parallel([
@@ -53,16 +51,12 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
         style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
         testID={`vendor-card-${vendor.slug}`}
       >
-        {imageSource ? (
-          <Image
-            contentFit="cover"
-            source={imageSource}
-            style={styles.image}
-            testID={`vendor-card-image-${vendor.slug}`}
-          />
-        ) : (
-          <View style={styles.imagePlaceholder} testID={`vendor-card-image-${vendor.slug}`} />
-        )}
+        <Image
+          contentFit="cover"
+          source={{ uri: vendor.image }}
+          style={styles.image}
+          testID={`vendor-card-image-${vendor.slug}`}
+        />
         <View style={styles.overlay} />
         <View style={styles.body}>
           <View style={styles.headerRow}>
@@ -110,11 +104,6 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       transform: [{ scale: 0.985 }],
     },
     image: {
-      height: 360,
-      width: "100%",
-    },
-    imagePlaceholder: {
-      backgroundColor: theme.colors.surfaceMuted,
       height: 360,
       width: "100%",
     },
