@@ -1,9 +1,10 @@
 import { Feather } from "@expo/vector-icons";
 import { type Href, useRouter } from "expo-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   Platform,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -23,9 +24,11 @@ export function HomeScreen() {
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
   const contentWidth = Math.min(width - 24, theme.layout.maxContentWidth);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
   const useNativeDriver = Platform.OS !== "web";
+  const isGrid = viewMode === "grid";
 
   useEffect(() => {
     Animated.parallel([
@@ -75,14 +78,45 @@ export function HomeScreen() {
             </View>
           </Animated.View>
 
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Curated vendors</Text>
-            <Text style={styles.sectionCopy}>Choose a wedding partner and continue to a richer booking flow.</Text>
+          <View style={styles.sectionHeaderRow}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Curated vendors</Text>
+              <Text style={styles.sectionCopy}>Choose a wedding partner and continue to a richer booking flow.</Text>
+            </View>
+
+            <View style={styles.viewToggle} testID="vendor-view-toggle">
+              <Pressable
+                onPress={() => setViewMode("grid")}
+                style={({ pressed }) => [
+                  styles.viewButton,
+                  isGrid && styles.viewButtonActive,
+                  pressed && styles.viewButtonPressed,
+                ]}
+                testID="vendor-view-grid-button"
+              >
+                <Feather color={isGrid ? "#FFFFFF" : theme.colors.textPrimary} name="grid" size={14} />
+                <Text style={[styles.viewButtonLabel, isGrid && styles.viewButtonLabelActive]}>Grid</Text>
+              </Pressable>
+
+              <Pressable
+                onPress={() => setViewMode("list")}
+                style={({ pressed }) => [
+                  styles.viewButton,
+                  !isGrid && styles.viewButtonActive,
+                  pressed && styles.viewButtonPressed,
+                ]}
+                testID="vendor-view-list-button"
+              >
+                <Feather color={!isGrid ? "#FFFFFF" : theme.colors.textPrimary} name="list" size={14} />
+                <Text style={[styles.viewButtonLabel, !isGrid && styles.viewButtonLabelActive]}>List</Text>
+              </Pressable>
+            </View>
           </View>
 
           <View style={styles.cardList}>
             {vendors.map((vendor, index) => (
               <VendorCard
+                compact={isGrid}
                 index={index}
                 key={vendor.slug}
                 onPress={() =>
@@ -185,6 +219,10 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     sectionHeader: {
       gap: 6,
     },
+    sectionHeaderRow: {
+      alignItems: "flex-start",
+      gap: 14,
+    },
     sectionTitle: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
@@ -195,6 +233,39 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       color: theme.colors.textSecondary,
       fontSize: theme.typography.body,
       lineHeight: 24,
+    },
+    viewToggle: {
+      alignSelf: "stretch",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: theme.layout.buttonRadius,
+      borderWidth: 1,
+      flexDirection: "row",
+      gap: 8,
+      padding: 6,
+    },
+    viewButton: {
+      alignItems: "center",
+      borderRadius: theme.layout.buttonRadius,
+      flex: 1,
+      flexDirection: "row",
+      gap: 8,
+      justifyContent: "center",
+      minHeight: 44,
+    },
+    viewButtonActive: {
+      backgroundColor: theme.colors.accent,
+    },
+    viewButtonLabel: {
+      color: theme.colors.textPrimary,
+      fontSize: 13,
+      fontWeight: "800",
+    },
+    viewButtonLabelActive: {
+      color: "#FFFFFF",
+    },
+    viewButtonPressed: {
+      opacity: 0.9,
     },
     cardList: {
       gap: 18,

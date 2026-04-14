@@ -22,6 +22,9 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Dark mode **auto + manual toggle** (cycle AUTO / DARK / LIGHT) dengan penyimpanan preferensi lokal
 - Layout dibuat lebih responsif dan seimbang untuk mobile + web preview
 - Animasi halus untuk entrance card dan state sukses
+- Toggle vendor **Grid / List** pada Home screen
+- Calendar sekarang punya **month switcher** (prev/next) pada Booking screen
+- Sanitasi base64 image asset di layer `imageAssets.ts` untuk membersihkan asset yang malformed
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -41,12 +44,14 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Manual dark mode toggle tervalidasi berjalan
 - TypeScript frontend lulus `tsc --noEmit`
 - QA finding yang sudah diperbaiki: touch target back button >= 44x44, fallback not-found buttons sekarang punya `testID`, dan fallback env frontend diperluas agar lebih aman
+- Toggle Grid / List tervalidasi berjalan
+- Month switcher kalender tervalidasi berjalan dan touch target-nya >= 44x44
 
 ## Current Status
 - App demo end-to-end berfungsi
 - Integrasi n8n masih **MOCKED** sampai webhook live diberikan/diaktifkan
 - Public preview Expo masih dapat terganggu oleh limit tunnel eksternal, tetapi build statis lokal berhasil diekspor dan tervalidasi
-- Masih ada **minor web-only console warning** `ERR_INVALID_URL` untuk sebagian embedded base64 image pada static web preview; visual image tetap tampil dan flow UI tetap berjalan
+- Warning base64 image yang sebelumnya mengganggu static web preview sudah dibersihkan lewat sanitasi asset
 
 ## Backlog
 ### P0
@@ -54,10 +59,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 
 ### P1
 - Ganti webhook mock dengan webhook n8n live saat URL final tersedia
-- Tambahkan navigasi bulan berikutnya/sebelumnya pada calendar grid
 - Tambahkan state error/loading yang lebih eksplisit untuk submit booking
 - Validasi ulang redesign pada preview publik ketika tunnel kembali stabil
-- Investigasi lanjutan warning console web pada embedded base64 image bila ingin console benar-benar bersih
 
 ### P2
 - Simpan riwayat booking demo per device

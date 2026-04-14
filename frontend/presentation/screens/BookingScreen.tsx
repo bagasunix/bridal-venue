@@ -39,6 +39,10 @@ export function BookingScreen({ slug }: BookingScreenProps) {
   const [selectedPackage, setSelectedPackage] = useState(vendor?.packages[0]?.name ?? "");
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [bookedDates, setBookedDates] = useState<string[]>([]);
+  const [displayedMonth, setDisplayedMonth] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
   const [loadingAvailability, setLoadingAvailability] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -47,6 +51,22 @@ export function BookingScreen({ slug }: BookingScreenProps) {
   useEffect(() => {
     setSelectedPackage(vendor?.packages[0]?.name ?? "");
   }, [vendor]);
+
+  const currentMonth = useMemo(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  }, []);
+
+  const canGoPrevMonth =
+    displayedMonth.getFullYear() > currentMonth.getFullYear() ||
+    (displayedMonth.getFullYear() === currentMonth.getFullYear() &&
+      displayedMonth.getMonth() > currentMonth.getMonth());
+
+  const changeMonth = (offset: number) => {
+    setDisplayedMonth((currentMonthDate) =>
+      new Date(currentMonthDate.getFullYear(), currentMonthDate.getMonth() + offset, 1),
+    );
+  };
 
   useEffect(() => {
     if (!vendor) {
@@ -197,6 +217,10 @@ export function BookingScreen({ slug }: BookingScreenProps) {
             ) : (
               <CalendarGrid
                 bookedDates={bookedDates}
+                canGoPrevMonth={canGoPrevMonth}
+                monthDate={displayedMonth}
+                onNextMonth={() => changeMonth(1)}
+                onPreviousMonth={() => changeMonth(-1)}
                 onSelectDate={setSelectedDate}
                 selectedDate={selectedDate}
               />

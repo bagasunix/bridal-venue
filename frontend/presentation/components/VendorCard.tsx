@@ -14,14 +14,15 @@ import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 import type { Vendor } from "@/types";
 
 type VendorCardProps = {
+  compact?: boolean;
   index?: number;
   vendor: Vendor;
   onPress: () => void;
 };
 
-export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
+export function VendorCard({ compact = false, index = 0, vendor, onPress }: VendorCardProps) {
   const { theme } = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = createStyles(theme, compact);
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(20)).current;
   const useNativeDriver = Platform.OS !== "web";
@@ -44,7 +45,7 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
   }, [index, opacity, translateY, useNativeDriver]);
 
   return (
-    <Animated.View style={{ opacity, transform: [{ translateY }] }}>
+    <Animated.View style={[styles.wrapper, { opacity, transform: [{ translateY }] }] }>
       <Pressable
         accessibilityRole="button"
         onPress={onPress}
@@ -69,7 +70,7 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
           </View>
 
           <Text style={styles.name}>{vendor.name}</Text>
-          <Text numberOfLines={2} style={styles.description}>
+          <Text numberOfLines={compact ? 1 : 2} style={styles.description}>
             {vendor.description}
           </Text>
 
@@ -91,20 +92,27 @@ export function VendorCard({ index = 0, vendor, onPress }: VendorCardProps) {
   );
 }
 
-const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
+const createStyles = (
+  theme: ReturnType<typeof useAppTheme>["theme"],
+  compact: boolean,
+) =>
   StyleSheet.create({
     card: {
       borderRadius: theme.layout.cardRadius,
-      minHeight: 360,
+      minHeight: compact ? 250 : 360,
       overflow: "hidden",
       position: "relative",
+      width: "100%",
+    },
+    wrapper: {
+      width: "100%",
     },
     cardPressed: {
       opacity: 0.94,
       transform: [{ scale: 0.985 }],
     },
     image: {
-      height: 360,
+      height: compact ? 250 : 360,
       width: "100%",
     },
     overlay: {
@@ -113,9 +121,9 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     },
     body: {
       bottom: 0,
-      gap: 12,
+      gap: compact ? 10 : 12,
       left: 0,
-      padding: 22,
+      padding: compact ? 16 : 22,
       position: "absolute",
       right: 0,
     },
@@ -132,7 +140,7 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     },
     categoryText: {
       color: "#FFFFFF",
-      fontSize: theme.typography.small,
+      fontSize: compact ? 11 : theme.typography.small,
       fontWeight: "800",
       letterSpacing: 1,
       textTransform: "uppercase",
@@ -141,20 +149,20 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       alignItems: "center",
       backgroundColor: "rgba(255, 255, 255, 0.92)",
       borderRadius: 999,
-      height: 34,
+      height: compact ? 30 : 34,
       justifyContent: "center",
-      width: 34,
+      width: compact ? 30 : 34,
     },
     name: {
       color: "#FFFFFF",
       fontFamily: "Georgia",
-      fontSize: theme.typography.title,
+      fontSize: compact ? 20 : theme.typography.title,
       fontWeight: "700",
     },
     description: {
       color: "rgba(255,255,255,0.82)",
-      fontSize: theme.typography.body,
-      lineHeight: 24,
+      fontSize: compact ? 13 : theme.typography.body,
+      lineHeight: compact ? 18 : 24,
     },
     metaRow: {
       flexDirection: "row",
@@ -167,12 +175,12 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       borderRadius: theme.layout.buttonRadius,
       flexDirection: "row",
       gap: 7,
-      paddingHorizontal: 12,
-      paddingVertical: 9,
+      paddingHorizontal: compact ? 10 : 12,
+      paddingVertical: compact ? 8 : 9,
     },
     metaText: {
       color: "#FFFFFF",
-      fontSize: 13,
+      fontSize: compact ? 12 : 13,
       fontWeight: "700",
     },
   });

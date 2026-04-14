@@ -1,3 +1,4 @@
+import { Feather } from "@expo/vector-icons";
 import { LayoutAnimation, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
@@ -10,24 +11,56 @@ import {
 
 type CalendarGridProps = {
   bookedDates: string[];
+  canGoPrevMonth: boolean;
+  monthDate: Date;
+  onNextMonth: () => void;
+  onPreviousMonth: () => void;
   selectedDate: string | null;
   onSelectDate: (value: string) => void;
 };
 
 export function CalendarGrid({
   bookedDates,
+  canGoPrevMonth,
+  monthDate,
+  onNextMonth,
+  onPreviousMonth,
   selectedDate,
   onSelectDate,
 }: CalendarGridProps) {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
-  const monthDate = new Date();
   const today = toIsoDateLocal(new Date());
   const days = buildCurrentMonthGrid(monthDate);
 
   return (
     <View style={styles.card}>
-      <Text style={styles.heading}>{formatMonthTitle(monthDate)}</Text>
+      <View style={styles.headerRow}>
+        <Pressable
+          accessibilityRole="button"
+          disabled={!canGoPrevMonth}
+          onPress={onPreviousMonth}
+          style={({ pressed }) => [
+            styles.monthButton,
+            !canGoPrevMonth && styles.monthButtonDisabled,
+            pressed && canGoPrevMonth && styles.monthButtonPressed,
+          ]}
+          testID="calendar-prev-month-button"
+        >
+          <Feather color={theme.colors.textPrimary} name="chevron-left" size={18} />
+        </Pressable>
+
+        <Text style={styles.heading}>{formatMonthTitle(monthDate)}</Text>
+
+        <Pressable
+          accessibilityRole="button"
+          onPress={onNextMonth}
+          style={({ pressed }) => [styles.monthButton, pressed && styles.monthButtonPressed]}
+          testID="calendar-next-month-button"
+        >
+          <Feather color={theme.colors.textPrimary} name="chevron-right" size={18} />
+        </Pressable>
+      </View>
 
       <View style={styles.weekdayRow}>
         {getWeekdayNames().map((day) => (
@@ -101,6 +134,29 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       fontFamily: "Georgia",
       fontSize: theme.typography.section,
       fontWeight: "700",
+      textAlign: "center",
+    },
+    headerRow: {
+      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    monthButton: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surfaceMuted,
+      borderColor: theme.colors.border,
+      borderRadius: 999,
+      borderWidth: 1,
+      height: 44,
+      justifyContent: "center",
+      width: 44,
+    },
+    monthButtonDisabled: {
+      opacity: 0.4,
+    },
+    monthButtonPressed: {
+      opacity: 0.9,
+      transform: [{ scale: 0.96 }],
     },
     weekdayRow: {
       flexDirection: "row",
