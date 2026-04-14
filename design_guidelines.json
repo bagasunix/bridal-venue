@@ -1,113 +1,144 @@
 {
-  "theme": "dark/light (auto+manual toggle)",
-  "archetype": "5 (Jewel & Luxury)",
-  "concept": "Midnight plum + copper. Minimal luxury wedding rental platform.",
+  "project_name": "Expo Wedding Rental Redesign",
+  "theme": "Light",
+  "archetype": "Organic & Earthy / Light Luxury Blend",
+  "design_philosophy": {
+    "vibe": "Hangat dan mewah (Warm and luxurious), boutique, editorial.",
+    "browser_behavior": "Must feel like a premium high-end landing page on web/desktop, not a stretched mobile app container.",
+    "core_strategy": "Use generous white space, soft contrast, and elegant typography to build trust."
+  },
   "typography": {
-    "heading_font": "Playfair Display",
-    "body_font": "Outfit",
-    "hierarchy": {
-      "h1": "text-4xl font-bold tracking-tight text-[#1A0B2E] dark:text-[#F3E0CC]",
-      "h2": "text-2xl font-semibold tracking-tight text-[#2D1B4E] dark:text-[#E6C19C]",
-      "h3": "text-xl font-medium text-[#4A0E4F] dark:text-[#D4A574]",
-      "body": "text-base font-normal leading-relaxed text-gray-600 dark:text-gray-300",
-      "small": "text-sm font-light uppercase tracking-widest text-gray-500 dark:text-gray-400"
+    "strategy": "The 'Old Money Tech' variant: Elegant Serif Headings paired with a Sterile/Clean Sans Body.",
+    "headings": {
+      "fontFamily": "Playfair Display",
+      "fallback": "Cormorant Garamond, serif",
+      "usage_rules": "Use tracking-tight for large headings. Keep weights Light (300) to Regular (400) for elegance. Avoid Heavy/Black weights."
+    },
+    "body": {
+      "fontFamily": "Outfit",
+      "fallback": "Lato, sans-serif",
+      "usage_rules": "Clean sans-serif for legibility in booking forms and UI labels. Use text-base to text-lg with relaxed line height (leading-relaxed)."
     }
   },
   "colors": {
     "light": {
-      "background": "#FDFBF7",
+      "background": "#FAF9F6",
       "surface": "#FFFFFF",
-      "primary": "#4A0E4F",
-      "accent": "#B87333",
-      "text": "#1A0B2E",
-      "text_muted": "#6B5B7E",
-      "border": "#E8E2D9"
+      "primary": "#8B7355",
+      "primary_light": "#E5D3B3",
+      "text_main": "#2C2A29",
+      "text_muted": "#756E65",
+      "border": "#E8E2D9",
+      "success": "#6B705C",
+      "error": "#9A4C4C",
+      "accent": "#C4A484"
     },
     "dark": {
-      "background": "#1A0B2E",
-      "surface": "#2D1B4E",
-      "primary": "#D4A574",
-      "accent": "#B87333",
-      "text": "#FDFBF7",
-      "text_muted": "#A89CB8",
-      "border": "#3D2B5E"
-    },
-    "calendar_states": {
-      "available": "#4E7C59",
-      "booked": "#8C3A4D",
-      "selected": "#B87333",
-      "disabled": "opacity-50"
+      "background": "#1A1412",
+      "surface": "#241D1A",
+      "primary": "#E5D3B3",
+      "primary_dark": "#8B7355",
+      "text_main": "#FAF9F6",
+      "text_muted": "#A89F91",
+      "border": "#3D332D",
+      "success": "#8A9079",
+      "error": "#B06565",
+      "accent": "#8B7355"
     }
   },
   "spacing_and_layout": {
-    "container": "flex-1 w-full max-w-md mx-auto md:max-w-lg lg:max-w-xl bg-[#FDFBF7] dark:bg-[#1A0B2E] relative h-full",
-    "padding": "px-6 py-8",
-    "card_radius": "rounded-[32px]",
-    "button_radius": "rounded-full"
-  },
-  "components": {
-    "vendor_card": {
-      "wrapper": "relative w-full h-[320px] rounded-[32px] overflow-hidden mb-6 shadow-xl",
-      "image": "absolute inset-0 w-full h-full object-cover",
-      "overlay": "absolute inset-0 bg-black/40 dark:bg-black/60",
-      "content": "absolute bottom-0 left-0 w-full p-6 flex flex-col gap-2"
+    "general": "Embrace negative space. Use generous padding (p-8, p-12) around main content areas.",
+    "web_landing_page": {
+      "hero": "Full width with max-w-7xl content constraint. Desktop uses grid-cols-2 for an asymmetric editorial look. Image takes up one column, text the other.",
+      "vendor_grid": "Use bento grid or asymmetrical grid on desktop (e.g., md:grid-cols-2 lg:grid-cols-3) with gap-8 or gap-12."
     },
-    "button_primary": {
-      "style": "w-full py-4 bg-[#B87333] rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform",
-      "text": "text-white font-semibold text-lg tracking-wide"
+    "mobile_app": {
+      "container": "Standard safe area views, but avoid boxing everything in cards. Use edge-to-edge imagery where possible.",
+      "padding": "px-6 for standard screen content."
+    }
+  },
+  "copywriting_indonesian": {
+    "tone": "Natural, human, elegant, and warm. Avoid literal translations.",
+    "mapping": {
+      "Book Now": "Jadikan Milik Anda",
+      "Check Availability": "Cek Ketersediaan",
+      "Available": "Tersedia",
+      "Unavailable / Booked": "Sudah Dipesan",
+      "Success Confirmation": "Pemesanan Berhasil",
+      "Select Date": "Pilih Tanggal Hari Bahagia Anda",
+      "Name": "Nama Lengkap",
+      "Phone": "Nomor WhatsApp",
+      "Package": "Pilihan Paket",
+      "Browse Vendors": "Koleksi Eksklusif Kami",
+      "Hero Title": "Wujudkan Pernikahan Impian Anda",
+      "Hero Subtitle": "Temukan vendor dekorasi dan lokasi terbaik yang merangkai cerita cinta Anda dengan keanggunan abadi."
+    }
+  },
+  "components_instructions": {
+    "cards": {
+      "style": "Go cardless or use extremely subtle borders (border border-border) without harsh shadows. Use soft image corners (rounded-xl) and place text below or layered elegantly over the image with a subtle gradient.",
+      "interaction": "Subtle scale down or up on press (mobile) or hover (web)."
+    },
+    "buttons": {
+      "primary": "Background primary (Mocha #8B7355), text surface (#FFFFFF), fully rounded or very slight rounded (rounded-sm) based on preference, padding y-4 px-8.",
+      "secondary": "Border only (border-primary text-primary)."
+    },
+    "inputs": {
+      "style": "Editorial style: use border-b only (underlined input), not a full bounding box. Focus states should highlight the bottom border in Mocha. Background transparent."
     },
     "date_picker": {
-      "grid": "flex flex-row flex-wrap justify-between gap-3 p-5 rounded-[32px] bg-white dark:bg-[#2D1B4E] shadow-sm border border-[#E8E2D9] dark:border-[#3D2B5E]",
-      "cell_available": "w-12 h-12 rounded-full flex items-center justify-center border border-[#4E7C59] text-[#4E7C59] dark:text-[#76B085]",
-      "cell_booked": "w-12 h-12 rounded-full flex items-center justify-center opacity-40 bg-[#8C3A4D] text-white",
-      "cell_selected": "w-12 h-12 rounded-full flex items-center justify-center bg-[#B87333] text-white shadow-md shadow-[#B87333]/30"
-    },
-    "bottom_sheet": {
-      "wrapper": "absolute bottom-0 w-full bg-white dark:bg-[#2D1B4E] rounded-t-[40px] shadow-2xl p-8 z-50",
-      "handle": "w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-6"
+      "grid": "Clean grid, no harsh borders between days.",
+      "available": "Text text_main. Selectable.",
+      "booked": "Text text_muted/50 with a subtle strike-through or opacity reduction. Non-selectable.",
+      "selected": "Circular background in Mocha (#8B7355), text White.",
+      "today": "Text primary, font-medium."
     }
   },
   "screens": {
-    "Home": {
-      "layout": "Scrollable vertical list within the main centered container. Top header with app title and theme toggle.",
-      "content": "Render vendor cards. The cards should have gradient overlays so text is legible."
+    "home": {
+      "web_structure": "1. Hero Section (Split layout: Text on Left, large aesthetic image on Right). 2. Trust/Vibe Bar (3 icons: Elegance, Transparent, Easy). 3. Vendor Collection (Grid view).",
+      "mobile_structure": "1. Stacked Hero (Image top, text overlapping or below). 2. List view for vendors with large edge-to-edge images."
     },
-    "VendorDetail": {
-      "layout": "Immersive hero image taking top 60% of viewport. Content overlaps as a rounded bottom-sheet container.",
-      "content": "Vendor title, package options, and a sticky bottom CTA area containing the 'Check Availability' button."
+    "vendor_detail": {
+      "layout": "Large hero image header (max-h-[60vh] on web, 40vh on mobile). Content pushed up to overlap the image slightly. Fixed bottom bar or floating sticky CTA for 'Cek Ketersediaan' on mobile, side panel on web."
     },
-    "Booking": {
-      "layout": "Form view. Minimal padding.",
-      "content": "Name/Phone inputs with floating labels. A custom date grid highlighting dates based on `calendar_states`."
+    "booking_form": {
+      "layout": "Clean, distraction-free. Centered narrow container on web (max-w-2xl). Underlined inputs. Custom date picker prominent."
     },
-    "Success": {
-      "layout": "Centered flex layout.",
-      "content": "Large animated checkmark in copper, confirmation message, and a return to home button."
+    "success": {
+      "layout": "Minimalist center-aligned content. Large elegant checkmark or abstract shape. Warm congratulatory text."
     }
   },
-  "motion_and_interactions": {
-    "screen_transitions": "Slide-in from right for standard navigation, slide-up for modals/sheets.",
-    "button_press": "Scale down to 0.95 opacity-90.",
-    "skeleton_loading": "Pulse animation with soft plum tones. Ensure loading states are distinct when waiting for n8n API."
-  },
-  "media_urls": {
-    "venues": [
-      "https://images.unsplash.com/photo-1768777270882-9f74939fee50?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1712314947761-a8d718bd8c32?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1767986012154-db9a321c8832?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85"
-    ],
-    "decor": [
-      "https://images.unsplash.com/photo-1613205256515-017427fa893f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwzfHxkYXJrJTIwZmxvcmFsJTIwYXJyYW5nZW1lbnR8ZW58MHx8fHB1cnBsZXwxNzc2MTg3NzQ0fDA&ixlib=rb-4.1.0&q=85",
-      "https://images.unsplash.com/photo-1604610728890-6f4b631ed081?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxjb3BwZXIlMjBtb2Rlcm4lMjBkZWNvcnxlbnwwfHx8b3JhbmdlfDE3NzYxODc3NDR8MA&ixlib=rb-4.1.0&q=85"
+  "media": {
+    "instructions": "Use these exact URLs for placing images. DO NOT use placeholders.",
+    "images": [
+      {
+        "category": "hero",
+        "url": "https://images.unsplash.com/photo-1752857015560-d5c05b3f7ecb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHx3ZWRkaW5nJTIwZGVjb3JhdGlvbiUyMGVsZWdhbnR8ZW58MHx8fHwxNzc2MTkyNTQ2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Elegant outdoor dinner table setup, warm lighting."
+      },
+      {
+        "category": "vendor_champagne",
+        "url": "https://images.unsplash.com/photo-1759646827349-bc2ac350d096?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY2hhbXBhZ25lJTIwc2V0dXB8ZW58MHx8fHwxNzc2MTkyNTQ2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Champagne glasses stacked elegantly."
+      },
+      {
+        "category": "vendor_outdoor_venue",
+        "url": "https://images.unsplash.com/photo-1578730169862-749bbdc763a8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwd2VkZGluZyUyMHZlbnVlfGVufDB8fHx8MTc3NjE5MjU0Nnww&ixlib=rb-4.1.0&q=85",
+        "description": "Benches on a hill for an outdoor venue."
+      },
+      {
+        "category": "vendor_luxury_stage",
+        "url": "https://images.pexels.com/photos/33800352/pexels-photo-33800352.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Luxurious wedding stage adorned with floral arrangements."
+      }
     ]
   },
-  "instructions_to_main_agent": [
-    "Strictly follow the 'Midnight plum + copper' theme utilizing the hex values mapped to NativeWind arbitrary classes or extended Tailwind config.",
-    "For 'mobile + web seimbang', apply max-width constraints (e.g., max-w-md mx-auto) on web so the app looks like a sleek mobile frame centered on the desktop browser rather than a stretched web layout.",
-    "Ensure dark mode is fully functional with an automatic and manual toggle button in the header.",
-    "Build the custom date picker grid exactly as instructed using the Available/Booked/Selected color cues. Do NOT use a standard native datepicker.",
-    "Use the mock N8n approach for checking availability and submitting bookings with an artificial delay (setTimeout) and show loading states during the delay.",
-    "Make sure all interactive and form elements have proper data-testid attributes for testing.",
-    "Do not use generic placeholder images. Map the media_urls directly into the vendor data objects."
+  "technical_notes_for_agent": [
+    "This is a pure JS Expo NativeWind project. Share guidelines and write code for .js files, NOT .tsx.",
+    "Use standard React Native components (<View>, <Text>, <Image>, <Pressable>, <TextInput>) paired with className via NativeWind.",
+    "Include 'data-testid' on interactive elements for automated testing (e.g., data-testid='submit-booking-button').",
+    "To achieve the web landing page feel, use responsive Tailwind prefixes extensively (e.g., flex-col md:flex-row, px-4 md:px-12).",
+    "Ensure the Date Picker logic visually separates 'Available' and 'Booked' correctly using the color palette provided."
   ]
 }
