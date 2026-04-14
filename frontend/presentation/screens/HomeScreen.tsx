@@ -24,9 +24,10 @@ export function HomeScreen() {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
-  const isDesktop = Platform.OS === "web" && width >= 980;
+  const browserWidth = Platform.OS === "web" && typeof window !== "undefined" ? window.innerWidth : width;
+  const isDesktop = browserWidth >= 980;
   const contentWidth = isDesktop
-    ? Math.min(width - 72, theme.layout.webLandingWidth)
+    ? Math.min(browserWidth - 72, theme.layout.webLandingWidth)
     : Math.min(width - 24, theme.layout.maxContentWidth);
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const introOpacity = useRef(new Animated.Value(0)).current;
@@ -205,8 +206,10 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       padding: 20,
     },
     heroCardDesktop: {
+      alignItems: "stretch",
       flexDirection: "row",
       gap: 22,
+      justifyContent: "space-between",
     },
     heroAccent: {
       backgroundColor: theme.isDark ? "rgba(192,122,58,0.16)" : theme.colors.accentSoft,
@@ -224,8 +227,10 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       position: "relative",
     },
     heroCopyWrapDesktop: {
-      flex: 1,
+      flexBasis: 0,
+      flexGrow: 1,
       justifyContent: "center",
+      minWidth: 0,
       paddingHorizontal: 20,
       paddingVertical: 28,
     },
@@ -288,9 +293,10 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       position: "relative",
     },
     heroVisualWrapDesktop: {
-      flex: 1,
+      flexBasis: 0,
+      flexGrow: 1,
       height: 460,
-      minWidth: 420,
+      minWidth: 0,
     },
     heroImage: {
       height: "100%",

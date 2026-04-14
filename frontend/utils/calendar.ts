@@ -4,7 +4,7 @@ export type CalendarDay = {
   isoDate: string | null;
 };
 
-const WEEKDAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const WEEKDAY_NAMES = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
@@ -12,11 +12,11 @@ export const toIsoDateLocal = (value: Date) =>
   `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())}`;
 
 export const formatMonthTitle = (value: Date) =>
-  value.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+  value.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
 
 export const formatPrettyDate = (isoDate: string) => {
   const dateValue = new Date(`${isoDate}T12:00:00`);
-  return dateValue.toLocaleDateString(undefined, {
+  return dateValue.toLocaleDateString("id-ID", {
     weekday: "short",
     month: "long",
     day: "numeric",
