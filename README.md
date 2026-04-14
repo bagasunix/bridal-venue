@@ -91,3 +91,49 @@ uvicorn server:app --reload --host 0.0.0.0 --port 8001
 
 - Dokumentasi ini memakai **npm** sebagai package manager utama
 - Jika menemukan referensi lama ke yarn, abaikan dan pakai command npm di atas
+
+## Troubleshooting
+
+### 1. Preview frontend tidak muncul
+- Jalankan ulang frontend:
+
+```bash
+sudo supervisorctl restart expo
+```
+
+- Tunggu beberapa detik lalu cek log Expo jika perlu.
+
+### 2. Backend tidak merespons
+- Pastikan backend aktif di port `8001`
+- Restart backend:
+
+```bash
+sudo supervisorctl restart backend
+```
+
+- Cek health endpoint:
+
+```bash
+curl http://127.0.0.1:8001/api/health
+```
+
+### 3. URL backend tidak terbaca di frontend
+- Pastikan frontend memakai `EXPO_PUBLIC_BACKEND_URL`
+- Jangan hardcode URL backend di komponen atau service
+- Setelah ada perubahan env, restart Expo
+
+### 4. MongoDB / env backend error
+- Pastikan `backend/.env` memiliki `MONGO_URL` dan `DB_NAME`
+- Backend memuat env lewat `load_dotenv()` dari folder backend
+
+### 5. Booking mock atau availability gagal
+- Cek endpoint berikut:
+
+```bash
+curl http://127.0.0.1:8001/api/availability/rosewood-manor
+curl -X POST http://127.0.0.1:8001/api/bookings \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Demo Bride","phone":"+628123456789","vendor":"rosewood-manor","date":"2099-12-20","package":"signature"}'
+```
+
+- Untuk saat ini flow n8n masih **MOCKED**, jadi fokus pengecekan ada di mock API backend

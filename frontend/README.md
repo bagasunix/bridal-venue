@@ -42,6 +42,21 @@ npm run lint
 - Dark mode mendukung mode **AUTO / LIGHT / DARK**
 - Home screen mendukung toggle tampilan vendor **Grid / List**
 
+## Troubleshooting Singkat
+
+### Expo preview bermasalah
+
+```bash
+sudo supervisorctl restart expo
+```
+
+### Backend URL tidak connect
+- Pastikan `EXPO_PUBLIC_BACKEND_URL` terisi benar
+- Pastikan backend mengembalikan respons di `/api/health`
+
+### Setelah ubah env tapi app belum ikut berubah
+- Restart Expo setelah perubahan env
+
 ## Reset starter scaffold
 
 Kalau memang perlu reset scaffold Expo bawaan:
