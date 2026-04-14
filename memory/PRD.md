@@ -50,6 +50,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Month switcher kalender tervalidasi berjalan dan touch target-nya >= 44x44
 - Landing page versi browser tervalidasi secara visual dengan hero split layout, trust section, dan copy Indonesia yang lebih natural
 - Flow mobile Home → Detail → Booking tetap berjalan setelah redesign baru
+- Hero desktop kini benar-benar terbagi dua kolom setelah hydration, sehingga browser terasa seperti landing page yang layak
+- Format tanggal user-facing sekarang sudah Indonesia (contoh: `Jum, 17 April`)
 
 ## Current Status
 - App demo end-to-end berfungsi

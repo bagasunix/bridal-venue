@@ -24,8 +24,8 @@ export function HomeScreen() {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
+  const [isDesktop, setIsDesktop] = useState(false);
   const browserWidth = Platform.OS === "web" && typeof window !== "undefined" ? window.innerWidth : width;
-  const isDesktop = browserWidth >= 980;
   const contentWidth = isDesktop
     ? Math.min(browserWidth - 72, theme.layout.webLandingWidth)
     : Math.min(width - 24, theme.layout.maxContentWidth);
@@ -50,6 +50,23 @@ export function HomeScreen() {
       }),
     ]).start();
   }, [introOpacity, introTranslate, useNativeDriver]);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" || typeof window === "undefined") {
+      return;
+    }
+
+    const updateDesktopState = () => {
+      setIsDesktop(window.innerWidth >= 980);
+    };
+
+    updateDesktopState();
+    window.addEventListener("resize", updateDesktopState);
+
+    return () => {
+      window.removeEventListener("resize", updateDesktopState);
+    };
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
