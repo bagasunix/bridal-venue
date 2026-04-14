@@ -1,0 +1,115 @@
+{
+  "theme": "Light",
+  "archetype": "3 (Pastel & Soft) mixed with 5 (Jewel & Luxury)",
+  "design_philosophy": "Cream foundation, soft pink as emotion, gold as premium cue. The UI should feel like a premium wedding magazine. 'Quiet luxury' layout—clear white space, cream blocks, and gold accents just enough to signal premium without being flashy.",
+  "colors": {
+    "background": "#FDFBF7",
+    "card": "#FFFFFF",
+    "text_primary": "#221E1C",
+    "text_secondary": "#6D6863",
+    "primary_accent": "#F4C2C2",
+    "primary_accent_foreground": "#221E1C",
+    "gold_accent": "#D4AF37",
+    "border": "#EAE3D9",
+    "date_available": "#FFFFFF",
+    "date_available_border": "#EAE3D9",
+    "date_unavailable": "#F5E6E6",
+    "date_unavailable_text": "#A39797",
+    "date_selected": "#D4AF37",
+    "date_selected_text": "#FFFFFF",
+    "success": "#81C784",
+    "error": "#E57373"
+  },
+  "typography": {
+    "headings": {
+      "family": "Playfair Display or Cormorant Garamond (Serif)",
+      "weight": "600/700",
+      "h1": "text-4xl tracking-tight",
+      "h2": "text-3xl tracking-tight",
+      "h3": "text-xl tracking-tight"
+    },
+    "body": {
+      "family": "Lato or Inter (Sans-serif)",
+      "weight": "400/500",
+      "base": "text-base leading-relaxed",
+      "small": "text-sm text-[#6D6863]"
+    },
+    "labels": {
+      "style": "uppercase tracking-[0.1em] text-xs font-semibold text-[#D4AF37]"
+    }
+  },
+  "spacing_and_layout": {
+    "screen_padding": "px-6 py-8",
+    "card_padding": "p-5",
+    "gap_large": "gap-8",
+    "gap_medium": "gap-4",
+    "gap_small": "gap-2",
+    "border_radius": {
+      "card": "rounded-3xl",
+      "button": "rounded-full",
+      "image": "rounded-2xl"
+    },
+    "shadows": {
+      "soft": "shadow-[0_4px_20px_rgba(0,0,0,0.04)]",
+      "medium": "shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+    }
+  },
+  "components": {
+    "card": "Clean white backgrounds (#FFFFFF) on cream canvas (#FDFBF7), soft shadow, no hard borders. Rounded-3xl.",
+    "primary_button": "Blush pink (#F4C2C2) or Gold (#D4AF37) background, rounded-full, px-8 py-4, centered bold text.",
+    "secondary_button": "Transparent background, Gold (#D4AF37) border, rounded-full, px-8 py-4.",
+    "date_picker_grid": "7 columns. Available dates: white background, subtle border. Unavailable dates: light pink/gray background, crossed out or muted text. Selected date: Gold background, white text.",
+    "inputs": "Floating label style or clean labels above. Cream/white background, thin border on focus, rounded-xl px-4 py-3."
+  },
+  "motion": {
+    "transitions": "Gentle scale-in and fade. Use LayoutAnimation in React Native or standard React Navigation transitions (slide from right).",
+    "loading": "Soft pulsing opacity on skeleton loaders or a sleek gold spinner."
+  },
+  "media": {
+    "image_urls": {
+      "vendor_venue": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/c11903f4a44788e54cee7b4cd099190d2b87a8beff49d6818c573c8fcc75c787.png",
+        "description": "Elegant outdoor wedding venue setup.",
+        "usage": "Hero image or Venue vendor thumbnail."
+      },
+      "vendor_catering": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/08fc3dfaee7b17f7578d91cb63d225184651f5900f421f13e5e825f5a66954f2.png",
+        "description": "Luxury wedding table setting.",
+        "usage": "Catering vendor thumbnail."
+      },
+      "vendor_photography": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/66490b5377e926bd8292acf5b130064f5cafba65ce3d674111c0d55bd3a33961.png",
+        "description": "Styled wedding photography scene.",
+        "usage": "Photography vendor thumbnail."
+      },
+      "vendor_decor": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/c254292e0fc02864306e51a6fd8fb517d0ff5e1722aa17cc27e815ae9ad2304d.png",
+        "description": "Elegant wedding floral arrangements.",
+        "usage": "Decor/Floral vendor thumbnail."
+      }
+    },
+    "image_guidance": "Images should have a max-height of 400px on detail screens. Use resizeMode='cover' for absolute positioning with bottom linear gradients to ensure text overlay readability."
+  },
+  "architecture_and_implementation": {
+    "stack": "React Native (Expo), NativeWind (Tailwind CSS), TypeScript, React Navigation.",
+    "structure": {
+      "app/": "Contains expo-router file based routing or standard navigation setup.",
+      "services/webhook.ts": "Handles POST to n8n.",
+      "services/availability.ts": "Handles GET from n8n.",
+      "mock/data.ts": "Contains fallback mock data for vendors and dates."
+    },
+    "testing_attributes": "All interactive elements must include a testID attribute (equivalent to data-testid in web) formatted in kebab-case (e.g., testID='book-now-button')."
+  },
+  "instructions_to_main_agent": [
+    "1. Initialize layout with a clean navigation wrapper using React Navigation.",
+    "2. Implement `HomeScreen` with a vertical ScrollView of vendor cards. Use provided image URLs.",
+    "3. Implement `VendorDetailScreen` displaying full image, description, and 'Check Availability' button.",
+    "4. Implement `BookingScreen`. MUST include a custom date grid (7 columns) simulating a calendar month.",
+    "5. For the date grid: Fetch booked dates via `availability.ts` (use setTimeout mock initially). Mark returned dates as unavailable (visually distinct and non-clickable).",
+    "6. Build a simple form: Name, Phone, Package selection. Disable submit until all fields + date are selected.",
+    "7. On submit, call `webhook.ts` to POST data. Show a loading overlay, then navigate to `SuccessScreen`.",
+    "8. Ensure styling uses NativeWind classes mapping to the provided color palette (e.g., bg-[#FDFBF7], text-[#221E1C], bg-[#F4C2C2]).",
+    "9. Use Lucide React Native or similar for elegant line icons (chevron-left, calendar, check-circle).",
+    "10. Remember to apply safe area views and generous padding to maintain the 'premium' airy feel."
+  ]
+}
