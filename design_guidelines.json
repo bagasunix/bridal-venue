@@ -1,115 +1,113 @@
 {
-  "theme": "Light",
-  "archetype": "3 (Pastel & Soft) mixed with 5 (Jewel & Luxury)",
-  "design_philosophy": "Cream foundation, soft pink as emotion, gold as premium cue. The UI should feel like a premium wedding magazine. 'Quiet luxury' layout—clear white space, cream blocks, and gold accents just enough to signal premium without being flashy.",
-  "colors": {
-    "background": "#FDFBF7",
-    "card": "#FFFFFF",
-    "text_primary": "#221E1C",
-    "text_secondary": "#6D6863",
-    "primary_accent": "#F4C2C2",
-    "primary_accent_foreground": "#221E1C",
-    "gold_accent": "#D4AF37",
-    "border": "#EAE3D9",
-    "date_available": "#FFFFFF",
-    "date_available_border": "#EAE3D9",
-    "date_unavailable": "#F5E6E6",
-    "date_unavailable_text": "#A39797",
-    "date_selected": "#D4AF37",
-    "date_selected_text": "#FFFFFF",
-    "success": "#81C784",
-    "error": "#E57373"
-  },
+  "theme": "dark/light (auto+manual toggle)",
+  "archetype": "5 (Jewel & Luxury)",
+  "concept": "Midnight plum + copper. Minimal luxury wedding rental platform.",
   "typography": {
-    "headings": {
-      "family": "Playfair Display or Cormorant Garamond (Serif)",
-      "weight": "600/700",
-      "h1": "text-4xl tracking-tight",
-      "h2": "text-3xl tracking-tight",
-      "h3": "text-xl tracking-tight"
+    "heading_font": "Playfair Display",
+    "body_font": "Outfit",
+    "hierarchy": {
+      "h1": "text-4xl font-bold tracking-tight text-[#1A0B2E] dark:text-[#F3E0CC]",
+      "h2": "text-2xl font-semibold tracking-tight text-[#2D1B4E] dark:text-[#E6C19C]",
+      "h3": "text-xl font-medium text-[#4A0E4F] dark:text-[#D4A574]",
+      "body": "text-base font-normal leading-relaxed text-gray-600 dark:text-gray-300",
+      "small": "text-sm font-light uppercase tracking-widest text-gray-500 dark:text-gray-400"
+    }
+  },
+  "colors": {
+    "light": {
+      "background": "#FDFBF7",
+      "surface": "#FFFFFF",
+      "primary": "#4A0E4F",
+      "accent": "#B87333",
+      "text": "#1A0B2E",
+      "text_muted": "#6B5B7E",
+      "border": "#E8E2D9"
     },
-    "body": {
-      "family": "Lato or Inter (Sans-serif)",
-      "weight": "400/500",
-      "base": "text-base leading-relaxed",
-      "small": "text-sm text-[#6D6863]"
+    "dark": {
+      "background": "#1A0B2E",
+      "surface": "#2D1B4E",
+      "primary": "#D4A574",
+      "accent": "#B87333",
+      "text": "#FDFBF7",
+      "text_muted": "#A89CB8",
+      "border": "#3D2B5E"
     },
-    "labels": {
-      "style": "uppercase tracking-[0.1em] text-xs font-semibold text-[#D4AF37]"
+    "calendar_states": {
+      "available": "#4E7C59",
+      "booked": "#8C3A4D",
+      "selected": "#B87333",
+      "disabled": "opacity-50"
     }
   },
   "spacing_and_layout": {
-    "screen_padding": "px-6 py-8",
-    "card_padding": "p-5",
-    "gap_large": "gap-8",
-    "gap_medium": "gap-4",
-    "gap_small": "gap-2",
-    "border_radius": {
-      "card": "rounded-3xl",
-      "button": "rounded-full",
-      "image": "rounded-2xl"
-    },
-    "shadows": {
-      "soft": "shadow-[0_4px_20px_rgba(0,0,0,0.04)]",
-      "medium": "shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
-    }
+    "container": "flex-1 w-full max-w-md mx-auto md:max-w-lg lg:max-w-xl bg-[#FDFBF7] dark:bg-[#1A0B2E] relative h-full",
+    "padding": "px-6 py-8",
+    "card_radius": "rounded-[32px]",
+    "button_radius": "rounded-full"
   },
   "components": {
-    "card": "Clean white backgrounds (#FFFFFF) on cream canvas (#FDFBF7), soft shadow, no hard borders. Rounded-3xl.",
-    "primary_button": "Blush pink (#F4C2C2) or Gold (#D4AF37) background, rounded-full, px-8 py-4, centered bold text.",
-    "secondary_button": "Transparent background, Gold (#D4AF37) border, rounded-full, px-8 py-4.",
-    "date_picker_grid": "7 columns. Available dates: white background, subtle border. Unavailable dates: light pink/gray background, crossed out or muted text. Selected date: Gold background, white text.",
-    "inputs": "Floating label style or clean labels above. Cream/white background, thin border on focus, rounded-xl px-4 py-3."
-  },
-  "motion": {
-    "transitions": "Gentle scale-in and fade. Use LayoutAnimation in React Native or standard React Navigation transitions (slide from right).",
-    "loading": "Soft pulsing opacity on skeleton loaders or a sleek gold spinner."
-  },
-  "media": {
-    "image_urls": {
-      "vendor_venue": {
-        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/c11903f4a44788e54cee7b4cd099190d2b87a8beff49d6818c573c8fcc75c787.png",
-        "description": "Elegant outdoor wedding venue setup.",
-        "usage": "Hero image or Venue vendor thumbnail."
-      },
-      "vendor_catering": {
-        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/08fc3dfaee7b17f7578d91cb63d225184651f5900f421f13e5e825f5a66954f2.png",
-        "description": "Luxury wedding table setting.",
-        "usage": "Catering vendor thumbnail."
-      },
-      "vendor_photography": {
-        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/66490b5377e926bd8292acf5b130064f5cafba65ce3d674111c0d55bd3a33961.png",
-        "description": "Styled wedding photography scene.",
-        "usage": "Photography vendor thumbnail."
-      },
-      "vendor_decor": {
-        "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/c254292e0fc02864306e51a6fd8fb517d0ff5e1722aa17cc27e815ae9ad2304d.png",
-        "description": "Elegant wedding floral arrangements.",
-        "usage": "Decor/Floral vendor thumbnail."
-      }
+    "vendor_card": {
+      "wrapper": "relative w-full h-[320px] rounded-[32px] overflow-hidden mb-6 shadow-xl",
+      "image": "absolute inset-0 w-full h-full object-cover",
+      "overlay": "absolute inset-0 bg-black/40 dark:bg-black/60",
+      "content": "absolute bottom-0 left-0 w-full p-6 flex flex-col gap-2"
     },
-    "image_guidance": "Images should have a max-height of 400px on detail screens. Use resizeMode='cover' for absolute positioning with bottom linear gradients to ensure text overlay readability."
-  },
-  "architecture_and_implementation": {
-    "stack": "React Native (Expo), NativeWind (Tailwind CSS), TypeScript, React Navigation.",
-    "structure": {
-      "app/": "Contains expo-router file based routing or standard navigation setup.",
-      "services/webhook.ts": "Handles POST to n8n.",
-      "services/availability.ts": "Handles GET from n8n.",
-      "mock/data.ts": "Contains fallback mock data for vendors and dates."
+    "button_primary": {
+      "style": "w-full py-4 bg-[#B87333] rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform",
+      "text": "text-white font-semibold text-lg tracking-wide"
     },
-    "testing_attributes": "All interactive elements must include a testID attribute (equivalent to data-testid in web) formatted in kebab-case (e.g., testID='book-now-button')."
+    "date_picker": {
+      "grid": "flex flex-row flex-wrap justify-between gap-3 p-5 rounded-[32px] bg-white dark:bg-[#2D1B4E] shadow-sm border border-[#E8E2D9] dark:border-[#3D2B5E]",
+      "cell_available": "w-12 h-12 rounded-full flex items-center justify-center border border-[#4E7C59] text-[#4E7C59] dark:text-[#76B085]",
+      "cell_booked": "w-12 h-12 rounded-full flex items-center justify-center opacity-40 bg-[#8C3A4D] text-white",
+      "cell_selected": "w-12 h-12 rounded-full flex items-center justify-center bg-[#B87333] text-white shadow-md shadow-[#B87333]/30"
+    },
+    "bottom_sheet": {
+      "wrapper": "absolute bottom-0 w-full bg-white dark:bg-[#2D1B4E] rounded-t-[40px] shadow-2xl p-8 z-50",
+      "handle": "w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-6"
+    }
+  },
+  "screens": {
+    "Home": {
+      "layout": "Scrollable vertical list within the main centered container. Top header with app title and theme toggle.",
+      "content": "Render vendor cards. The cards should have gradient overlays so text is legible."
+    },
+    "VendorDetail": {
+      "layout": "Immersive hero image taking top 60% of viewport. Content overlaps as a rounded bottom-sheet container.",
+      "content": "Vendor title, package options, and a sticky bottom CTA area containing the 'Check Availability' button."
+    },
+    "Booking": {
+      "layout": "Form view. Minimal padding.",
+      "content": "Name/Phone inputs with floating labels. A custom date grid highlighting dates based on `calendar_states`."
+    },
+    "Success": {
+      "layout": "Centered flex layout.",
+      "content": "Large animated checkmark in copper, confirmation message, and a return to home button."
+    }
+  },
+  "motion_and_interactions": {
+    "screen_transitions": "Slide-in from right for standard navigation, slide-up for modals/sheets.",
+    "button_press": "Scale down to 0.95 opacity-90.",
+    "skeleton_loading": "Pulse animation with soft plum tones. Ensure loading states are distinct when waiting for n8n API."
+  },
+  "media_urls": {
+    "venues": [
+      "https://images.unsplash.com/photo-1768777270882-9f74939fee50?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1712314947761-a8d718bd8c32?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1767986012154-db9a321c8832?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjB3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc3NjE4Nzc0NHww&ixlib=rb-4.1.0&q=85"
+    ],
+    "decor": [
+      "https://images.unsplash.com/photo-1613205256515-017427fa893f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwzfHxkYXJrJTIwZmxvcmFsJTIwYXJyYW5nZW1lbnR8ZW58MHx8fHB1cnBsZXwxNzc2MTg3NzQ0fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1604610728890-6f4b631ed081?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxjb3BwZXIlMjBtb2Rlcm4lMjBkZWNvcnxlbnwwfHx8b3JhbmdlfDE3NzYxODc3NDR8MA&ixlib=rb-4.1.0&q=85"
+    ]
   },
   "instructions_to_main_agent": [
-    "1. Initialize layout with a clean navigation wrapper using React Navigation.",
-    "2. Implement `HomeScreen` with a vertical ScrollView of vendor cards. Use provided image URLs.",
-    "3. Implement `VendorDetailScreen` displaying full image, description, and 'Check Availability' button.",
-    "4. Implement `BookingScreen`. MUST include a custom date grid (7 columns) simulating a calendar month.",
-    "5. For the date grid: Fetch booked dates via `availability.ts` (use setTimeout mock initially). Mark returned dates as unavailable (visually distinct and non-clickable).",
-    "6. Build a simple form: Name, Phone, Package selection. Disable submit until all fields + date are selected.",
-    "7. On submit, call `webhook.ts` to POST data. Show a loading overlay, then navigate to `SuccessScreen`.",
-    "8. Ensure styling uses NativeWind classes mapping to the provided color palette (e.g., bg-[#FDFBF7], text-[#221E1C], bg-[#F4C2C2]).",
-    "9. Use Lucide React Native or similar for elegant line icons (chevron-left, calendar, check-circle).",
-    "10. Remember to apply safe area views and generous padding to maintain the 'premium' airy feel."
+    "Strictly follow the 'Midnight plum + copper' theme utilizing the hex values mapped to NativeWind arbitrary classes or extended Tailwind config.",
+    "For 'mobile + web seimbang', apply max-width constraints (e.g., max-w-md mx-auto) on web so the app looks like a sleek mobile frame centered on the desktop browser rather than a stretched web layout.",
+    "Ensure dark mode is fully functional with an automatic and manual toggle button in the header.",
+    "Build the custom date picker grid exactly as instructed using the Available/Booked/Selected color cues. Do NOT use a standard native datepicker.",
+    "Use the mock N8n approach for checking availability and submitting bookings with an artificial delay (setTimeout) and show loading states during the delay.",
+    "Make sure all interactive and form elements have proper data-testid attributes for testing.",
+    "Do not use generic placeholder images. Map the media_urls directly into the vendor data objects."
   ]
 }
