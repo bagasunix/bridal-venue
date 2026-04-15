@@ -35,6 +35,8 @@ export function HomeScreen() {
   const useNativeDriver = Platform.OS !== "web";
   const isGrid = viewMode === "grid";
   const heroVendor = vendors[0];
+  const featuredVendor = vendors[1];
+  const supportingVendors = vendors.filter((vendor) => vendor.slug !== featuredVendor.slug);
 
   useEffect(() => {
     Animated.parallel([
@@ -180,18 +182,115 @@ export function HomeScreen() {
             </View>
           </View>
 
-          <View style={styles.cardList}>
-            {vendors.map((vendor, index) => (
-              <VendorCard
-                compact={isGrid}
-                index={index}
-                key={vendor.slug}
-                onPress={() =>
-                  router.push(`/vendor/${vendor.slug}` as Href)
-                }
-                vendor={vendor}
-              />
-            ))}
+          {isDesktop ? (
+            <View style={styles.desktopVendorCollection} testID="desktop-vendor-collection">
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => router.push(`/vendor/${featuredVendor.slug}` as Href)}
+                style={({ pressed }) => [styles.featuredVendorCard, pressed && styles.featuredVendorCardPressed]}
+                testID={`featured-vendor-card-${featuredVendor.slug}`}
+              >
+                <View style={styles.featuredVendorCopy}>
+                  <Text style={styles.featuredVendorEyebrow}>Pilihan editor</Text>
+                  <Text style={styles.featuredVendorTitle}>{featuredVendor.name}</Text>
+                  <Text style={styles.featuredVendorDescription}>{featuredVendor.description}</Text>
+
+                  <View style={styles.featuredVendorMetaRow}>
+                    <View style={styles.featuredVendorMetaChip}>
+                      <Feather color={theme.colors.accent} name="map-pin" size={14} />
+                      <Text style={styles.featuredVendorMetaText}>{featuredVendor.location}</Text>
+                    </View>
+                    <View style={styles.featuredVendorMetaChip}>
+                      <Feather color={theme.colors.accent} name="heart" size={14} />
+                      <Text style={styles.featuredVendorMetaText}>Mulai {featuredVendor.startingPrice}</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.featuredVendorHighlights}>
+                    {featuredVendor.highlights.map((item) => (
+                      <View key={item} style={styles.featuredVendorHighlightChip}>
+                        <Text style={styles.featuredVendorHighlightText}>{item}</Text>
+                      </View>
+                    ))}
+                  </View>
+
+                  <View style={styles.featuredVendorActionRow}>
+                    <Text style={styles.featuredVendorActionText}>Lihat detail vendor</Text>
+                    <Feather color="#FFFFFF" name="arrow-right" size={16} />
+                  </View>
+                </View>
+
+                <View style={styles.featuredVendorImageWrap}>
+                  <Image
+                    contentFit="cover"
+                    source={{ uri: featuredVendor.image }}
+                    style={styles.featuredVendorImage}
+                    testID="featured-vendor-image"
+                  />
+                </View>
+              </Pressable>
+
+              <View style={styles.desktopVendorGrid}>
+                {supportingVendors.map((vendor, index) => (
+                  <View
+                    key={vendor.slug}
+                    style={[
+                      styles.desktopVendorGridItem,
+                      supportingVendors.length % 2 === 1 && index === supportingVendors.length - 1 && styles.desktopVendorGridItemWide,
+                    ]}
+                  >
+                    <VendorCard
+                      compact={isGrid}
+                      index={index}
+                      onPress={() => router.push(`/vendor/${vendor.slug}` as Href)}
+                      vendor={vendor}
+                    />
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : (
+            <View style={styles.cardList}>
+              {vendors.map((vendor, index) => (
+                <VendorCard
+                  compact={isGrid}
+                  index={index}
+                  key={vendor.slug}
+                  onPress={() =>
+                    router.push(`/vendor/${vendor.slug}` as Href)
+                  }
+                  vendor={vendor}
+                />
+              ))}
+            </View>
+          )}
+
+          <View style={[styles.assuranceSection, isDesktop && styles.assuranceSectionDesktop]}>
+            <View style={styles.assurancePanel} testID="why-choose-us-section">
+              <Text style={styles.assuranceEyebrow}>Mengapa pasangan menyukai alur ini</Text>
+              <Text style={styles.assuranceTitle}>Rapi dilihat, ringan dijalani, dan tetap terasa personal.</Text>
+
+              <View style={styles.assuranceList}>
+                {[
+                  "Tampilan dibuat jelas supaya Anda cepat merasa yakin sejak halaman pertama.",
+                  "Pilihan vendor ditata dengan rasa, jadi tidak terasa seperti katalog yang dingin.",
+                  "Alur cek tanggal sampai kirim permintaan dibuat singkat agar keputusan terasa mudah.",
+                ].map((item) => (
+                  <View key={item} style={styles.assuranceRow}>
+                    <View style={styles.assuranceBullet} />
+                    <Text style={styles.assuranceText}>{item}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.testimonialPanel} testID="testimonial-section">
+              <Text style={styles.testimonialEyebrow}>Kesan pertama yang ingin ditinggalkan</Text>
+              <Text style={styles.testimonialQuote}>
+                “Saat dibuka di browser, tampilannya harus langsung memberi rasa tenang—seolah kami sedang melihat brand wedding yang memang tahu cara menyambut calon pengantin.”
+              </Text>
+              <Text style={styles.testimonialMeta}>— Gambaran pengalaman yang ingin dibangun untuk pengunjung pertama</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -436,5 +535,193 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
     },
     cardList: {
       gap: 18,
+    },
+    desktopVendorCollection: {
+      gap: 18,
+    },
+    featuredVendorCard: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 30,
+      borderWidth: 1,
+      flexDirection: "row",
+      overflow: "hidden",
+    },
+    featuredVendorCardPressed: {
+      opacity: 0.94,
+    },
+    featuredVendorCopy: {
+      flex: 1,
+      gap: 14,
+      justifyContent: "center",
+      padding: 28,
+    },
+    featuredVendorEyebrow: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    featuredVendorTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: 34,
+      fontWeight: "700",
+      lineHeight: 42,
+    },
+    featuredVendorDescription: {
+      color: theme.colors.textSecondary,
+      fontSize: 15,
+      lineHeight: 25,
+      maxWidth: 430,
+    },
+    featuredVendorMetaRow: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 10,
+    },
+    featuredVendorMetaChip: {
+      alignItems: "center",
+      backgroundColor: theme.colors.surfaceMuted,
+      borderRadius: 999,
+      flexDirection: "row",
+      gap: 8,
+      paddingHorizontal: 12,
+      paddingVertical: 10,
+    },
+    featuredVendorMetaText: {
+      color: theme.colors.textPrimary,
+      fontSize: 13,
+      fontWeight: "700",
+    },
+    featuredVendorHighlights: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 10,
+    },
+    featuredVendorHighlightChip: {
+      backgroundColor: theme.colors.accentSoft,
+      borderRadius: 999,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+    },
+    featuredVendorHighlightText: {
+      color: theme.colors.textPrimary,
+      fontSize: 12,
+      fontWeight: "700",
+    },
+    featuredVendorActionRow: {
+      alignItems: "center",
+      alignSelf: "flex-start",
+      backgroundColor: theme.colors.accent,
+      borderRadius: 999,
+      flexDirection: "row",
+      gap: 8,
+      marginTop: 6,
+      paddingHorizontal: 18,
+      paddingVertical: 12,
+    },
+    featuredVendorActionText: {
+      color: "#FFFFFF",
+      fontSize: 13,
+      fontWeight: "800",
+    },
+    featuredVendorImageWrap: {
+      minHeight: 360,
+      width: 420,
+    },
+    featuredVendorImage: {
+      height: "100%",
+      width: "100%",
+    },
+    desktopVendorGrid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 18,
+      justifyContent: "space-between",
+    },
+    desktopVendorGridItem: {
+      width: "48.7%",
+    },
+    desktopVendorGridItemWide: {
+      width: "100%",
+    },
+    assuranceSection: {
+      gap: 16,
+    },
+    assuranceSectionDesktop: {
+      flexDirection: "row",
+    },
+    assurancePanel: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 30,
+      borderWidth: 1,
+      flex: 1,
+      gap: 14,
+      padding: 24,
+    },
+    assuranceEyebrow: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    assuranceTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: 28,
+      fontWeight: "700",
+      lineHeight: 36,
+    },
+    assuranceList: {
+      gap: 12,
+    },
+    assuranceRow: {
+      flexDirection: "row",
+      gap: 10,
+    },
+    assuranceBullet: {
+      backgroundColor: theme.colors.accent,
+      borderRadius: 999,
+      height: 8,
+      marginTop: 8,
+      width: 8,
+    },
+    assuranceText: {
+      color: theme.colors.textSecondary,
+      flex: 1,
+      fontSize: 15,
+      lineHeight: 24,
+    },
+    testimonialPanel: {
+      backgroundColor: theme.colors.surfaceMuted,
+      borderRadius: 30,
+      gap: 14,
+      justifyContent: "center",
+      minHeight: 260,
+      padding: 24,
+    },
+    testimonialEyebrow: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    testimonialQuote: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: 26,
+      fontWeight: "700",
+      lineHeight: 38,
+    },
+    testimonialMeta: {
+      color: theme.colors.textSecondary,
+      fontSize: 14,
+      lineHeight: 22,
+      maxWidth: 460,
     },
   });
