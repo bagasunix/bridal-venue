@@ -1,82 +1,110 @@
 {
-  "theme": "light",
-  "archetype": "1_organic_earthy",
-  "identity": "Warm Champagne + Mocha",
-  "fonts": {
-    "heading": "Cormorant Garamond",
-    "body": "Outfit",
-    "links": [
-      "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
-    ]
-  },
+  "theme": "Light Theme",
+  "archetype": "Archetype 1 (Organic & Earthy) with a Luxury Twist",
+  "rationale": "The user requested a premium wedding studio feel with a warm champagne and mocha palette. This fits Archetype 1's organic warmth paired with Archetype 5's editorial luxury. We prioritize trust, elegance, and visual storytelling.",
   "colors": {
-    "background": "#FDFBF7",
-    "surface": "#F2EAE1",
-    "primary": "#4A3B32",
-    "primary_hover": "#2A1D17",
-    "accent": "#D4C1A5",
-    "text_main": "#2A1D17",
-    "text_muted": "#8C7A6B",
-    "border": "#E5DACE"
+    "primary": "#4A3728",
+    "primary_foreground": "#FCFBF9",
+    "secondary": "#E5D3B3",
+    "secondary_foreground": "#2C241B",
+    "accent": "#C5A059",
+    "accent_foreground": "#FCFBF9",
+    "background": "#FCFBF9",
+    "surface": "#FFFFFF",
+    "border": "#E5D3B3",
+    "muted": "#F3EFEA",
+    "muted_foreground": "#8C7A6B"
   },
-  "spacing_and_layout": {
-    "strategy": "Asymmetrical editorial bento grid, generous padding (py-24 to py-32), overlapping text and imagery. Break from the center-everything disease.",
-    "grid_system": "MODE A: TETRIS GRID (grid-cols-1 md:grid-cols-12, wide gap-8 to gap-12). Leave empty columns for 'breathing room' to feel premium."
+  "typography": {
+    "heading_font": "Cormorant Garamond",
+    "body_font": "Manrope",
+    "rules": [
+      "Headings must use tight tracking (tracking-tight) to feel editorial.",
+      "Never center headings by default; use left alignment for strong editorial structure.",
+      "Overlines/Labels must be uppercase, tiny, and have wide spacing (tracking-[0.2em])."
+    ],
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-primary",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-primary",
+      "h3": "text-xl sm:text-2xl font-medium text-primary",
+      "body": "text-base leading-relaxed text-secondary-foreground",
+      "label": "text-xs font-bold uppercase tracking-[0.2em] text-accent"
+    }
   },
-  "anti_copy_strategy": "The 'Studio wedding premium' reference likely uses heavily centered, symmetric layouts. To differentiate, we will use radical asymmetry. Text blocks will overlap images, and section headers will align to the left or right, paired with negative space. The scale contrast between H1s and tiny tracking-widest overlines builds tension missing in standard templates.",
-  "desktop_section_blueprint": [
+  "layout_and_spacing": {
+    "philosophy": "Generous Spacing Philosophy. Use 2-3x more spacing than typical designs to evoke luxury.",
+    "section_padding": "py-24 md:py-32",
+    "container_padding": "px-6 md:px-12",
+    "grid_strategy": "MODE A: THE 'TETRIS' GRID (For Marketing/Visuals) using wide gaps (gap-8 to gap-12). Leave breathing room, avoid perfect symmetry.",
+    "image_constraints": "Mobile Height Limit: Images must not exceed 80vh on mobile."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-4 transition-all duration-300 ease-out",
+      "secondary": "border border-primary text-primary hover:bg-primary/5 rounded-none px-8 py-4 transition-all duration-300 ease-out",
+      "cta_text_1": "Lihat Vendor",
+      "cta_text_2": "Konsultasi"
+    },
+    "cards": {
+      "style": "Go cardless or use ultra-minimalist rectangular styles with 1px border-border and no shadow. Flat background. Images inside should not have rounded corners (rounded-none) to match the editorial, print-like aesthetic."
+    },
+    "header": {
+      "style": "Crystal Glass variant (backdrop-blur-xl bg-white/70) if content scrolls under, or solid if not. 1px delicate inner stroke at the bottom (border-b border-border/40)."
+    },
+    "icons": {
+      "library": "lucide-react",
+      "style": "Thin stroke, minimal, scaled to text size."
+    }
+  },
+  "motion_and_interactions": {
+    "hover_states": "Images should have a subtle scale effect on hover (scale-105) inside an overflow-hidden container. Buttons change background opacity and slightly lift.",
+    "scroll_animations": "Use staggered fade-in up for lists/grids. Lenis smooth scrolling is highly recommended."
+  },
+  "page_structure": [
     {
-      "order": 1,
-      "name": "Editorial Hero Spread",
-      "description": "Asymmetrical split. Left: Massive serif typography ('Crafting Your Forever') spanning 7 columns with deep mocha text. Right: Large floating image spanning 5 columns overlapping a soft champagne background shape."
+      "section": "Hero",
+      "description": "Editorial split layout or bento grid. Huge heading (Cormorant Garamond), champagne silk abstract background, with 'Lihat Vendor' and 'Konsultasi' CTAs."
     },
     {
-      "order": 2,
-      "name": "The Vision (Brand Manifesto)",
-      "description": "Full-width section with a very large, short text block in italicized Cormorant Garamond. Creates an emotional pause."
+      "section": "About / Studio Philosophy",
+      "description": "Text-heavy with elegant typography. 'We craft premium moments.' Pair with a high-fashion detail shot."
     },
     {
-      "order": 3,
-      "name": "The Collection (Vendor Discovery)",
-      "description": "Bento-grid style masonry cards for Venues, Decor, Catering. Images use max-h-[60vh] and subtle zoom on hover. Do not use standard equal-height grids."
+      "section": "Vendor Discovery (Featured)",
+      "description": "Asymmetric bento grid of premium vendors (venues, decorators). Hover to reveal quick details. Minimal UI."
     },
     {
-      "order": 4,
-      "name": "Elevated Compare Experience Promo",
-      "description": "A high-impact section teasing the Compare feature. Visual 'Styling Board' approach introducing users to the comparison tool."
-    },
-    {
-      "order": 5,
-      "name": "Love Stories (Testimonials)",
-      "description": "Large serif quotes overlapping subtle venue imagery with backdrop-blur glassmorphism."
-    },
-    {
-      "order": 6,
-      "name": "Grand CTA",
-      "description": "Deep mocha background (#4A3B32) with champagne text, creating a powerful, high-contrast ending. Generous py-32 padding."
+      "section": "Booking / Consultation CTA",
+      "description": "Full-width section with deep mocha background, contrasting white serif typography. Simple form or direct CTA to consultation."
     }
   ],
-  "compare_mode_enhancements": [
-    "Sticky Header: Keep vendor names, mini-images, and CTA buttons visible at the top while scrolling down the feature matrix.",
-    "Highlight Row (Lokasi + Harga Awal): This row MUST have a contrasting background color (#F2EAE1) and bold Serif typography to immediately draw the eye.",
-    "Visual Tags (Highlight Layanan): Replace comma-separated text lists with inline flex pill components (rounded-full, 1px solid #E5DACE, text-xs).",
-    "Vertical Rhythm: Use generous py-6 in table cells to feel like a premium magazine spec sheet, not an Excel file. Use pure 1px lines for row dividers."
-  ],
-  "components": {
-    "button": "Rounded-none or minimal rounded-sm, 1px solid mocha border for secondary, solid #4A3B32 for primary. Padding px-8 py-4. Always include hover states.",
-    "cards": "Cardless design or flat surfaces with 1px soft border (#E5DACE). No heavy drop shadows. Rely on optical alignment.",
-    "compare_table": "CSS Grid based (grid-cols-1 md:grid-cols-4), border-collapse approach with subtle border-b on rows. Ensure sticky top behaves flawlessly."
-  },
-  "motion": {
-    "scroll": "Lenis smooth scrolling is MANDATORY to achieve the premium studio feel.",
-    "interactions": "Hover states on vendor images must include slow, elegant scaling (1.05x over 0.6s ease-out). Text links use subtle underline reveals."
-  },
   "media": {
-    "hero_image": "https://images.pexels.com/photos/12919431/pexels-photo-12919431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "category_venue": "https://images.unsplash.com/photo-1613067532651-7075a620c900?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmVjZXB0aW9uJTIwdmVudWV8ZW58MHx8fHwxNzc2MjI3ODkzfDA&ixlib=rb-4.1.0&q=85",
-    "category_decor": "https://images.unsplash.com/photo-1724847764267-12775ec49657?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjB3ZWRkaW5nJTIwZGVjb3JhdGlvbnN8ZW58MHx8fHwxNzc2MjI3ODc3fDA&ixlib=rb-4.1.0&q=85",
-    "testimonial_bg": "https://images.pexels.com/photos/12876497/pexels-photo-12876497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    "hero_background": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/1cad7660b6ac8c8de28f79a19a1c4d3a756fc4c8223dcbe7c22da880b5f2eb36.png",
+      "description": "Abstract warm champagne and mocha silk fabric flowing."
+    },
+    "feature_image_1": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/18616de2-10f1-4139-8d1e-3dd837a01558/images/85de788fcb2197b10b9dd782c3fe6b112c16db1b5e13bd58cf9a0274fe479ae1.png",
+      "description": "Close up of luxury wedding invitation mockups on mocha paper."
+    },
+    "vendor_image_1": {
+      "url": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000",
+      "description": "Elegant wedding venue decoration with warm lighting."
+    },
+    "vendor_image_2": {
+      "url": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=2000",
+      "description": "Wedding dress detail and couple shot."
+    }
   },
-  "testing": "All interactive elements MUST include 'data-testid' attribute for automated testing.",
-  "instructions_to_main_agent": "Implement this landing page blueprint in pure React/Tailwind. Use Shadcn components heavily customized to strip the Vercel-look, enforcing the provided typography and spacing rules. Ensure mobile-first responsive design, but apply the 'desktop_section_blueprint' logic rigidly for md/lg viewports."
+  "testing": {
+    "attributes": "All interactive elements MUST include data-testid. E.g., data-testid='cta-lihat-vendor', data-testid='cta-konsultasi'."
+  },
+  "instructions_to_main_agent": [
+    "This web blueprint strictly follows the 'Jewel & Luxury' and 'Organic Earthy' principles with a warm champagne and mocha palette.",
+    "Do not use generic Shadcn Cards with heavy shadows. Strip Shadcn component styles to be flat, rectangular (rounded-none), and bordered with 1px solid #E5D3B3.",
+    "Ensure the web platform is completely independent visually from the mobile app (React Native) while keeping the brand essence.",
+    "Implement 'Lihat Vendor' and 'Konsultasi' explicitly as the main CTAs.",
+    "Install Google Fonts 'Cormorant Garamond' and 'Manrope'.",
+    "Do NOT center align text arbitrarily. Left alignment builds an editorial tension. Use large paddings (p-12, py-24)."
+  ]
 }
