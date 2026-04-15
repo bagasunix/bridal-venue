@@ -38,6 +38,9 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Spacing Home untuk tablet ikut dirapikan agar transisi dari mobile ke desktop terasa lebih halus
 - Gambar vendor diperkuat secara lokal dengan penajaman, kontras, dan warna yang lebih editorial agar lebih menarik perhatian
 - Ditambahkan sticky CTA kecil `Bandingkan vendor` di web
+- Sticky CTA sekarang membuka mode compare yang benar-benar berguna, bukan hanya shortcut scroll
+- Compare mode responsif: 1 kolom di mobile, 2 di tablet, 3 di desktop
+- Tipografi tablet dipoles lagi agar heading dan body text lebih seimbang
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -68,6 +71,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Home web terbaru lolos self-check setelah penyesuaian proporsi, FAQ, CTA, dan fix render awal pasca-refactor
 - CTA sekunder terbukti berjalan: tombol vendor mengarah kembali ke section vendor, dan tombol konsultasi mengarah ke flow booking
 - Sticky CTA, gallery images, dan CTA bawah Home lolos retest frontend pada scope web + tablet
+- Compare mode responsif dan sticky CTA terbaru juga lolos retest frontend tanpa regresi vendor flow
 
 ## Current Status
 - App demo end-to-end berfungsi

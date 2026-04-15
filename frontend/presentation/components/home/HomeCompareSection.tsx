@@ -110,10 +110,12 @@ const createStyles = (
       lineHeight: isDesktop ? 32 : 30,
     },
     closeButton: {
+      alignItems: "center",
       backgroundColor: theme.colors.surfaceMuted,
       borderRadius: 999,
+      height: 44,
+      justifyContent: "center",
       paddingHorizontal: 16,
-      paddingVertical: 10,
     },
     closePressed: {
       opacity: 0.9,
@@ -187,7 +189,7 @@ const createStyles = (
       backgroundColor: theme.colors.accent,
       borderRadius: 999,
       marginTop: 4,
-      minHeight: 40,
+      minHeight: 44,
       justifyContent: "center",
       paddingHorizontal: 16,
     },

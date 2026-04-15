@@ -177,6 +177,7 @@ const createStyles = (
       fontFamily: "Georgia",
       fontSize: 24,
       fontWeight: "700",
+      lineHeight: mode === "tablet" ? 30 : 32,
     },
     sectionCopy: {
       color: theme.colors.textSecondary,
