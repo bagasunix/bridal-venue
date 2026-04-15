@@ -32,6 +32,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - HomeScreen sudah dipecah menjadi beberapa komponen kecil: hero, trust, vendor, assurance, gallery, dan partners
 - Ditambahkan section galeri momen dan partner logos kecil untuk memperkaya landing page browser
 - Responsif Home dirapikan agar lebih stabil dari mobile, tablet, sampai desktop besar
+- Ditambahkan section FAQ singkat dan CTA konsultatif di bagian bawah Home
+- Proporsi Home web diperkecil dan diseimbangkan lagi untuk 1366px hingga desktop besar
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -59,6 +61,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Format tanggal user-facing sekarang sudah Indonesia (contoh: `Jum, 17 April`)
 - Editorial vendor section, testimonial, dan why-choose-us di Home desktop telah lolos retest frontend tanpa regresi mobile
 - Refactor Home + responsive tablet/desktop + gallery/partner sections telah lolos retest frontend tanpa regresi navigation
+- Home web terbaru lolos self-check setelah penyesuaian proporsi, FAQ, CTA, dan fix render awal pasca-refactor
 
 ## Current Status
 - App demo end-to-end berfungsi

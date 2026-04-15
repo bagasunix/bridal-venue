@@ -1,13 +1,12 @@
 import { type Href, useRouter } from "expo-router";
-import { useMemo } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
   Animated,
+  Dimensions,
   Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  useWindowDimensions,
   View,
 } from "react-native";
 
@@ -29,18 +28,22 @@ export function HomeScreen() {
   const router = useRouter();
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
-  const { width } = useWindowDimensions();
   const [hasHydrated, setHasHydrated] = useState(Platform.OS !== "web");
+  const [clientWidth, setClientWidth] = useState(() =>
+    Platform.OS === "web" ? 390 : Dimensions.get("window").width,
+  );
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
   const useNativeDriver = Platform.OS !== "web";
-  const responsiveWidth =
-    Platform.OS === "web"
-      ? hasHydrated && typeof window !== "undefined"
-        ? window.innerWidth
-        : 390
-      : width;
+  const responsiveWidth = clientWidth;
+  const heroVendor = vendors[0];
+  const featuredVendor = vendors[1];
+  const supportingVendors = vendors.filter((vendor) => vendor.slug !== featuredVendor.slug);
+  const animatedStyle = {
+    opacity: introOpacity,
+    transform: [{ translateY: introTranslate }],
+  };
 
   useEffect(() => {
     Animated.parallel([
@@ -58,21 +61,42 @@ export function HomeScreen() {
   }, [introOpacity, introTranslate, useNativeDriver]);
 
   useEffect(() => {
-    if (Platform.OS !== "web" || typeof window === "undefined") {
-      return;
+    if (Platform.OS === "web") {
+      if (typeof window === "undefined") {
+        return;
+      }
+
+      const syncHydratedLayout = () => {
+        setHasHydrated(true);
+        setClientWidth(window.innerWidth);
+      };
+
+      syncHydratedLayout();
+      window.addEventListener("resize", syncHydratedLayout);
+
+      return () => {
+        window.removeEventListener("resize", syncHydratedLayout);
+      };
     }
 
-    const syncHydratedLayout = () => {
-      setHasHydrated(true);
-    };
-
-    syncHydratedLayout();
-    window.addEventListener("resize", syncHydratedLayout);
+    const subscription = Dimensions.addEventListener("change", ({ window }) => {
+      setClientWidth(window.width);
+    });
 
     return () => {
-      window.removeEventListener("resize", syncHydratedLayout);
+      subscription.remove();
     };
   }, []);
+
+  if (Platform.OS === "web" && !hasHydrated) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView contentContainerStyle={styles.scrollContent} testID="home-screen">
+          <View style={[styles.container, { width: Math.min(390 - 24, theme.layout.maxContentWidth) }]} />
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 
   const mode: ScreenMode = responsiveWidth >= 1200 ? "desktop" : responsiveWidth >= 760 ? "tablet" : "mobile";
   const contentWidth =
@@ -81,17 +105,6 @@ export function HomeScreen() {
       : mode === "tablet"
         ? Math.min(responsiveWidth - 48, 920)
         : Math.min(responsiveWidth - 24, theme.layout.maxContentWidth);
-
-  const heroVendor = vendors[0];
-  const featuredVendor = vendors[1];
-  const supportingVendors = useMemo(
-    () => vendors.filter((vendor) => vendor.slug !== featuredVendor.slug),
-    [featuredVendor.slug],
-  );
-  const animatedStyle = {
-    opacity: introOpacity,
-    transform: [{ translateY: introTranslate }],
-  };
 
   return (
     <SafeAreaView style={styles.safeArea}>

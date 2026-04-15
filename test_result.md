@@ -196,6 +196,12 @@ frontend:
       - working: true
         agent: "main"
         comment: "Reduced oversized desktop proportions across hero/cards/sections, added FAQ and CTA sections to Home, and self-tested at laptop, desktop, and mobile widths on local static build."
+      - working: true
+        agent: "testing"
+        comment: "Testing agent validated responsive quality improvement, FAQ visibility, CTA visibility, and no major regression. Remaining note was hydration mismatch in Home web render."
+      - working: true
+        agent: "main"
+        comment: "Fixed Home render path after responsive refactor and verified Home loads correctly again at 1366px with FAQ and CTA visible."
 metadata:
   created_by: "main_agent"
   version: "1.0"
