@@ -228,6 +228,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Refined web landing page again with a richer studio-premium structure: added manifesto section, desktop hero collage, compare promo block, and replaced the previously broken floral featured image with a cleaner editorial asset."
+      - working: true
+        agent: "testing"
+        comment: "Testing agent confirmed richer compare mode works: compare promo opens matrix + cards, sticky compare CTA toggles correctly, and vendor-detail navigation from compare mode is intact."
 metadata:
   created_by: "main_agent"
   version: "1.0"

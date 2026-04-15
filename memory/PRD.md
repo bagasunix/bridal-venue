@@ -44,6 +44,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Home web dirombak lagi agar terasa seperti **studio wedding premium** dengan struktur yang lebih kaya dan tidak terasa meniru referensi
 - Ditambahkan manifesto section, compare promo block, dan hero collage desktop untuk membuat ritme landing page lebih editorial
 - Featured floral image yang sebelumnya mengganggu sudah diganti dengan visual yang lebih bersih dan lebih mewah
+- Compare mode kini lebih dalam: ada matriks ringkas plus kartu highlight untuk paket unggulan, lokasi, harga awal, dan highlight layanan
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -76,6 +77,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Sticky CTA, gallery images, dan CTA bawah Home lolos retest frontend pada scope web + tablet
 - Compare mode responsif dan sticky CTA terbaru juga lolos retest frontend tanpa regresi vendor flow
 - Retest final Home web lolos untuk struktur premium baru, manifesto, compare promo → compare mode, kejelasan detail compare, dan render gambar floral yang baru
+- Rich compare mode terbaru lolos verifikasi frontend tanpa blocker
 
 ## Current Status
 - App demo end-to-end berfungsi
