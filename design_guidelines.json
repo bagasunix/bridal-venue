@@ -1,144 +1,82 @@
 {
-  "project_name": "Expo Wedding Rental Redesign",
-  "theme": "Light",
-  "archetype": "Organic & Earthy / Light Luxury Blend",
-  "design_philosophy": {
-    "vibe": "Hangat dan mewah (Warm and luxurious), boutique, editorial.",
-    "browser_behavior": "Must feel like a premium high-end landing page on web/desktop, not a stretched mobile app container.",
-    "core_strategy": "Use generous white space, soft contrast, and elegant typography to build trust."
-  },
-  "typography": {
-    "strategy": "The 'Old Money Tech' variant: Elegant Serif Headings paired with a Sterile/Clean Sans Body.",
-    "headings": {
-      "fontFamily": "Playfair Display",
-      "fallback": "Cormorant Garamond, serif",
-      "usage_rules": "Use tracking-tight for large headings. Keep weights Light (300) to Regular (400) for elegance. Avoid Heavy/Black weights."
-    },
-    "body": {
-      "fontFamily": "Outfit",
-      "fallback": "Lato, sans-serif",
-      "usage_rules": "Clean sans-serif for legibility in booking forms and UI labels. Use text-base to text-lg with relaxed line height (leading-relaxed)."
-    }
-  },
-  "colors": {
-    "light": {
-      "background": "#FAF9F6",
-      "surface": "#FFFFFF",
-      "primary": "#8B7355",
-      "primary_light": "#E5D3B3",
-      "text_main": "#2C2A29",
-      "text_muted": "#756E65",
-      "border": "#E8E2D9",
-      "success": "#6B705C",
-      "error": "#9A4C4C",
-      "accent": "#C4A484"
-    },
-    "dark": {
-      "background": "#1A1412",
-      "surface": "#241D1A",
-      "primary": "#E5D3B3",
-      "primary_dark": "#8B7355",
-      "text_main": "#FAF9F6",
-      "text_muted": "#A89F91",
-      "border": "#3D332D",
-      "success": "#8A9079",
-      "error": "#B06565",
-      "accent": "#8B7355"
-    }
-  },
-  "spacing_and_layout": {
-    "general": "Embrace negative space. Use generous padding (p-8, p-12) around main content areas.",
-    "web_landing_page": {
-      "hero": "Full width with max-w-7xl content constraint. Desktop uses grid-cols-2 for an asymmetric editorial look. Image takes up one column, text the other.",
-      "vendor_grid": "Use bento grid or asymmetrical grid on desktop (e.g., md:grid-cols-2 lg:grid-cols-3) with gap-8 or gap-12."
-    },
-    "mobile_app": {
-      "container": "Standard safe area views, but avoid boxing everything in cards. Use edge-to-edge imagery where possible.",
-      "padding": "px-6 for standard screen content."
-    }
-  },
-  "copywriting_indonesian": {
-    "tone": "Natural, human, elegant, and warm. Avoid literal translations.",
-    "mapping": {
-      "Book Now": "Jadikan Milik Anda",
-      "Check Availability": "Cek Ketersediaan",
-      "Available": "Tersedia",
-      "Unavailable / Booked": "Sudah Dipesan",
-      "Success Confirmation": "Pemesanan Berhasil",
-      "Select Date": "Pilih Tanggal Hari Bahagia Anda",
-      "Name": "Nama Lengkap",
-      "Phone": "Nomor WhatsApp",
-      "Package": "Pilihan Paket",
-      "Browse Vendors": "Koleksi Eksklusif Kami",
-      "Hero Title": "Wujudkan Pernikahan Impian Anda",
-      "Hero Subtitle": "Temukan vendor dekorasi dan lokasi terbaik yang merangkai cerita cinta Anda dengan keanggunan abadi."
-    }
-  },
-  "components_instructions": {
-    "cards": {
-      "style": "Go cardless or use extremely subtle borders (border border-border) without harsh shadows. Use soft image corners (rounded-xl) and place text below or layered elegantly over the image with a subtle gradient.",
-      "interaction": "Subtle scale down or up on press (mobile) or hover (web)."
-    },
-    "buttons": {
-      "primary": "Background primary (Mocha #8B7355), text surface (#FFFFFF), fully rounded or very slight rounded (rounded-sm) based on preference, padding y-4 px-8.",
-      "secondary": "Border only (border-primary text-primary)."
-    },
-    "inputs": {
-      "style": "Editorial style: use border-b only (underlined input), not a full bounding box. Focus states should highlight the bottom border in Mocha. Background transparent."
-    },
-    "date_picker": {
-      "grid": "Clean grid, no harsh borders between days.",
-      "available": "Text text_main. Selectable.",
-      "booked": "Text text_muted/50 with a subtle strike-through or opacity reduction. Non-selectable.",
-      "selected": "Circular background in Mocha (#8B7355), text White.",
-      "today": "Text primary, font-medium."
-    }
-  },
-  "screens": {
-    "home": {
-      "web_structure": "1. Hero Section (Split layout: Text on Left, large aesthetic image on Right). 2. Trust/Vibe Bar (3 icons: Elegance, Transparent, Easy). 3. Vendor Collection (Grid view).",
-      "mobile_structure": "1. Stacked Hero (Image top, text overlapping or below). 2. List view for vendors with large edge-to-edge images."
-    },
-    "vendor_detail": {
-      "layout": "Large hero image header (max-h-[60vh] on web, 40vh on mobile). Content pushed up to overlap the image slightly. Fixed bottom bar or floating sticky CTA for 'Cek Ketersediaan' on mobile, side panel on web."
-    },
-    "booking_form": {
-      "layout": "Clean, distraction-free. Centered narrow container on web (max-w-2xl). Underlined inputs. Custom date picker prominent."
-    },
-    "success": {
-      "layout": "Minimalist center-aligned content. Large elegant checkmark or abstract shape. Warm congratulatory text."
-    }
-  },
-  "media": {
-    "instructions": "Use these exact URLs for placing images. DO NOT use placeholders.",
-    "images": [
-      {
-        "category": "hero",
-        "url": "https://images.unsplash.com/photo-1752857015560-d5c05b3f7ecb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHx3ZWRkaW5nJTIwZGVjb3JhdGlvbiUyMGVsZWdhbnR8ZW58MHx8fHwxNzc2MTkyNTQ2fDA&ixlib=rb-4.1.0&q=85",
-        "description": "Elegant outdoor dinner table setup, warm lighting."
-      },
-      {
-        "category": "vendor_champagne",
-        "url": "https://images.unsplash.com/photo-1759646827349-bc2ac350d096?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY2hhbXBhZ25lJTIwc2V0dXB8ZW58MHx8fHwxNzc2MTkyNTQ2fDA&ixlib=rb-4.1.0&q=85",
-        "description": "Champagne glasses stacked elegantly."
-      },
-      {
-        "category": "vendor_outdoor_venue",
-        "url": "https://images.unsplash.com/photo-1578730169862-749bbdc763a8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwd2VkZGluZyUyMHZlbnVlfGVufDB8fHx8MTc3NjE5MjU0Nnww&ixlib=rb-4.1.0&q=85",
-        "description": "Benches on a hill for an outdoor venue."
-      },
-      {
-        "category": "vendor_luxury_stage",
-        "url": "https://images.pexels.com/photos/33800352/pexels-photo-33800352.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "description": "Luxurious wedding stage adorned with floral arrangements."
-      }
+  "theme": "light",
+  "archetype": "1_organic_earthy",
+  "identity": "Warm Champagne + Mocha",
+  "fonts": {
+    "heading": "Cormorant Garamond",
+    "body": "Outfit",
+    "links": [
+      "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
     ]
   },
-  "technical_notes_for_agent": [
-    "This is a pure JS Expo NativeWind project. Share guidelines and write code for .js files, NOT .tsx.",
-    "Use standard React Native components (<View>, <Text>, <Image>, <Pressable>, <TextInput>) paired with className via NativeWind.",
-    "Include 'data-testid' on interactive elements for automated testing (e.g., data-testid='submit-booking-button').",
-    "To achieve the web landing page feel, use responsive Tailwind prefixes extensively (e.g., flex-col md:flex-row, px-4 md:px-12).",
-    "Ensure the Date Picker logic visually separates 'Available' and 'Booked' correctly using the color palette provided."
-  ]
+  "colors": {
+    "background": "#FDFBF7",
+    "surface": "#F2EAE1",
+    "primary": "#4A3B32",
+    "primary_hover": "#2A1D17",
+    "accent": "#D4C1A5",
+    "text_main": "#2A1D17",
+    "text_muted": "#8C7A6B",
+    "border": "#E5DACE"
+  },
+  "spacing_and_layout": {
+    "strategy": "Asymmetrical editorial bento grid, generous padding (py-24 to py-32), overlapping text and imagery. Break from the center-everything disease.",
+    "grid_system": "MODE A: TETRIS GRID (grid-cols-1 md:grid-cols-12, wide gap-8 to gap-12). Leave empty columns for 'breathing room' to feel premium."
+  },
+  "anti_copy_strategy": "The 'Studio wedding premium' reference likely uses heavily centered, symmetric layouts. To differentiate, we will use radical asymmetry. Text blocks will overlap images, and section headers will align to the left or right, paired with negative space. The scale contrast between H1s and tiny tracking-widest overlines builds tension missing in standard templates.",
+  "desktop_section_blueprint": [
+    {
+      "order": 1,
+      "name": "Editorial Hero Spread",
+      "description": "Asymmetrical split. Left: Massive serif typography ('Crafting Your Forever') spanning 7 columns with deep mocha text. Right: Large floating image spanning 5 columns overlapping a soft champagne background shape."
+    },
+    {
+      "order": 2,
+      "name": "The Vision (Brand Manifesto)",
+      "description": "Full-width section with a very large, short text block in italicized Cormorant Garamond. Creates an emotional pause."
+    },
+    {
+      "order": 3,
+      "name": "The Collection (Vendor Discovery)",
+      "description": "Bento-grid style masonry cards for Venues, Decor, Catering. Images use max-h-[60vh] and subtle zoom on hover. Do not use standard equal-height grids."
+    },
+    {
+      "order": 4,
+      "name": "Elevated Compare Experience Promo",
+      "description": "A high-impact section teasing the Compare feature. Visual 'Styling Board' approach introducing users to the comparison tool."
+    },
+    {
+      "order": 5,
+      "name": "Love Stories (Testimonials)",
+      "description": "Large serif quotes overlapping subtle venue imagery with backdrop-blur glassmorphism."
+    },
+    {
+      "order": 6,
+      "name": "Grand CTA",
+      "description": "Deep mocha background (#4A3B32) with champagne text, creating a powerful, high-contrast ending. Generous py-32 padding."
+    }
+  ],
+  "compare_mode_enhancements": [
+    "Sticky Header: Keep vendor names, mini-images, and CTA buttons visible at the top while scrolling down the feature matrix.",
+    "Highlight Row (Lokasi + Harga Awal): This row MUST have a contrasting background color (#F2EAE1) and bold Serif typography to immediately draw the eye.",
+    "Visual Tags (Highlight Layanan): Replace comma-separated text lists with inline flex pill components (rounded-full, 1px solid #E5DACE, text-xs).",
+    "Vertical Rhythm: Use generous py-6 in table cells to feel like a premium magazine spec sheet, not an Excel file. Use pure 1px lines for row dividers."
+  ],
+  "components": {
+    "button": "Rounded-none or minimal rounded-sm, 1px solid mocha border for secondary, solid #4A3B32 for primary. Padding px-8 py-4. Always include hover states.",
+    "cards": "Cardless design or flat surfaces with 1px soft border (#E5DACE). No heavy drop shadows. Rely on optical alignment.",
+    "compare_table": "CSS Grid based (grid-cols-1 md:grid-cols-4), border-collapse approach with subtle border-b on rows. Ensure sticky top behaves flawlessly."
+  },
+  "motion": {
+    "scroll": "Lenis smooth scrolling is MANDATORY to achieve the premium studio feel.",
+    "interactions": "Hover states on vendor images must include slow, elegant scaling (1.05x over 0.6s ease-out). Text links use subtle underline reveals."
+  },
+  "media": {
+    "hero_image": "https://images.pexels.com/photos/12919431/pexels-photo-12919431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "category_venue": "https://images.unsplash.com/photo-1613067532651-7075a620c900?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmVjZXB0aW9uJTIwdmVudWV8ZW58MHx8fHwxNzc2MjI3ODkzfDA&ixlib=rb-4.1.0&q=85",
+    "category_decor": "https://images.unsplash.com/photo-1724847764267-12775ec49657?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjB3ZWRkaW5nJTIwZGVjb3JhdGlvbnN8ZW58MHx8fHwxNzc2MjI3ODc3fDA&ixlib=rb-4.1.0&q=85",
+    "testimonial_bg": "https://images.pexels.com/photos/12876497/pexels-photo-12876497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "testing": "All interactive elements MUST include 'data-testid' attribute for automated testing.",
+  "instructions_to_main_agent": "Implement this landing page blueprint in pure React/Tailwind. Use Shadcn components heavily customized to strip the Vercel-look, enforcing the provided typography and spacing rules. Ensure mobile-first responsive design, but apply the 'desktop_section_blueprint' logic rigidly for md/lg viewports."
 }
