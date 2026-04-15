@@ -27,6 +27,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Sanitasi base64 image asset di layer `imageAssets.ts` untuk membersihkan asset yang malformed
 - Seluruh copy utama diubah ke Bahasa Indonesia dengan tone hangat dan mewah
 - Home web dirombak agar terasa seperti landing page boutique wedding brand, bukan tampilan mobile yang dipaksa ke browser
+- Section vendor desktop sekarang memakai komposisi editorial: 1 featured card + supporting grid
+- Home juga punya blok pendukung `Mengapa pasangan menyukai alur ini` dan testimonial pendek untuk memperkuat rasa brand
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -52,6 +54,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Flow mobile Home → Detail → Booking tetap berjalan setelah redesign baru
 - Hero desktop kini benar-benar terbagi dua kolom setelah hydration, sehingga browser terasa seperti landing page yang layak
 - Format tanggal user-facing sekarang sudah Indonesia (contoh: `Jum, 17 April`)
+- Editorial vendor section, testimonial, dan why-choose-us di Home desktop telah lolos retest frontend tanpa regresi mobile
 
 ## Current Status
 - App demo end-to-end berfungsi
