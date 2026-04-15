@@ -5,9 +5,13 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 
 ## Architecture
 - **Frontend:** Expo Router + React Native + TypeScript
+- **Web Landing:** Next.js App Router + Tailwind CSS + reusable web components
 - **UI Layer:** `frontend/presentation/screens` dan `frontend/presentation/components`
+- **Web UI Layer:** `web/src/app`, `web/src/components/site`, `web/src/lib`
 - **Mock Data:** `frontend/mock/vendors.ts`, `frontend/mock/imageAssets.ts`, `frontend/mock/images/*`
+- **Web Vendor Data:** `web/src/lib/vendors.ts` dengan image asset lokal di `web/public/vendors`
 - **API Client:** `frontend/services/api.ts`, `availability.ts`, `webhook.ts`
+- **Web API Client:** `web/src/lib/api.ts`
 - **Backend:** FastAPI di `backend/server.py`
 - **Storage:** MongoDB lokal untuk menyimpan booking demo
 - **Routing Prefix:** semua endpoint backend di bawah `/api`
@@ -17,6 +21,10 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Vendor detail screen dengan gambar hero, paket, dan tombol cek availability
 - Booking screen dengan custom calendar grid dan form nama/telepon/paket
 - Success screen dengan ringkasan booking
+- Landing page web baru dengan Next.js + Tailwind
+- Halaman web tambahan: `/vendors`, `/vendors/[slug]`, `/booking/[slug]`, `/success`
+- Compare section web dengan matriks ringkas + kartu highlight
+- Booking form web yang tersambung ke backend mock yang sama
 - Redesign visual menyeluruh dengan gaya **minimal luxury**
 - Sistem warna baru **Warm champagne + mocha** untuk light theme dan mode gelap yang tetap konsisten
 - Dark mode **auto + manual toggle** (cycle AUTO / DARK / LIGHT) dengan penyimpanan preferensi lokal
@@ -60,6 +68,9 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Tanggal tersedia berhasil dipilih
 - Submit booking berhasil menuju Success screen
 - Backend endpoint health, availability, dan booking mengembalikan respons valid
+- Build Next.js lulus `npm run build`
+- Lint Next.js lulus `npm run lint`
+- Flow web lokal berhasil diverifikasi: Home → Vendor Detail → Booking → Success
 - Redesign baru tervalidasi secara visual lewat static web build lokal pada Home, Vendor Detail, dan Booking
 - Manual dark mode toggle tervalidasi berjalan
 - TypeScript frontend lulus `tsc --noEmit`
@@ -83,6 +94,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - App demo end-to-end berfungsi
 - Integrasi n8n masih **MOCKED** sampai webhook live diberikan/diaktifkan
 - Public preview Expo masih dapat terganggu oleh limit tunnel eksternal, tetapi build statis lokal berhasil diekspor dan tervalidasi
+- Landing page web sekarang dipisah dari mobile: mobile tetap React Native/Expo, web memakai Next.js + Tailwind
 - Warning base64 image yang sebelumnya mengganggu static web preview sudah dibersihkan lewat sanitasi asset
 
 ## Backlog
@@ -94,6 +106,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Tambahkan state error/loading yang lebih eksplisit untuk submit booking
 - Validasi ulang redesign pada preview publik ketika tunnel kembali stabil
 - Bila perlu, poles lagi section vendor collection desktop agar makin editorial dengan variasi layout antar kartu
+- Tambahkan env deployment production `NEXT_PUBLIC_BACKEND_URL` saat deploy manual ke Vercel
 
 ### P2
 - Simpan riwayat booking demo per device

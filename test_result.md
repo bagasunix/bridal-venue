@@ -115,6 +115,20 @@ backend:
         agent: "main"
         comment: "Backend endpoints previously verified and redesign work did not modify backend."
 frontend:
+  - task: "nextjs web landing page migration"
+    implemented: true
+    working: true
+    file: "/app/web/src/app/page.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Created separate Next.js + Tailwind web app under /app/web while keeping mobile Expo app untouched. Added landing page, vendors list/detail, booking page, success page, compare section, and local vendor image assets."
+      - working: true
+        agent: "main"
+        comment: "Verified Next build and lint succeeded. Self-tested web flow locally on port 3001 through Home -> Vendor Detail -> Booking -> Success using available mock date."
   - task: "luxury responsive redesign across core screens"
     implemented: true
     working: true
@@ -234,10 +248,11 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 2
+  test_sequence: 3
   run_ui: true
 test_plan:
   current_focus:
+    - "nextjs web landing page migration"
     - "luxury responsive redesign across core screens"
     - "dark mode auto plus manual toggle"
     - "indonesian copy and premium web landing page refinement"
