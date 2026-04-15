@@ -15,6 +15,28 @@ export function HomeCompareSection({ mode, onClose, vendors }: HomeCompareSectio
   const router = useRouter();
   const { theme } = useAppTheme();
   const styles = createStyles(theme, mode);
+  const compareRows = [
+    {
+      label: "Lokasi",
+      values: vendors.map((vendor) => vendor.location),
+    },
+    {
+      label: "Harga awal",
+      values: vendors.map((vendor) => `Mulai ${vendor.startingPrice}`),
+    },
+    {
+      label: "Paket utama",
+      values: vendors.map((vendor) => vendor.packages[0]?.label ?? "Pilihan utama"),
+    },
+    {
+      label: "Harga paket utama",
+      values: vendors.map((vendor) => vendor.packages[0]?.price ?? vendor.startingPrice),
+    },
+    {
+      label: "Highlight layanan",
+      values: vendors.map((vendor) => vendor.highlights.slice(0, 2).join(" • ")),
+    },
+  ];
 
   return (
     <View style={styles.wrapper} testID="compare-vendors-section">
@@ -28,6 +50,35 @@ export function HomeCompareSection({ mode, onClose, vendors }: HomeCompareSectio
           <Text style={styles.closeText}>Tutup</Text>
         </Pressable>
       </View>
+
+      {mode !== "mobile" ? (
+        <View style={styles.matrixWrap} testID="compare-matrix-table">
+          <View style={styles.matrixHeaderRow}>
+            <View style={[styles.matrixCell, styles.matrixLabelCell]}>
+              <Text style={styles.matrixHeaderLabel}>Aspek</Text>
+            </View>
+            {vendors.map((vendor) => (
+              <View key={vendor.slug} style={styles.matrixCell}>
+                <Text style={styles.matrixVendorName}>{vendor.name}</Text>
+                <Text style={styles.matrixVendorCategory}>{vendor.category}</Text>
+              </View>
+            ))}
+          </View>
+
+          {compareRows.map((row) => (
+            <View key={row.label} style={styles.matrixDataRow}>
+              <View style={[styles.matrixCell, styles.matrixLabelCell]}>
+                <Text style={styles.matrixRowLabel}>{row.label}</Text>
+              </View>
+              {row.values.map((value, index) => (
+                <View key={`${row.label}-${index}`} style={styles.matrixCell}>
+                  <Text style={styles.matrixValue}>{value}</Text>
+                </View>
+              ))}
+            </View>
+          ))}
+        </View>
+      ) : null}
 
       <View style={styles.grid}>
         {vendors.map((vendor) => (
@@ -47,6 +98,10 @@ export function HomeCompareSection({ mode, onClose, vendors }: HomeCompareSectio
               <View style={styles.detailRow}>
                 <Text style={styles.detailLabel}>Paket unggulan</Text>
                 <Text style={styles.detailValue}>{vendor.packages[0]?.label ?? "Pilihan utama"}</Text>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Harga paket utama</Text>
+                <Text style={styles.detailValue}>{vendor.packages[0]?.price ?? vendor.startingPrice}</Text>
               </View>
             </View>
 
@@ -134,6 +189,63 @@ const createStyles = (
       flexWrap: isDesktop || isTablet ? "wrap" : "nowrap",
       gap: 14,
       justifyContent: "space-between",
+    },
+    matrixWrap: {
+      backgroundColor: theme.colors.background,
+      borderColor: theme.colors.border,
+      borderRadius: 24,
+      borderWidth: 1,
+      overflow: "hidden",
+    },
+    matrixHeaderRow: {
+      backgroundColor: theme.colors.surfaceMuted,
+      flexDirection: "row",
+    },
+    matrixDataRow: {
+      borderTopColor: theme.colors.border,
+      borderTopWidth: 1,
+      flexDirection: "row",
+    },
+    matrixCell: {
+      flex: 1,
+      gap: 4,
+      minHeight: 72,
+      justifyContent: "center",
+      paddingHorizontal: 14,
+      paddingVertical: 12,
+    },
+    matrixLabelCell: {
+      flex: 0.86,
+    },
+    matrixHeaderLabel: {
+      color: theme.colors.accent,
+      fontSize: 12,
+      fontWeight: "800",
+      letterSpacing: 0.8,
+      textTransform: "uppercase",
+    },
+    matrixVendorName: {
+      color: theme.colors.textPrimary,
+      fontSize: 16,
+      fontWeight: "800",
+      lineHeight: 22,
+    },
+    matrixVendorCategory: {
+      color: theme.colors.textSecondary,
+      fontSize: 12,
+      fontWeight: "700",
+    },
+    matrixRowLabel: {
+      color: theme.colors.textPrimary,
+      fontSize: 13,
+      fontWeight: "800",
+      lineHeight: 18,
+    },
+    matrixValue: {
+      color: theme.colors.textSecondary,
+      fontSize: 13,
+      fontWeight: "700",
+      lineHeight: 20,
     },
     card: {
       backgroundColor: theme.colors.background,
