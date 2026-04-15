@@ -47,13 +47,13 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       borderColor: theme.colors.border,
       borderRadius: 999,
       borderWidth: 1,
-      paddingHorizontal: 16,
-      paddingVertical: 12,
+      paddingHorizontal: 14,
+      paddingVertical: 10,
     },
     logoText: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: "700",
     },
   });

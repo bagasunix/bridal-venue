@@ -80,14 +80,14 @@ const createStyles = (
       flexDirection: isDesktop ? "row" : "column",
       gap: 18,
       overflow: "hidden",
-      padding: isDesktop ? 20 : 18,
+      padding: isDesktop ? 18 : 16,
     },
     copyWrap: {
       flex: isDesktop ? 1 : undefined,
       gap: 16,
       minWidth: 0,
       overflow: "hidden",
-      padding: isDesktop ? 18 : 10,
+      padding: isDesktop ? 16 : 10,
       position: "relative",
     },
     accentBlob: {
@@ -114,16 +114,16 @@ const createStyles = (
     title: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: isDesktop ? 40 : isTablet ? 34 : 30,
+      fontSize: isDesktop ? 34 : isTablet ? 30 : 28,
       fontWeight: "700",
-      lineHeight: isDesktop ? 50 : isTablet ? 44 : 40,
-      maxWidth: 520,
+      lineHeight: isDesktop ? 42 : isTablet ? 38 : 36,
+      maxWidth: 460,
     },
     copy: {
       color: theme.colors.textSecondary,
-      fontSize: theme.typography.body,
-      lineHeight: isDesktop ? 28 : 26,
-      maxWidth: 470,
+      fontSize: 15,
+      lineHeight: isDesktop ? 24 : 25,
+      maxWidth: 430,
     },
     metricsRow: {
       flexDirection: "row",
@@ -137,9 +137,9 @@ const createStyles = (
       borderRadius: 22,
       borderWidth: 1,
       gap: 4,
-      minWidth: isDesktop ? 132 : 122,
-      paddingHorizontal: 14,
-      paddingVertical: 12,
+      minWidth: isDesktop ? 118 : 112,
+      paddingHorizontal: 12,
+      paddingVertical: 10,
     },
     metricValue: {
       color: theme.colors.textPrimary,
@@ -154,7 +154,7 @@ const createStyles = (
     visualWrap: {
       borderRadius: 28,
       flex: isDesktop ? 1 : undefined,
-      height: isDesktop ? 460 : isTablet ? 400 : 320,
+      height: isDesktop ? 390 : isTablet ? 340 : 300,
       minWidth: 0,
       overflow: "hidden",
       position: "relative",
@@ -187,7 +187,7 @@ const createStyles = (
     captionTitle: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 24,
+      fontSize: 22,
       fontWeight: "700",
     },
     captionCopy: {

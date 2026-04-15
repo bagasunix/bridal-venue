@@ -71,9 +71,9 @@ const createStyles = (
     title: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 28,
+      fontSize: 24,
       fontWeight: "700",
-      lineHeight: 36,
+      lineHeight: 32,
     },
     listWrap: {
       gap: 12,
@@ -107,9 +107,9 @@ const createStyles = (
     quote: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 26,
+      fontSize: 22,
       fontWeight: "700",
-      lineHeight: 38,
+      lineHeight: 34,
     },
     meta: {
       color: theme.colors.textSecondary,

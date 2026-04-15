@@ -1,3 +1,4 @@
+import { type Href, useRouter } from "expo-router";
 import { useMemo } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -12,6 +13,8 @@ import {
 
 import { vendors } from "@/mock/vendors";
 import { HomeAssuranceSection } from "@/presentation/components/home/HomeAssuranceSection";
+import { HomeCtaSection } from "@/presentation/components/home/HomeCtaSection";
+import { HomeFaqSection } from "@/presentation/components/home/HomeFaqSection";
 import { HomeGallerySection } from "@/presentation/components/home/HomeGallerySection";
 import { HomeHeroSection } from "@/presentation/components/home/HomeHeroSection";
 import { HomePartnersSection } from "@/presentation/components/home/HomePartnersSection";
@@ -23,6 +26,7 @@ import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 type ScreenMode = "mobile" | "tablet" | "desktop";
 
 export function HomeScreen() {
+  const router = useRouter();
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
@@ -65,12 +69,12 @@ export function HomeScreen() {
     };
   }, []);
 
-  const mode: ScreenMode = isDesktop ? "desktop" : width >= 720 ? "tablet" : "mobile";
+  const mode: ScreenMode = isDesktop ? "desktop" : width >= 760 ? "tablet" : "mobile";
   const contentWidth =
     mode === "desktop"
-      ? Math.min(browserWidth - 72, theme.layout.webLandingWidth)
+      ? Math.min(browserWidth - 96, 1240)
       : mode === "tablet"
-        ? Math.min(width - 40, 900)
+        ? Math.min(width - 48, 920)
         : Math.min(width - 24, theme.layout.maxContentWidth);
 
   const heroVendor = vendors[0];
@@ -104,6 +108,8 @@ export function HomeScreen() {
           <HomeAssuranceSection mode={mode} />
           <HomeGallerySection mode={mode} vendors={vendors} />
           <HomePartnersSection vendors={vendors} />
+          <HomeFaqSection mode={mode} />
+          <HomeCtaSection mode={mode} onPress={() => router.push(`/vendor/${heroVendor.slug}` as Href)} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -152,16 +152,19 @@ const createStyles = (
       gap: 18,
     },
     headerRow: {
-      alignItems: "flex-start",
+      alignItems: mode === "mobile" ? "flex-start" : "flex-end",
+      flexDirection: mode === "mobile" ? "column" : "row",
       gap: 14,
+      justifyContent: "space-between",
     },
     headerTextWrap: {
+      flex: 1,
       gap: 6,
     },
     sectionTitle: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 28,
+      fontSize: 24,
       fontWeight: "700",
     },
     sectionCopy: {
@@ -221,7 +224,7 @@ const createStyles = (
       flex: isDesktop ? 1 : undefined,
       gap: 14,
       justifyContent: "center",
-      padding: 28,
+      padding: 22,
     },
     featuredEyebrow: {
       color: theme.colors.accent,
@@ -233,15 +236,15 @@ const createStyles = (
     featuredTitle: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: isDesktop ? 34 : 28,
+      fontSize: isDesktop ? 30 : 26,
       fontWeight: "700",
-      lineHeight: isDesktop ? 42 : 36,
+      lineHeight: isDesktop ? 38 : 34,
     },
     featuredDescription: {
       color: theme.colors.textSecondary,
-      fontSize: 15,
-      lineHeight: 25,
-      maxWidth: 430,
+      fontSize: 14,
+      lineHeight: 23,
+      maxWidth: 400,
     },
     featuredMetaRow: {
       flexDirection: "row",
@@ -295,8 +298,8 @@ const createStyles = (
       fontWeight: "800",
     },
     featuredImageWrap: {
-      minHeight: isDesktop ? 360 : 300,
-      width: isDesktop ? 420 : "100%",
+      minHeight: isDesktop ? 320 : 280,
+      width: isDesktop ? 380 : "100%",
     },
     featuredImage: {
       height: "100%",
@@ -305,17 +308,17 @@ const createStyles = (
     gridWrap: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 18,
+      gap: 16,
       justifyContent: "space-between",
     },
     gridItem: {
-      width: isDesktop ? "48.7%" : "48.5%",
+      width: isDesktop ? "48.9%" : "48.5%",
     },
     gridItemWide: {
       width: "100%",
     },
     mobileList: {
-      gap: 18,
+      gap: 16,
     },
   });
 };

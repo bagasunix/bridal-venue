@@ -68,9 +68,9 @@ const createStyles = (
     title: {
       color: theme.colors.textPrimary,
       fontFamily: "Georgia",
-      fontSize: 28,
+      fontSize: 24,
       fontWeight: "700",
-      lineHeight: 36,
+      lineHeight: 32,
       maxWidth: 700,
     },
     grid: {
@@ -80,7 +80,7 @@ const createStyles = (
     },
     card: {
       borderRadius: 28,
-      height: mode === "desktop" ? 280 : mode === "tablet" ? 240 : 220,
+      height: mode === "desktop" ? 230 : mode === "tablet" ? 210 : 220,
       overflow: "hidden",
       position: "relative",
       width: multiColumn ? (mode === "desktop" ? "32%" : "48.8%") : "100%",
@@ -113,7 +113,7 @@ const createStyles = (
     captionTitle: {
       color: "#FFFFFF",
       fontFamily: "Georgia",
-      fontSize: 24,
+      fontSize: 20,
       fontWeight: "700",
     },
   });

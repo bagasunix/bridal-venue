@@ -185,6 +185,17 @@ frontend:
       - working: true
         agent: "main"
         comment: "Addressed minor QA notes by making trust-card testIDs stable and cleaning HomeScreen usage. Final responsive self-check passed after stabilizing gallery section assets."
+  - task: "web responsive polish plus FAQ and CTA section"
+    implemented: true
+    working: true
+    file: "/app/frontend/presentation/screens/HomeScreen.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Reduced oversized desktop proportions across hero/cards/sections, added FAQ and CTA sections to Home, and self-tested at laptop, desktop, and mobile widths on local static build."
 metadata:
   created_by: "main_agent"
   version: "1.0"
@@ -197,6 +208,7 @@ test_plan:
     - "indonesian copy and premium web landing page refinement"
     - "editorial vendor section and reassurance blocks on Home"
     - "home refactor and responsive gallery/partner areas"
+    - "web responsive polish plus faq and cta section"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -211,3 +223,5 @@ agent_communication:
     message: "Please validate the latest Home desktop refinement on local static build http://127.0.0.1:3456. Focus on: 1 featured vendor card + supporting grid composition, visible why-choose/testimonial sections, and no regression to mobile flow."
   - agent: "main"
     message: "Please validate the latest refactor on local static build http://127.0.0.1:3456. Focus on: Home split into smaller sections, tablet-to-desktop responsiveness, visible gallery + partner logos sections, and no regression to Home/vendor navigation."
+  - agent: "main"
+    message: "Please validate the latest Home polish on local static build http://127.0.0.1:3456. Focus on: improved 1366px/1440px responsiveness, smaller/more balanced desktop proportions, and visible FAQ + CTA sections without regressions."

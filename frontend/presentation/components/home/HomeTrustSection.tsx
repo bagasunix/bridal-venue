@@ -50,7 +50,7 @@ const createStyles = (
       flex: mode === "desktop" ? 1 : undefined,
       gap: 10,
       minWidth: mode === "tablet" ? "48%" : undefined,
-      padding: 18,
+      padding: 16,
     },
     iconWrap: {
       alignItems: "center",
@@ -62,12 +62,12 @@ const createStyles = (
     },
     title: {
       color: theme.colors.textPrimary,
-      fontSize: 17,
+      fontSize: 16,
       fontWeight: "700",
     },
     copy: {
       color: theme.colors.textSecondary,
-      fontSize: 14,
-      lineHeight: 22,
+      fontSize: 13,
+      lineHeight: 21,
     },
   });

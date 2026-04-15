@@ -111,7 +111,7 @@ const createStyles = (
   StyleSheet.create({
     card: {
       borderRadius: theme.layout.cardRadius,
-      minHeight: compact ? 250 : 360,
+      minHeight: compact ? 220 : 340,
       overflow: "hidden",
       position: "relative",
       width: "100%",
@@ -124,7 +124,7 @@ const createStyles = (
       transform: [{ scale: 0.985 }],
     },
     image: {
-      height: compact ? 250 : 360,
+      height: compact ? 220 : 340,
       width: "100%",
     },
     overlay: {
