@@ -1,4 +1,4 @@
-import { type Href, useRouter } from "expo-router";
+import { useMemo } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
   Animated,
@@ -23,7 +23,6 @@ import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 type ScreenMode = "mobile" | "tablet" | "desktop";
 
 export function HomeScreen() {
-  const router = useRouter();
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
@@ -76,7 +75,10 @@ export function HomeScreen() {
 
   const heroVendor = vendors[0];
   const featuredVendor = vendors[1];
-  const supportingVendors = vendors.filter((vendor) => vendor.slug !== featuredVendor.slug);
+  const supportingVendors = useMemo(
+    () => vendors.filter((vendor) => vendor.slug !== featuredVendor.slug),
+    [featuredVendor.slug],
+  );
   const animatedStyle = {
     opacity: introOpacity,
     transform: [{ translateY: introTranslate }],

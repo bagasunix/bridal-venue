@@ -179,6 +179,12 @@ frontend:
       - working: true
         agent: "main"
         comment: "Refactored HomeScreen into multiple section components (hero, trust, vendor, assurance, gallery, partners) and improved tablet-to-desktop responsiveness. Self-tested across tablet, desktop, and mobile on local static build."
+      - working: true
+        agent: "testing"
+        comment: "Testing agent confirmed Home refactor renders correctly, gallery and partner logos are visible/aligned, and mobile vendor navigation still works."
+      - working: true
+        agent: "main"
+        comment: "Addressed minor QA notes by making trust-card testIDs stable and cleaning HomeScreen usage. Final responsive self-check passed after stabilizing gallery section assets."
 metadata:
   created_by: "main_agent"
   version: "1.0"

@@ -8,9 +8,9 @@ type HomeTrustSectionProps = {
 };
 
 const ITEMS = [
-  { icon: "feather", title: "Kurasi rapi", copy: "Setiap partner dipilih supaya tampilannya serasi dan prosesnya terasa ringan." },
-  { icon: "shield", title: "Proses jelas", copy: "Tanggal yang sudah terisi terlihat cepat, jadi Anda tidak membuang waktu." },
-  { icon: "heart", title: "Rasa yang hangat", copy: "Bahasa, warna, dan detailnya dibuat agar terasa dekat, bukan seperti template." },
+  { id: "curation", icon: "feather", title: "Kurasi rapi", copy: "Setiap partner dipilih supaya tampilannya serasi dan prosesnya terasa ringan." },
+  { id: "clarity", icon: "shield", title: "Proses jelas", copy: "Tanggal yang sudah terisi terlihat cepat, jadi Anda tidak membuang waktu." },
+  { id: "warmth", icon: "heart", title: "Rasa yang hangat", copy: "Bahasa, warna, dan detailnya dibuat agar terasa dekat, bukan seperti template." },
 ] as const;
 
 export function HomeTrustSection({ mode }: HomeTrustSectionProps) {
@@ -20,7 +20,7 @@ export function HomeTrustSection({ mode }: HomeTrustSectionProps) {
   return (
     <View style={styles.section}>
       {ITEMS.map((item) => (
-        <View key={item.title} style={styles.card} testID={`trust-card-${item.title.toLowerCase().replace(/\s+/g, "-")}`}>
+        <View key={item.id} style={styles.card} testID={`trust-card-${item.id}`}>
           <View style={styles.iconWrap}>
             <Feather color={theme.colors.accent} name={item.icon} size={18} />
           </View>
