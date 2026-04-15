@@ -225,6 +225,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Testing agent confirmed sticky CTA opens compare mode naturally, compare cards remain responsive (desktop 3-up, tablet 2+1), and mobile vendor navigation is unaffected."
+      - working: true
+        agent: "main"
+        comment: "Refined web landing page again with a richer studio-premium structure: added manifesto section, desktop hero collage, compare promo block, and replaced the previously broken floral featured image with a cleaner editorial asset."
 metadata:
   created_by: "main_agent"
   version: "1.0"

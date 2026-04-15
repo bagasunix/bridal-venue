@@ -36,13 +36,17 @@ export function HomeCompareSection({ mode, onClose, vendors }: HomeCompareSectio
             <Text style={styles.cardTitle}>{vendor.name}</Text>
 
             <View style={styles.metaWrap}>
-              <View style={styles.metaRow}>
-                <Feather color={theme.colors.accent} name="map-pin" size={14} />
-                <Text style={styles.metaText}>{vendor.location}</Text>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Lokasi</Text>
+                <Text style={styles.detailValue}>{vendor.location}</Text>
               </View>
-              <View style={styles.metaRow}>
-                <Feather color={theme.colors.accent} name="heart" size={14} />
-                <Text style={styles.metaText}>Mulai {vendor.startingPrice}</Text>
+              <View style={[styles.detailRow, styles.detailRowAccent]}>
+                <Text style={styles.detailLabel}>Harga awal</Text>
+                <Text style={styles.detailValue}>Mulai {vendor.startingPrice}</Text>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailLabel}>Paket unggulan</Text>
+                <Text style={styles.detailValue}>{vendor.packages[0]?.label ?? "Pilihan utama"}</Text>
               </View>
             </View>
 
@@ -157,15 +161,28 @@ const createStyles = (
     metaWrap: {
       gap: 8,
     },
-    metaRow: {
-      alignItems: "center",
-      flexDirection: "row",
-      gap: 8,
+    detailRow: {
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 16,
+      borderWidth: 1,
+      gap: 4,
+      padding: 12,
     },
-    metaText: {
+    detailRowAccent: {
+      backgroundColor: theme.colors.accentSoft,
+    },
+    detailLabel: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 0.8,
+      textTransform: "uppercase",
+    },
+    detailValue: {
       color: theme.colors.textSecondary,
       fontSize: 14,
-      fontWeight: "600",
+      fontWeight: "700",
     },
     highlightWrap: {
       flexDirection: "row",

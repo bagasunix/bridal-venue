@@ -17,6 +17,7 @@ import { HomeCtaSection } from "@/presentation/components/home/HomeCtaSection";
 import { HomeFaqSection } from "@/presentation/components/home/HomeFaqSection";
 import { HomeGallerySection } from "@/presentation/components/home/HomeGallerySection";
 import { HomeHeroSection } from "@/presentation/components/home/HomeHeroSection";
+import { HomeManifestoSection } from "@/presentation/components/home/HomeManifestoSection";
 import { HomePartnersSection } from "@/presentation/components/home/HomePartnersSection";
 import { HomeStickyCta } from "@/presentation/components/home/HomeStickyCta";
 import { HomeTrustSection } from "@/presentation/components/home/HomeTrustSection";
@@ -132,8 +133,14 @@ export function HomeScreen() {
         <View style={[styles.container, { width: contentWidth }]}> 
           <TopBar subtitle="Kurasi butik" title="Atelier Hari Bahagia" />
 
-          <HomeHeroSection animatedStyle={animatedStyle} heroVendor={heroVendor} mode={mode} />
+          <HomeHeroSection
+            animatedStyle={animatedStyle}
+            heroVendor={heroVendor}
+            mode={mode}
+            supportingVendors={vendors.slice(1, 4)}
+          />
           <HomeTrustSection mode={mode} />
+          {mode !== "mobile" ? <HomeManifestoSection mode={mode} vendors={vendors} /> : null}
           <HomeVendorSection
             compareMode={compareMode}
             compareVendors={compareVendors}
@@ -141,6 +148,7 @@ export function HomeScreen() {
             isGrid={viewMode === "grid"}
             mode={mode}
             onCloseCompare={() => setCompareMode(false)}
+            onOpenCompare={toggleCompareMode}
             onLayout={handleVendorSectionLayout}
             supportingVendors={supportingVendors}
             vendors={vendors}

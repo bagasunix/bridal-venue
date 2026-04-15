@@ -9,11 +9,13 @@ type HomeHeroSectionProps = {
   animatedStyle: ViewStyle;
   heroVendor: Vendor;
   mode: "mobile" | "tablet" | "desktop";
+  supportingVendors: Vendor[];
 };
 
-export function HomeHeroSection({ animatedStyle, heroVendor, mode }: HomeHeroSectionProps) {
+export function HomeHeroSection({ animatedStyle, heroVendor, mode, supportingVendors }: HomeHeroSectionProps) {
   const { theme } = useAppTheme();
   const styles = createStyles(theme, mode);
+  const collageVendors = supportingVendors.slice(0, 2);
 
   return (
     <Animated.View style={[styles.card, animatedStyle]}>
@@ -50,15 +52,41 @@ export function HomeHeroSection({ animatedStyle, heroVendor, mode }: HomeHeroSec
       </View>
 
       <View style={styles.visualWrap}>
-        <Image contentFit="cover" source={{ uri: heroVendor.image }} style={styles.image} testID="home-hero-image" />
-        <View style={styles.imageOverlay} />
-        <View style={styles.captionCard}>
-          <Text style={styles.captionEyebrow}>Pilihan utama minggu ini</Text>
-          <Text style={styles.captionTitle}>{heroVendor.name}</Text>
-          <Text style={styles.captionCopy}>
-            Tempat yang cocok untuk akad hangat, jamuan intim, dan foto senja yang terasa mahal tanpa berlebihan.
-          </Text>
-        </View>
+        {mode === "desktop" ? (
+          <View style={styles.collageWrap}>
+            <View style={styles.collageSmallColumn}>
+              {collageVendors.map((vendor, index) => (
+                <View key={vendor.slug} style={[styles.collageSmallCard, index === 1 && styles.collageSmallCardOffset]}>
+                  <Image contentFit="cover" source={{ uri: vendor.image }} style={styles.image} />
+                </View>
+              ))}
+            </View>
+
+            <View style={styles.collageMainCard}>
+              <Image contentFit="cover" source={{ uri: heroVendor.image }} style={styles.image} testID="home-hero-image" />
+              <View style={styles.imageOverlay} />
+              <View style={styles.captionCard}>
+                <Text style={styles.captionEyebrow}>Pilihan utama minggu ini</Text>
+                <Text style={styles.captionTitle}>{heroVendor.name}</Text>
+                <Text style={styles.captionCopy}>
+                  Tempat yang cocok untuk akad hangat, jamuan intim, dan foto senja yang terasa mahal tanpa berlebihan.
+                </Text>
+              </View>
+            </View>
+          </View>
+        ) : (
+          <>
+            <Image contentFit="cover" source={{ uri: heroVendor.image }} style={styles.image} testID="home-hero-image" />
+            <View style={styles.imageOverlay} />
+            <View style={styles.captionCard}>
+              <Text style={styles.captionEyebrow}>Pilihan utama minggu ini</Text>
+              <Text style={styles.captionTitle}>{heroVendor.name}</Text>
+              <Text style={styles.captionCopy}>
+                Tempat yang cocok untuk akad hangat, jamuan intim, dan foto senja yang terasa mahal tanpa berlebihan.
+              </Text>
+            </View>
+          </>
+        )}
       </View>
     </Animated.View>
   );
@@ -156,6 +184,30 @@ const createStyles = (
       flex: isDesktop ? 1 : undefined,
       height: isDesktop ? 390 : isTablet ? 340 : 300,
       minWidth: 0,
+      overflow: "hidden",
+      position: "relative",
+    },
+    collageWrap: {
+      flexDirection: "row",
+      gap: 14,
+      height: "100%",
+      padding: 8,
+    },
+    collageSmallColumn: {
+      gap: 12,
+      width: 150,
+    },
+    collageSmallCard: {
+      borderRadius: 999,
+      flex: 1,
+      overflow: "hidden",
+    },
+    collageSmallCardOffset: {
+      marginLeft: 18,
+    },
+    collageMainCard: {
+      borderRadius: 999,
+      flex: 1,
       overflow: "hidden",
       position: "relative",
     },

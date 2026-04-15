@@ -16,6 +16,7 @@ type HomeVendorSectionProps = {
   mode: "mobile" | "tablet" | "desktop";
   onLayout?: (event: LayoutChangeEvent) => void;
   onCloseCompare: () => void;
+  onOpenCompare: () => void;
   supportingVendors: Vendor[];
   vendors: Vendor[];
   viewMode: "grid" | "list";
@@ -29,6 +30,7 @@ export function HomeVendorSection({
   isGrid,
   mode,
   onCloseCompare,
+  onOpenCompare,
   onLayout,
   supportingVendors,
   vendors,
@@ -71,7 +73,23 @@ export function HomeVendorSection({
         </View>
       </View>
 
-      {compareMode ? <HomeCompareSection mode={mode} onClose={onCloseCompare} vendors={compareVendors} /> : null}
+      {compareMode ? (
+        <HomeCompareSection mode={mode} onClose={onCloseCompare} vendors={compareVendors} />
+      ) : mode !== "mobile" ? (
+        <Pressable
+          onPress={onOpenCompare}
+          style={({ pressed }) => [styles.comparePromo, pressed && styles.comparePromoPressed]}
+          testID="compare-promo-button"
+        >
+          <View style={styles.comparePromoCopy}>
+            <Text style={styles.comparePromoEyebrow}>Perbandingan cepat</Text>
+            <Text style={styles.comparePromoTitle}>Bandingkan paket, lokasi, harga awal, dan highlight layanan tanpa pindah halaman.</Text>
+          </View>
+          <View style={styles.comparePromoAction}>
+            <Text style={styles.comparePromoActionText}>Buka compare mode</Text>
+          </View>
+        </Pressable>
+      ) : null}
 
       {editorialMode ? (
         <View style={styles.editorialWrap} testID="desktop-vendor-collection">
@@ -220,6 +238,52 @@ const createStyles = (
     },
     editorialWrap: {
       gap: 18,
+    },
+    comparePromo: {
+      alignItems: mode === "tablet" ? "flex-start" : "center",
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors.border,
+      borderRadius: 28,
+      borderWidth: 1,
+      flexDirection: mode === "tablet" ? "column" : "row",
+      gap: 14,
+      justifyContent: "space-between",
+      padding: 20,
+    },
+    comparePromoPressed: {
+      opacity: 0.95,
+    },
+    comparePromoCopy: {
+      flex: 1,
+      gap: 6,
+      maxWidth: 700,
+    },
+    comparePromoEyebrow: {
+      color: theme.colors.accent,
+      fontSize: 11,
+      fontWeight: "800",
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+    comparePromoTitle: {
+      color: theme.colors.textPrimary,
+      fontFamily: "Georgia",
+      fontSize: mode === "desktop" ? 24 : 20,
+      fontWeight: "700",
+      lineHeight: mode === "desktop" ? 32 : 28,
+    },
+    comparePromoAction: {
+      alignItems: "center",
+      backgroundColor: theme.colors.accent,
+      borderRadius: 999,
+      justifyContent: "center",
+      minHeight: 46,
+      paddingHorizontal: 18,
+    },
+    comparePromoActionText: {
+      color: "#FFFFFF",
+      fontSize: 13,
+      fontWeight: "800",
     },
     featuredCard: {
       backgroundColor: theme.colors.surface,
