@@ -30,12 +30,17 @@ export function HomeScreen() {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
   const { width } = useWindowDimensions();
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [hasHydrated, setHasHydrated] = useState(Platform.OS !== "web");
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
   const useNativeDriver = Platform.OS !== "web";
-  const browserWidth = Platform.OS === "web" && typeof window !== "undefined" ? window.innerWidth : width;
+  const responsiveWidth =
+    Platform.OS === "web"
+      ? hasHydrated && typeof window !== "undefined"
+        ? window.innerWidth
+        : 390
+      : width;
 
   useEffect(() => {
     Animated.parallel([
@@ -57,25 +62,25 @@ export function HomeScreen() {
       return;
     }
 
-    const updateDesktopState = () => {
-      setIsDesktop(window.innerWidth >= 980);
+    const syncHydratedLayout = () => {
+      setHasHydrated(true);
     };
 
-    updateDesktopState();
-    window.addEventListener("resize", updateDesktopState);
+    syncHydratedLayout();
+    window.addEventListener("resize", syncHydratedLayout);
 
     return () => {
-      window.removeEventListener("resize", updateDesktopState);
+      window.removeEventListener("resize", syncHydratedLayout);
     };
   }, []);
 
-  const mode: ScreenMode = isDesktop ? "desktop" : width >= 760 ? "tablet" : "mobile";
+  const mode: ScreenMode = responsiveWidth >= 1200 ? "desktop" : responsiveWidth >= 760 ? "tablet" : "mobile";
   const contentWidth =
     mode === "desktop"
-      ? Math.min(browserWidth - 96, 1240)
+      ? Math.min(responsiveWidth - 96, 1240)
       : mode === "tablet"
-        ? Math.min(width - 48, 920)
-        : Math.min(width - 24, theme.layout.maxContentWidth);
+        ? Math.min(responsiveWidth - 48, 920)
+        : Math.min(responsiveWidth - 24, theme.layout.maxContentWidth);
 
   const heroVendor = vendors[0];
   const featuredVendor = vendors[1];
