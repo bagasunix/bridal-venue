@@ -16,14 +16,14 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <Link
-            className="hidden border border-[var(--primary)] px-4 py-2 text-sm text-[var(--primary)] transition hover:bg-[var(--muted)] md:inline-flex"
+            className="hidden min-h-[44px] items-center border border-[var(--primary)] px-5 py-3 text-sm text-[var(--primary)] transition hover:bg-[var(--muted)] md:inline-flex"
             data-testid="header-lihat-vendor"
             href="/vendors"
           >
             Lihat Vendor
           </Link>
           <Link
-            className="inline-flex bg-[var(--primary)] px-4 py-2 text-sm text-[var(--primary-foreground)] transition hover:opacity-90"
+            className="inline-flex min-h-[44px] items-center bg-[var(--primary)] px-5 py-3 text-sm text-[var(--primary-foreground)] transition hover:opacity-90"
             data-testid="header-konsultasi"
             href="/booking/rosewood-manor"
           >
