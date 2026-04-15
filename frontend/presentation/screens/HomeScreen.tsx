@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
+  type LayoutChangeEvent,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -27,12 +28,13 @@ type ScreenMode = "mobile" | "tablet" | "desktop";
 export function HomeScreen() {
   const router = useRouter();
   const { theme } = useAppTheme();
-  const styles = createStyles(theme);
   const [hasHydrated, setHasHydrated] = useState(Platform.OS !== "web");
   const [clientWidth, setClientWidth] = useState(() =>
     Platform.OS === "web" ? 390 : Dimensions.get("window").width,
   );
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+  const [vendorSectionY, setVendorSectionY] = useState(0);
+  const scrollViewRef = useRef<ScrollView | null>(null);
   const introOpacity = useRef(new Animated.Value(0)).current;
   const introTranslate = useRef(new Animated.Value(14)).current;
   const useNativeDriver = Platform.OS !== "web";
@@ -88,6 +90,9 @@ export function HomeScreen() {
     };
   }, []);
 
+  const mode: ScreenMode = responsiveWidth >= 1200 ? "desktop" : responsiveWidth >= 760 ? "tablet" : "mobile";
+  const styles = createStyles(theme, mode);
+
   if (Platform.OS === "web" && !hasHydrated) {
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -98,17 +103,23 @@ export function HomeScreen() {
     );
   }
 
-  const mode: ScreenMode = responsiveWidth >= 1200 ? "desktop" : responsiveWidth >= 760 ? "tablet" : "mobile";
   const contentWidth =
     mode === "desktop"
       ? Math.min(responsiveWidth - 96, 1240)
       : mode === "tablet"
         ? Math.min(responsiveWidth - 48, 920)
         : Math.min(responsiveWidth - 24, theme.layout.maxContentWidth);
+  const handleVendorSectionLayout = (event: LayoutChangeEvent) => {
+    setVendorSectionY(event.nativeEvent.layout.y);
+  };
+
+  const scrollToVendors = () => {
+    scrollViewRef.current?.scrollTo({ animated: true, y: Math.max(vendorSectionY - 90, 0) });
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollContent} testID="home-screen">
+      <ScrollView contentContainerStyle={styles.scrollContent} ref={scrollViewRef} testID="home-screen">
         <View style={[styles.container, { width: contentWidth }]}> 
           <TopBar subtitle="Kurasi butik" title="Atelier Hari Bahagia" />
 
@@ -118,6 +129,7 @@ export function HomeScreen() {
             featuredVendor={featuredVendor}
             isGrid={viewMode === "grid"}
             mode={mode}
+            onLayout={handleVendorSectionLayout}
             supportingVendors={supportingVendors}
             vendors={vendors}
             viewMode={viewMode}
@@ -127,14 +139,22 @@ export function HomeScreen() {
           <HomeGallerySection mode={mode} vendors={vendors} />
           <HomePartnersSection vendors={vendors} />
           <HomeFaqSection mode={mode} />
-          <HomeCtaSection mode={mode} onPress={() => router.push(`/vendor/${heroVendor.slug}` as Href)} />
+          <HomeCtaSection
+            mode={mode}
+            onConsultPress={() => router.push(`/booking?slug=${heroVendor.slug}` as Href)}
+            onExplorePress={scrollToVendors}
+            onPlanPress={() => router.push(`/vendor/${heroVendor.slug}` as Href)}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
+const createStyles = (
+  theme: ReturnType<typeof useAppTheme>["theme"],
+  mode: ScreenMode,
+) =>
   StyleSheet.create({
     safeArea: {
       backgroundColor: theme.colors.background,
@@ -146,6 +166,6 @@ const createStyles = (theme: ReturnType<typeof useAppTheme>["theme"]) =>
       paddingTop: 18,
     },
     container: {
-      gap: 28,
+      gap: mode === "tablet" ? 24 : 26,
     },
   });

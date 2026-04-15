@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { type Href, useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { VendorCard } from "@/presentation/components/VendorCard";
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
@@ -11,6 +11,7 @@ type HomeVendorSectionProps = {
   featuredVendor: Vendor;
   isGrid: boolean;
   mode: "mobile" | "tablet" | "desktop";
+  onLayout?: (event: LayoutChangeEvent) => void;
   supportingVendors: Vendor[];
   vendors: Vendor[];
   viewMode: "grid" | "list";
@@ -21,6 +22,7 @@ export function HomeVendorSection({
   featuredVendor,
   isGrid,
   mode,
+  onLayout,
   supportingVendors,
   vendors,
   viewMode,
@@ -32,7 +34,7 @@ export function HomeVendorSection({
   const editorialMode = mode !== "mobile";
 
   return (
-    <View style={styles.wrapper}>
+    <View onLayout={onLayout} style={styles.wrapper}>
       <View style={styles.headerRow}>
         <View style={styles.headerTextWrap}>
           <Text style={styles.sectionTitle}>Pilihan untuk hari yang ingin dikenang</Text>
@@ -149,12 +151,12 @@ const createStyles = (
 
   return StyleSheet.create({
     wrapper: {
-      gap: 18,
+      gap: mode === "tablet" ? 16 : 18,
     },
     headerRow: {
       alignItems: mode === "mobile" ? "flex-start" : "flex-end",
       flexDirection: mode === "mobile" ? "column" : "row",
-      gap: 14,
+      gap: mode === "tablet" ? 12 : 14,
       justifyContent: "space-between",
     },
     headerTextWrap: {
@@ -308,7 +310,7 @@ const createStyles = (
     gridWrap: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 16,
+      gap: mode === "tablet" ? 14 : 16,
       justifyContent: "space-between",
     },
     gridItem: {

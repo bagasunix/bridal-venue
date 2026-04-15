@@ -34,6 +34,8 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Responsif Home dirapikan agar lebih stabil dari mobile, tablet, sampai desktop besar
 - Ditambahkan section FAQ singkat dan CTA konsultatif di bagian bawah Home
 - Proporsi Home web diperkecil dan diseimbangkan lagi untuk 1366px hingga desktop besar
+- CTA bawah Home kini punya aksi sekunder: `Lihat semua vendor` dan `Mulai konsultasi`
+- Spacing Home untuk tablet ikut dirapikan agar transisi dari mobile ke desktop terasa lebih halus
 - Endpoint backend:
   - `GET /api/health`
   - `GET /api/availability/{vendor_slug}`
@@ -62,6 +64,7 @@ Bangun aplikasi mobile demo wedding rental dengan Expo/React Native yang menampi
 - Editorial vendor section, testimonial, dan why-choose-us di Home desktop telah lolos retest frontend tanpa regresi mobile
 - Refactor Home + responsive tablet/desktop + gallery/partner sections telah lolos retest frontend tanpa regresi navigation
 - Home web terbaru lolos self-check setelah penyesuaian proporsi, FAQ, CTA, dan fix render awal pasca-refactor
+- CTA sekunder terbukti berjalan: tombol vendor mengarah kembali ke section vendor, dan tombol konsultasi mengarah ke flow booking
 
 ## Current Status
 - App demo end-to-end berfungsi

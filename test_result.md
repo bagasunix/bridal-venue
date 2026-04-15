@@ -202,6 +202,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Fixed Home render path after responsive refactor and verified Home loads correctly again at 1366px with FAQ and CTA visible."
+      - working: true
+        agent: "main"
+        comment: "Added secondary CTA actions on Home: one scrolls back to vendor section and one routes into booking flow. Also tightened tablet spacing and self-tested both flows successfully."
 metadata:
   created_by: "main_agent"
   version: "1.0"

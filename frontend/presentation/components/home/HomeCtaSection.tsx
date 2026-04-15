@@ -4,10 +4,12 @@ import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 
 type HomeCtaSectionProps = {
   mode: "mobile" | "tablet" | "desktop";
-  onPress: () => void;
+  onConsultPress: () => void;
+  onExplorePress: () => void;
+  onPlanPress: () => void;
 };
 
-export function HomeCtaSection({ mode, onPress }: HomeCtaSectionProps) {
+export function HomeCtaSection({ mode, onConsultPress, onExplorePress, onPlanPress }: HomeCtaSectionProps) {
   const { theme } = useAppTheme();
   const styles = createStyles(theme, mode);
 
@@ -21,12 +23,32 @@ export function HomeCtaSection({ mode, onPress }: HomeCtaSectionProps) {
 
       <Pressable
         accessibilityRole="button"
-        onPress={onPress}
+        onPress={onPlanPress}
         style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
         testID="home-cta-button"
       >
         <Text style={styles.buttonText}>Mulai rencanakan hari Anda</Text>
       </Pressable>
+
+      <View style={styles.secondaryRow}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={onExplorePress}
+          style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}
+          testID="home-secondary-vendors-button"
+        >
+          <Text style={styles.secondaryButtonText}>Lihat semua vendor</Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          onPress={onConsultPress}
+          style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}
+          testID="home-secondary-consult-button"
+        >
+          <Text style={styles.secondaryButtonText}>Mulai konsultasi</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -83,5 +105,30 @@ const createStyles = (
       color: "#FFFFFF",
       fontSize: 15,
       fontWeight: "800",
+    },
+    secondaryRow: {
+      flexDirection: mode === "desktop" ? "row" : "column",
+      gap: 12,
+      marginTop: 2,
+    },
+    secondaryButton: {
+      alignItems: "center",
+      alignSelf: mode === "desktop" ? "flex-start" : "stretch",
+      backgroundColor: theme.colors.surfaceMuted,
+      borderColor: theme.colors.border,
+      borderRadius: 999,
+      borderWidth: 1,
+      justifyContent: "center",
+      minHeight: 44,
+      paddingHorizontal: 18,
+    },
+    secondaryButtonPressed: {
+      opacity: 0.9,
+      transform: [{ scale: 0.98 }],
+    },
+    secondaryButtonText: {
+      color: theme.colors.textPrimary,
+      fontSize: 14,
+      fontWeight: "700",
     },
   });
