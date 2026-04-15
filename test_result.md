@@ -205,6 +205,17 @@ frontend:
       - working: true
         agent: "main"
         comment: "Added secondary CTA actions on Home: one scrolls back to vendor section and one routes into booking flow. Also tightened tablet spacing and self-tested both flows successfully."
+  - task: "editorial image enhancement and sticky comparison CTA"
+    implemented: true
+    working: true
+    file: "/app/frontend/mock/images/rosewoodManor.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Enhanced existing vendor base64 images with local sharpness/contrast/color adjustments for a more editorial look, normalized image asset mapping, and added sticky comparison CTA plus bottom secondary CTAs. Self-tested on desktop and tablet."
 metadata:
   created_by: "main_agent"
   version: "1.0"
@@ -218,6 +229,7 @@ test_plan:
     - "editorial vendor section and reassurance blocks on Home"
     - "home refactor and responsive gallery/partner areas"
     - "web responsive polish plus faq and cta section"
+    - "editorial image enhancement and sticky comparison cta"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -234,3 +246,5 @@ agent_communication:
     message: "Please validate the latest refactor on local static build http://127.0.0.1:3456. Focus on: Home split into smaller sections, tablet-to-desktop responsiveness, visible gallery + partner logos sections, and no regression to Home/vendor navigation."
   - agent: "main"
     message: "Please validate the latest Home polish on local static build http://127.0.0.1:3456. Focus on: improved 1366px/1440px responsiveness, smaller/more balanced desktop proportions, and visible FAQ + CTA sections without regressions."
+  - agent: "main"
+    message: "Please validate the latest Home visual polish on local static build http://127.0.0.1:3456. Focus on: sharper/more editorial vendor images, sticky comparison CTA on web, and bottom CTA actions (vendor scroll + consult flow)."

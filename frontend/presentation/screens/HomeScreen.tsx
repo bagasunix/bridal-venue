@@ -18,6 +18,7 @@ import { HomeFaqSection } from "@/presentation/components/home/HomeFaqSection";
 import { HomeGallerySection } from "@/presentation/components/home/HomeGallerySection";
 import { HomeHeroSection } from "@/presentation/components/home/HomeHeroSection";
 import { HomePartnersSection } from "@/presentation/components/home/HomePartnersSection";
+import { HomeStickyCta } from "@/presentation/components/home/HomeStickyCta";
 import { HomeTrustSection } from "@/presentation/components/home/HomeTrustSection";
 import { HomeVendorSection } from "@/presentation/components/home/HomeVendorSection";
 import { TopBar } from "@/presentation/components/TopBar";
@@ -147,6 +148,7 @@ export function HomeScreen() {
           />
         </View>
       </ScrollView>
+      {mode !== "mobile" ? <HomeStickyCta onPress={scrollToVendors} /> : null}
     </SafeAreaView>
   );
 }
