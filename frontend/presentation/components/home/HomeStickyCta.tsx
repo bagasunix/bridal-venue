@@ -4,10 +4,11 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 
 type HomeStickyCtaProps = {
+  active: boolean;
   onPress: () => void;
 };
 
-export function HomeStickyCta({ onPress }: HomeStickyCtaProps) {
+export function HomeStickyCta({ active, onPress }: HomeStickyCtaProps) {
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
 
@@ -19,7 +20,7 @@ export function HomeStickyCta({ onPress }: HomeStickyCtaProps) {
       testID="home-sticky-cta-button"
     >
       <Feather color="#FFFFFF" name="columns" size={14} />
-      <Text style={styles.label}>Bandingkan vendor</Text>
+      <Text style={styles.label}>{active ? "Tutup perbandingan" : "Bandingkan vendor"}</Text>
     </Pressable>
   );
 }

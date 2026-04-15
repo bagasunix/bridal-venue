@@ -4,14 +4,18 @@ import { type Href, useRouter } from "expo-router";
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { VendorCard } from "@/presentation/components/VendorCard";
+import { HomeCompareSection } from "@/presentation/components/home/HomeCompareSection";
 import { useAppTheme } from "@/presentation/providers/ThemeProvider";
 import type { Vendor } from "@/types";
 
 type HomeVendorSectionProps = {
+  compareMode: boolean;
+  compareVendors: Vendor[];
   featuredVendor: Vendor;
   isGrid: boolean;
   mode: "mobile" | "tablet" | "desktop";
   onLayout?: (event: LayoutChangeEvent) => void;
+  onCloseCompare: () => void;
   supportingVendors: Vendor[];
   vendors: Vendor[];
   viewMode: "grid" | "list";
@@ -19,9 +23,12 @@ type HomeVendorSectionProps = {
 };
 
 export function HomeVendorSection({
+  compareMode,
+  compareVendors,
   featuredVendor,
   isGrid,
   mode,
+  onCloseCompare,
   onLayout,
   supportingVendors,
   vendors,
@@ -63,6 +70,8 @@ export function HomeVendorSection({
           </Pressable>
         </View>
       </View>
+
+      {compareMode ? <HomeCompareSection mode={mode} onClose={onCloseCompare} vendors={compareVendors} /> : null}
 
       {editorialMode ? (
         <View style={styles.editorialWrap} testID="desktop-vendor-collection">

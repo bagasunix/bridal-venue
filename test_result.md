@@ -219,6 +219,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Testing agent confirmed enhanced images render correctly, sticky comparison CTA is visible, bottom CTA actions work, and tablet layout remains stable without horizontal overflow."
+      - working: true
+        agent: "main"
+        comment: "Upgraded sticky CTA so it now toggles a real responsive compare mode (1/2/3-card responsive layout) instead of being only a passive shortcut. Tablet typography also tightened for a cleaner hierarchy."
 metadata:
   created_by: "main_agent"
   version: "1.0"

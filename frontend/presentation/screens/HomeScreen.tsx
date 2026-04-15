@@ -33,6 +33,7 @@ export function HomeScreen() {
   const [clientWidth, setClientWidth] = useState(() =>
     Platform.OS === "web" ? 390 : Dimensions.get("window").width,
   );
+  const [compareMode, setCompareMode] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const [vendorSectionY, setVendorSectionY] = useState(0);
   const scrollViewRef = useRef<ScrollView | null>(null);
@@ -42,6 +43,7 @@ export function HomeScreen() {
   const responsiveWidth = clientWidth;
   const heroVendor = vendors[0];
   const featuredVendor = vendors[1];
+  const compareVendors = vendors.slice(0, 3);
   const supportingVendors = vendors.filter((vendor) => vendor.slug !== featuredVendor.slug);
   const animatedStyle = {
     opacity: introOpacity,
@@ -118,6 +120,12 @@ export function HomeScreen() {
     scrollViewRef.current?.scrollTo({ animated: true, y: Math.max(vendorSectionY - 90, 0) });
   };
 
+  const toggleCompareMode = () => {
+    setCompareMode((current) => !current);
+    setViewMode("grid");
+    setTimeout(scrollToVendors, 60);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent} ref={scrollViewRef} testID="home-screen">
@@ -127,9 +135,12 @@ export function HomeScreen() {
           <HomeHeroSection animatedStyle={animatedStyle} heroVendor={heroVendor} mode={mode} />
           <HomeTrustSection mode={mode} />
           <HomeVendorSection
+            compareMode={compareMode}
+            compareVendors={compareVendors}
             featuredVendor={featuredVendor}
             isGrid={viewMode === "grid"}
             mode={mode}
+            onCloseCompare={() => setCompareMode(false)}
             onLayout={handleVendorSectionLayout}
             supportingVendors={supportingVendors}
             vendors={vendors}
@@ -148,7 +159,7 @@ export function HomeScreen() {
           />
         </View>
       </ScrollView>
-      {mode !== "mobile" ? <HomeStickyCta onPress={scrollToVendors} /> : null}
+      {mode !== "mobile" ? <HomeStickyCta active={compareMode} onPress={toggleCompareMode} /> : null}
     </SafeAreaView>
   );
 }
