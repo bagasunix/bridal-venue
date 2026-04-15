@@ -168,6 +168,17 @@ frontend:
       - working: true
         agent: "main"
         comment: "Added desktop editorial vendor composition: one featured vendor card plus supporting grid, then added balanced 'why choose us' and testimonial sections for stronger landing-page feel. Self-tested on local static build."
+  - task: "Home refactor into smaller sections plus responsive gallery/partner areas"
+    implemented: true
+    working: true
+    file: "/app/frontend/presentation/screens/HomeScreen.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Refactored HomeScreen into multiple section components (hero, trust, vendor, assurance, gallery, partners) and improved tablet-to-desktop responsiveness. Self-tested across tablet, desktop, and mobile on local static build."
 metadata:
   created_by: "main_agent"
   version: "1.0"
@@ -179,6 +190,7 @@ test_plan:
     - "dark mode auto plus manual toggle"
     - "indonesian copy and premium web landing page refinement"
     - "editorial vendor section and reassurance blocks on Home"
+    - "home refactor and responsive gallery/partner areas"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -191,3 +203,5 @@ agent_communication:
     message: "Testing-agent issues addressed: desktop Home hero now hydrates into a real two-column layout on wide browser, and date formatting is now Indonesian across calendar/success UI. Main-agent self-test passed on local static build."
   - agent: "main"
     message: "Please validate the latest Home desktop refinement on local static build http://127.0.0.1:3456. Focus on: 1 featured vendor card + supporting grid composition, visible why-choose/testimonial sections, and no regression to mobile flow."
+  - agent: "main"
+    message: "Please validate the latest refactor on local static build http://127.0.0.1:3456. Focus on: Home split into smaller sections, tablet-to-desktop responsiveness, visible gallery + partner logos sections, and no regression to Home/vendor navigation."
