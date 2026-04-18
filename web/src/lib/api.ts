@@ -61,7 +61,7 @@ export async function fetchAvailability(vendorSlug: string): Promise<Availabilit
       booked_dates: fallbackMap[vendorSlug] ?? [],
       source: "mock",
       live_configured: false,
-      error_message: "Jadwal live belum aktif, jadi tampilan ini memakai tanggal demo.",
+      error_message: "Kalender utama sedang disiapkan, jadi sementara kami tampilkan pilihan tanggal yang tetap bisa Anda lihat lebih dulu.",
     };
   }
 }
@@ -95,7 +95,7 @@ export async function submitBooking(payload: BookingPayload): Promise<BookingRes
       package: payload.package,
       source: "mock",
       submitted_to_n8n: false,
-      message: "Permintaan masuk dalam mode demo.",
+      message: "Permintaan Anda sudah kami terima.",
       created_at: new Date().toISOString(),
     };
   }

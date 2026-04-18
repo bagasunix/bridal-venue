@@ -99,15 +99,15 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-4 py-2 text-sm text-white/82 backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-[var(--brand-strong)]" />
-              Booking flow yang dibuat lebih meyakinkan untuk closing presentasi
+              Halaman ini membantu client melangkah dengan lebih mantap
             </div>
             <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-white/70">Booking untuk {vendor.category.toLowerCase()}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-white/70">Pilihan untuk {vendor.category.toLowerCase()}</p>
               <h1 className="max-w-3xl font-serif text-4xl leading-tight font-semibold sm:text-5xl">
                 Saat client sudah merasa cocok, Anda tinggal arahkan ke halaman ini.
               </h1>
               <p className="max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
-                Semua detail penting ditata supaya keputusan terasa lebih ringan: paket mudah dibandingkan, tanggal gampang dipilih, dan langkah berikutnya terlihat jelas sejak awal.
+                Semua detail penting ditata supaya keputusan terasa lebih ringan: paket mudah dibandingkan, tanggal gampang dipilih, dan form-nya sudah siap diisi tanpa bikin bingung.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 text-sm text-white/84">
@@ -127,7 +127,7 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
               {
                 icon: Clock3,
                 title: "Cepat",
-                copy: "Flow singkat supaya momentum presentasi tidak terputus di tengah jalan.",
+                copy: "Urutannya dibuat singkat supaya pembicaraan tetap nyaman dan tidak terasa berputar-putar.",
               },
               {
                 icon: MessageCircleMore,
@@ -157,7 +157,7 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
                 </p>
               </div>
               <div className="rounded-full border border-[var(--line)] bg-[var(--surface-strong)] px-4 py-2 text-sm text-[var(--muted)]">
-                Respons presentasi lebih terasa personal
+                Respons awal jadi terasa lebih personal
               </div>
             </div>
 
@@ -239,7 +239,7 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
               {[
                 "Client punya ringkasan yang jelas untuk dibawa lanjut diskusi.",
                 "Tim Anda bisa langsung follow up tanpa perlu merangkum ulang secara manual.",
-                "Penutup presentasi terasa lebih matang karena next step sudah terlihat.",
+                "Penutup percakapan terasa lebih matang karena langkah berikutnya sudah terlihat.",
               ].map((item) => (
                 <div className="rounded-[1.4rem] border border-[var(--line)] bg-[var(--surface-strong)] p-4" key={item}>
                   <div className="inline-flex rounded-full bg-[var(--brand-soft)] p-2 text-[var(--brand)]">
@@ -352,8 +352,8 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
           {error ? <div className="rounded-[1.5rem] border border-rose-400/25 bg-rose-400/10 p-4 text-sm text-rose-500">{error}</div> : null}
 
           <div className="rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(200,157,86,0.18),transparent_72%)] p-7 shadow-[var(--shadow)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--brand)]">Final step</p>
-            <h2 className="mt-3 text-2xl font-semibold text-[var(--text)]">Tutup presentasi dengan ajakan yang jelas.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--brand)]">Langkah terakhir</p>
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--text)]">Kalau sudah terasa pas, langsung kirim permintaannya.</h2>
             <p className="mt-3 text-base leading-7 text-[var(--muted)]">
               Saat semua pilihan sudah terasa pas, tinggal kirim permintaan ini. Client akan melihat bahwa proses berikutnya sudah siap dan tidak menggantung.
             </p>
@@ -372,11 +372,11 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
 
             <div className="mt-4 flex items-center justify-between gap-4 rounded-[1.4rem] border border-[var(--line)] bg-[var(--surface-strong)] px-4 py-4">
               <div>
-                <p className="text-sm font-medium text-[var(--text)]">Status kesiapan</p>
+                <p className="text-sm font-medium text-[var(--text)]">Status isian</p>
                 <p className="mt-1 text-sm text-[var(--muted)]">{readinessHint}</p>
               </div>
               <span className="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand)]">
-                {isReady ? "Ready" : "Draft"}
+                {isReady ? "Siap dikirim" : "Masih dilengkapi"}
               </span>
             </div>
 

@@ -28,8 +28,8 @@ const testimonials = [
   },
   {
     name: "Nadine",
-    role: "Brand partnership demo",
-    quote: "Visualnya premium tapi tetap ramah. Client cepat paham value tiap vendor tanpa harus dijelaskan terlalu teknis.",
+    role: "Kolaborasi brand",
+    quote: "Visualnya premium tapi tetap ramah. Client cepat paham nilai tiap vendor tanpa perlu penjelasan panjang.",
   },
   {
     name: "Arman",
@@ -40,16 +40,16 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "Web ini cocok untuk dipakai seperti apa?",
-    answer: "Paling pas untuk demo single-tenant, meeting presentasi, proposal vendor, atau showcase layanan yang ingin terlihat lebih matang di depan client.",
+    question: "Web ini paling pas dipakai untuk kebutuhan seperti apa?",
+    answer: "Paling pas untuk memperlihatkan pilihan vendor, membangun suasana sejak awal, dan membantu client merasa lebih yakin saat menentukan arah acara.",
   },
   {
     question: "Apakah alurnya bisa langsung sampai booking?",
     answer: "Bisa. Client bisa lihat katalog, membuka detail vendor, cek tanggal, lalu mengirim permintaan dari halaman booking yang sudah disiapkan.",
   },
   {
-    question: "Kalau nanti mau disambungkan ke flow internal, bisa?",
-    answer: "Bisa. Struktur halaman dan alur form-nya sudah disiapkan supaya mudah diteruskan ke tahap pengembangan berikutnya.",
+    question: "Kalau nanti ingin disesuaikan lagi, apakah bisa?",
+    answer: "Bisa. Isi, tampilan, dan alurnya sudah disiapkan supaya mudah diteruskan sesuai kebutuhan brand dan gaya layanan yang ingin ditonjolkan.",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function HomePage() {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--muted)] shadow-[var(--shadow)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-[var(--brand)]" />
-            Web demo yang siap dipakai untuk presentasi client
+            Pilihan web yang siap menemani percakapan dengan client
           </div>
 
           <div className="space-y-6">
@@ -93,8 +93,8 @@ export default function HomePage() {
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               { label: "Kategori utama", value: "4 layanan" },
-              { label: "Flow utama", value: "Katalog ke booking" },
-              { label: "Mode tampilan", value: "Light & dark" },
+              { label: "Langkah utama", value: "Katalog ke tanggal" },
+              { label: "Nuansa", value: "Terang & gelap" },
             ].map((item) => (
               <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[var(--shadow)] backdrop-blur" key={item.label}>
                 <p className="text-2xl font-semibold text-[var(--text)]">{item.value}</p>
@@ -135,14 +135,20 @@ export default function HomePage() {
               </div>
 
               <div className="rounded-[1.75rem] bg-white/92 p-5 text-slate-900 shadow-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-700">Kenapa ini kuat untuk demo</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-700">Kenapa bagian ini cepat terasa meyakinkan</p>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Client langsung bisa menangkap nuansanya, tahu kisaran paketnya, dan punya jalur jelas untuk membuka detail sampai cek tanggal.
+                  Client langsung bisa menangkap nuansanya, tahu kisaran paketnya, lalu bisa langsung lanjut memilih tanggal saat suasananya sudah terasa cocok.
                 </p>
-                <Link className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-900" href={`/vendor/${featuredVendor.slug}`}>
-                  Buka detail vendor
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-4 py-2.5 text-sm font-semibold text-slate-950" href={`/booking/${featuredVendor.slug}`}>
+                    Pilih tanggal
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900" href={`/vendor/${featuredVendor.slug}`}>
+                    Lihat detail vendor
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -193,9 +199,9 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionTitle
-            description="Dari sisi presentasi, urutannya dibuat sederhana supaya Anda tidak perlu terlalu banyak menjelaskan struktur. Halaman sudah membantu mendorong percakapan dengan client secara natural."
+            description="Dari sisi percakapan, urutannya dibuat sederhana supaya Anda tidak perlu terlalu banyak menjelaskan. Halaman sudah membantu membawa client dari melihat pilihan sampai siap menentukan tanggal."
             eyebrow="Cara kerjanya"
-            title="Flow yang rapi dari pembukaan sampai client siap lanjut melihat detail"
+            title="Langkah yang rapi dari melihat pilihan sampai client siap melanjutkan"
           />
           <div className="space-y-4">
             {processSteps.map((step, index) => (
@@ -236,9 +242,9 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
-          description="Kalau web ini dipakai untuk demo presentasi, tiga pertanyaan ini biasanya paling sering muncul dari client atau tim internal."
+          description="Kalau sedang menunjukkan pilihan ke client, tiga pertanyaan ini biasanya paling sering muncul di awal percakapan."
           eyebrow="Pertanyaan yang sering muncul"
-          title="FAQ singkat supaya percakapan saat demo tetap lancar"
+          title="Jawaban singkat supaya penjelasannya tetap hangat dan mudah diikuti"
         />
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {faqs.map((item) => (
@@ -254,9 +260,9 @@ export default function HomePage() {
         <div className="overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[linear-gradient(135deg,#0f172a,#0b1320_48%,#19263d)] p-8 text-white shadow-[var(--shadow)] sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--brand-strong)]">Siap dipresentasikan</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--brand-strong)]">Siap dipilih</p>
               <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight font-semibold sm:text-5xl">
-                Mau mulai dari katalog dulu, lalu lanjut ke konsultasi saat client sudah tertarik? Flow-nya sudah disiapkan.
+                Mau mulai dari katalog dulu, lalu lanjut ke konsultasi saat client sudah tertarik? Semuanya sudah disusun lebih rapi.
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-white/74 sm:text-lg">
                 Anda bisa arahkan client menjelajahi vendor satu per satu, lalu tutup presentasi dengan ajakan diskusi atau pengecekan tanggal. Semuanya terasa nyambung tanpa perlu pindah ke materi lain.

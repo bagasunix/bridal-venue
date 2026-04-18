@@ -129,7 +129,7 @@ export const vendors: Vendor[] = [
     category: "Katering",
     location: "Jakarta Utara",
     startingPrice: "Rp31 juta",
-    summary: "Menu plated dan buffet yang terasa akrab, plating rapi, dan service flow yang memudahkan host tetap fokus menikmati acara.",
+    summary: "Menu plated dan buffet yang terasa akrab, plating rapi, dan alur penyajian yang memudahkan host tetap fokus menikmati acara.",
     description:
       "Pilihan ini ideal untuk client yang ingin rasa aman: makanan enak, tampilan proper, dan ritme service yang tidak bikin acara tersendat.",
     highlights: ["Menu tasting terarah", "Display dessert elegan", "Flow service rapi"],

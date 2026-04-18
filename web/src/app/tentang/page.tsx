@@ -37,8 +37,8 @@ export default function AboutPage() {
           },
           {
             icon: Users,
-            title: "Cocok untuk demo single-tenant",
-            copy: "Sangat pas untuk satu brand atau satu client demo yang butuh hasil presentasi terlihat matang dan meyakinkan.",
+            title: "Cocok untuk satu brand yang ingin tampil matang",
+            copy: "Pas untuk satu brand yang ingin memperlihatkan layanan dengan kesan rapi, hangat, dan meyakinkan sejak awal.",
           },
         ].map((item) => (
           <div className="rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[var(--shadow)]" key={item.title}>
@@ -59,11 +59,11 @@ export default function AboutPage() {
         />
         <div className="rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(200,157,86,0.16),transparent_72%)] p-7">
           <ul className="space-y-4 text-base leading-7 text-[var(--muted)]">
-            <li>• Beranda yang langsung menjelaskan value dan arah visual brand.</li>
+            <li>• Beranda yang langsung menjelaskan arah visual dan suasana brand.</li>
             <li>• Katalog vendor yang nyaman dipakai untuk membandingkan opsi.</li>
             <li>• Detail vendor dengan paket dan gambaran tanggal yang sudah terisi.</li>
-            <li>• Booking flow yang siap dipakai untuk demo sampai tahap permintaan.</li>
-            <li>• Halaman kontak untuk mengakhiri presentasi dengan ajakan yang jelas.</li>
+            <li>• Halaman pemilihan tanggal yang langsung mengarah ke form permintaan.</li>
+            <li>• Halaman kontak untuk mengakhiri percakapan dengan ajakan yang jelas.</li>
           </ul>
           <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950" href="/katalog">
             Lihat semua halaman inti
