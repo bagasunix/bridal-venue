@@ -115,6 +115,8 @@ credentials.json
 *.pem
 *.key
 .credentials
+.next
+.metro-cache
 -e 
 # Environment and credential files
 .env
