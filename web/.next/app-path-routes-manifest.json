@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "/_not-found",
+  "/booking/[slug]/page": "/booking/[slug]",
   "/katalog/page": "/katalog",
   "/kontak/page": "/kontak",
-  "/booking/[slug]/page": "/booking/[slug]",
   "/page": "/",
-  "/tentang/page": "/tentang",
   "/success/page": "/success",
+  "/tentang/page": "/tentang",
   "/vendor/[slug]/page": "/vendor/[slug]"
 }

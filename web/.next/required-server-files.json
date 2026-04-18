@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/app",
+    "outputFileTracingRoot": "/app/web",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -289,7 +289,7 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/app"
+      "root": "/app/web"
     },
     "_originalRewrites": {
       "beforeFiles": [],
@@ -303,7 +303,7 @@
     }
   },
   "appDir": "/app/web",
-  "relativeAppDir": "web",
+  "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",
