@@ -200,6 +200,20 @@ frontend:
       - working: true
         agent: "testing"
         comment: "All web presentation pages tested successfully. Navigation flow works correctly: Home → Katalog (with category filters and vendor cards) → Vendor Detail (Rosewood Manor with packages and CTAs) → Booking → Success. All pages render with proper Indonesian copy, premium styling, and functional CTAs. Navigation links in header work correctly."
+  - task: "ai-generated web imagery and button contrast polish"
+    implemented: true
+    working: true
+    file: "/app/web/src/lib/generated-images.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Generated 5 original AI images with OpenAI gpt-image-1 via the universal key, saved them into /app/web/public/generated, mapped them into the web app, and used them across hero/vendor/detail/booking sections."
+      - working: true
+        agent: "main"
+        comment: "Adjusted conflicting CTA colors so important buttons now keep readable contrast on both light sections and dark image overlays."
   - task: "web booking flow connected to existing backend"
     implemented: true
     working: true

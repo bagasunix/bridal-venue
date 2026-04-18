@@ -20,8 +20,10 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10 lg:py-18">
       <section className="overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[var(--surface)] shadow-[var(--shadow)]">
-        <div className={`relative overflow-hidden px-8 py-10 text-white lg:px-10 lg:py-14 ${vendor.coverClass}`}>
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.16),rgba(7,17,32,0.75))]" />
+        <div className="relative overflow-hidden px-8 py-10 text-white lg:px-10 lg:py-14">
+          <div className={`absolute inset-0 ${vendor.coverClass}`} />
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.18),rgba(7,17,32,0.78))]" />
           <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
               <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/84">
@@ -56,7 +58,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 sm:w-auto" href={`/booking/${vendor.slug}`}>
+                <Link className="inline-flex w-full items-center justify-center rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 sm:w-auto" href={`/booking/${vendor.slug}`}>
                   Cek tanggal dan booking
                 </Link>
                 <Link className="inline-flex w-full items-center justify-center rounded-full border border-white/16 px-5 py-3 text-sm font-semibold text-white sm:w-auto" href="/kontak">

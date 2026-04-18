@@ -106,7 +106,8 @@ export default function HomePage() {
 
         <div className="relative overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[var(--surface-dark)] p-6 shadow-[var(--shadow)]">
           <div className={`absolute inset-0 ${featuredVendor.coverClass}`} />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.16),rgba(7,17,32,0.7))]" />
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${featuredVendor.imageSrc})` }} />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.2),rgba(7,17,32,0.74))]" />
           <div className="relative flex h-full min-h-[520px] flex-col justify-between text-white">
             <div className="flex items-start justify-between gap-3">
               <div className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/85">

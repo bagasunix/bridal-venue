@@ -14,7 +14,8 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
     >
       <div className={cn("relative overflow-hidden", featured ? "min-h-[360px]" : "min-h-[280px]")}> 
         <div className={cn("absolute inset-0", vendor.coverClass)} />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/65 via-slate-950/28 to-transparent" />
         <div className="relative flex h-full min-h-[inherit] flex-col justify-between p-7 text-white">
           <div className="flex items-center justify-between gap-3">
             <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">

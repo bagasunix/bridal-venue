@@ -1,3 +1,6 @@
+import { generatedImages } from "@/lib/generated-images";
+
+
 export type VendorPackage = {
   name: string;
   label: string;
@@ -16,6 +19,7 @@ export type Vendor = {
   highlights: string[];
   packages: VendorPackage[];
   coverClass: string;
+  imageSrc: string;
   stats: {
     label: string;
     value: string;
@@ -48,6 +52,7 @@ export const vendors: Vendor[] = [
       },
     ],
     coverClass: "bg-[radial-gradient(circle_at_top_left,_rgba(244,216,171,0.55),_transparent_42%),linear-gradient(135deg,_#1e293b,_#0f172a_45%,_#334155)]",
+    imageSrc: generatedImages.rosewoodManor,
     stats: [
       { label: "Kapasitas nyaman", value: "220 tamu" },
       { label: "Setup favorit", value: "Indoor + garden" },
@@ -79,6 +84,7 @@ export const vendors: Vendor[] = [
       },
     ],
     coverClass: "bg-[radial-gradient(circle_at_top_left,_rgba(245,181,213,0.5),_transparent_42%),linear-gradient(135deg,_#3f1d3f,_#6d325d_52%,_#d4a373)]",
+    imageSrc: generatedImages.velvetBloom,
     stats: [
       { label: "Gaya favorit", value: "Modern romantic" },
       { label: "Waktu setup", value: "8 jam" },
@@ -110,6 +116,7 @@ export const vendors: Vendor[] = [
       },
     ],
     coverClass: "bg-[radial-gradient(circle_at_top_left,_rgba(227,202,151,0.42),_transparent_40%),linear-gradient(135deg,_#0f172a,_#475569_48%,_#b08968)]",
+    imageSrc: generatedImages.goldenFrameStudio,
     stats: [
       { label: "Gaya edit", value: "Editorial warm" },
       { label: "Preview awal", value: "72 jam" },
@@ -141,6 +148,7 @@ export const vendors: Vendor[] = [
       },
     ],
     coverClass: "bg-[radial-gradient(circle_at_top_left,_rgba(251,214,165,0.45),_transparent_40%),linear-gradient(135deg,_#1f2937,_#3f3f46_48%,_#92400e)]",
+    imageSrc: generatedImages.ivoryFeast,
     stats: [
       { label: "Format layanan", value: "Buffet + plated" },
       { label: "Menu populer", value: "Nusantara modern" },
