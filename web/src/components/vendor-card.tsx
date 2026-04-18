@@ -64,13 +64,13 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
             className="inline-flex rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5"
             href={`/vendor/${vendor.slug}`}
           >
-            Lihat detail
+            Lihat detail vendor
           </Link>
           <Link
             className="inline-flex rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
             href={`/booking/${vendor.slug}`}
           >
-            Cek tanggal
+            Pilih tanggal & isi form
           </Link>
         </div>
       </div>

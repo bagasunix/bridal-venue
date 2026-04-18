@@ -59,7 +59,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link className="inline-flex w-full items-center justify-center rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 sm:w-auto" href={`/booking/${vendor.slug}`}>
-                  Cek tanggal dan booking
+                  Buka form dan pilih tanggal
                 </Link>
                 <Link className="inline-flex w-full items-center justify-center rounded-full border border-white/16 px-5 py-3 text-sm font-semibold text-white sm:w-auto" href="/kontak">
                   Konsultasi dulu
@@ -102,7 +102,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
                   <CalendarDays className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-[var(--text)]">Ketersediaan demo</p>
+                  <p className="text-sm font-semibold text-[var(--text)]">Tanggal yang sedang terisi</p>
                   <p className="text-sm text-[var(--muted)]">
                     {availability.error_message ?? "Tanggal yang sudah terisi akan muncul di bawah ini."}
                   </p>
@@ -125,7 +125,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
                 Alur berikutnya dibuat singkat supaya momentum diskusi tetap terjaga. Bisa langsung pilih paket, cek tanggal, dan kirim permintaan.
               </p>
               <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950" href={`/booking/${vendor.slug}`}>
-                Lanjut ke booking
+                Pilih tanggal sekarang
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

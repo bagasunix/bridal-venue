@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 const links = [
   { href: "/", label: "Beranda" },
   { href: "/katalog", label: "Katalog" },
+  { href: "/booking/rosewood-manor", label: "Pilih Tanggal" },
   { href: "/tentang", label: "Tentang" },
   { href: "/kontak", label: "Kontak" },
 ];
@@ -22,7 +23,7 @@ export function SiteHeader() {
               <p className="truncate text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[var(--brand)]">
                 Atelier Resepsi
               </p>
-              <p className="truncate text-sm text-[var(--muted)]">Kurasi vendor untuk presentasi client</p>
+              <p className="truncate text-sm text-[var(--muted)]">Pilihan vendor yang tertata hangat dan rapi</p>
             </div>
           </Link>
 
@@ -37,9 +38,9 @@ export function SiteHeader() {
           <div className="flex shrink-0 items-center gap-3">
             <Link
               className="hidden rounded-full border border-[var(--line)] px-4 py-2 text-sm font-medium text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)] sm:inline-flex"
-              href="/katalog"
+              href="/booking/rosewood-manor"
             >
-              Lihat katalog
+              Pilih tanggal
             </Link>
             <ThemeToggle />
           </div>

@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Atelier Resepsi",
-  description: "Web demo presentasi client untuk katalog vendor pernikahan yang elegan dan informatif.",
+  description: "Katalog vendor pernikahan yang elegan, hangat, dan mudah membantu client memilih.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

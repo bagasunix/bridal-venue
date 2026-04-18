@@ -29,7 +29,7 @@ export default function ContactPage() {
             },
             {
               icon: CalendarRange,
-              title: "Jadwalkan demo berikutnya",
+              title: "Jadwalkan pertemuan berikutnya",
               copy: "Pas untuk client yang ingin masuk ke pembahasan moodboard, pricing, atau penyesuaian paket.",
               value: "Senin - Jumat · 10.00 - 18.00",
             },
