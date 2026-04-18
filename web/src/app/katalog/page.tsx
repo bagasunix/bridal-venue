@@ -24,7 +24,7 @@ export default function CatalogPage() {
         title="Semua vendor disusun supaya enak dibandingkan dan cepat terasa cocok"
         description="Halaman ini cocok dipakai sebagai bagian inti presentasi. Anda bisa mulai dari kategori besar, lalu masuk ke detail vendor yang paling relevan dengan kebutuhan client."
         action={
-          <Link className="rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5" href="/kontak">
+          <Link className="rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5" href="/kontak">
             Lanjut konsultasi
           </Link>
         }

@@ -65,7 +65,7 @@ export default function AboutPage() {
             <li>• Booking flow yang siap dipakai untuk demo sampai tahap permintaan.</li>
             <li>• Halaman kontak untuk mengakhiri presentasi dengan ajakan yang jelas.</li>
           </ul>
-          <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-white" href="/katalog">
+          <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950" href="/katalog">
             Lihat semua halaman inti
             <ArrowRight className="h-4 w-4" />
           </Link>

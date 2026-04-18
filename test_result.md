@@ -178,6 +178,9 @@ frontend:
         agent: "main"
         comment: "Created separate /app/web Next.js + Tailwind app with navy-gold-stone palette, sticky header, dark mode toggle, premium hero, social proof, process, FAQ, CTA, and human Indonesian copy for client presentations."
       - working: true
+        agent: "main"
+        comment: "Separated web startup so /app/web can now be run directly with npm start, and supervisor was updated to use the same dedicated web start command."
+      - working: true
         agent: "testing"
         comment: "Next.js web foundation tested successfully. Premium visual system working correctly with navy-gold-stone palette, sticky header with theme toggle, premium hero section with Indonesian copy, vendor cards with proper styling, and all visual elements rendering as expected. Dark mode toggle functional with smooth transitions."
   - task: "complete web presentation pages"
@@ -191,6 +194,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Built complete web routes for Home, Katalog, Vendor Detail, Booking, Success, Tentang, and Kontak with coherent navigation and CTA flow."
+      - working: true
+        agent: "main"
+        comment: "Improved responsive behavior on smaller screens: added mobile navigation chips, reduced hero scale, stacked CTA buttons cleanly, widened important actions, and rechecked mobile layouts for Home and Booking."
       - working: true
         agent: "testing"
         comment: "All web presentation pages tested successfully. Navigation flow works correctly: Home → Katalog (with category filters and vendor cards) → Vendor Detail (Rosewood Manor with packages and CTAs) → Booking → Success. All pages render with proper Indonesian copy, premium styling, and functional CTAs. Navigation links in header work correctly."

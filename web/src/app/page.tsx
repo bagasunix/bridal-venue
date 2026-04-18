@@ -58,7 +58,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-20">
+      <section className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-20">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--muted)] shadow-[var(--shadow)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-[var(--brand)]" />
@@ -66,7 +66,7 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-6">
-            <h1 className="max-w-3xl font-serif text-5xl leading-[1.02] font-semibold text-[var(--text)] sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl font-serif text-4xl leading-[1.04] font-semibold text-[var(--text)] sm:text-5xl lg:text-7xl">
               Katalog vendor pernikahan yang terasa premium, rapi, dan langsung enak dipresentasikan.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
@@ -74,16 +74,16 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--text)] px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3.5 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto whitespace-nowrap"
               href="/katalog"
             >
               Lihat katalog vendor
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-6 py-3.5 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-6 py-3.5 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)] sm:w-auto whitespace-nowrap"
               href="/kontak"
             >
               Jadwalkan presentasi
@@ -176,7 +176,7 @@ export default function HomePage() {
         ))}
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
           description="Semua layanan ini disusun supaya mudah dibaca saat presentasi dan tetap terasa meyakinkan ketika client ingin membuka detail lebih jauh."
           eyebrow="Katalog pilihan"
@@ -189,7 +189,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionTitle
             description="Dari sisi presentasi, urutannya dibuat sederhana supaya Anda tidak perlu terlalu banyak menjelaskan struktur. Halaman sudah membantu mendorong percakapan dengan client secara natural."
@@ -208,7 +208,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
           align="center"
           description="Tetap terasa premium, tapi tidak berjarak. Cocok untuk membantu client merasa lebih yakin sejak pertemuan pertama."
@@ -233,7 +233,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
           description="Kalau web ini dipakai untuk demo presentasi, tiga pertanyaan ini biasanya paling sering muncul dari client atau tim internal."
           eyebrow="Pertanyaan yang sering muncul"
@@ -249,7 +249,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-5 pb-20 lg:px-10">
         <div className="overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[linear-gradient(135deg,#0f172a,#0b1320_48%,#19263d)] p-8 text-white shadow-[var(--shadow)] sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>

@@ -43,7 +43,7 @@ export default async function SuccessPage({
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <Link className="inline-flex rounded-full bg-[var(--text)] px-6 py-3.5 text-sm font-semibold text-white" href="/katalog">
+          <Link className="inline-flex rounded-full bg-[var(--brand)] px-6 py-3.5 text-sm font-semibold text-slate-950" href="/katalog">
             Kembali ke katalog
           </Link>
           <Link className="inline-flex rounded-full border border-[var(--line)] px-6 py-3.5 text-sm font-semibold text-[var(--text)] hover:border-[var(--brand)] hover:text-[var(--brand)]" href="/kontak">

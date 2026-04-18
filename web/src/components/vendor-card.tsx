@@ -60,7 +60,7 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
 
         <div className="flex flex-wrap gap-3">
           <Link
-            className="inline-flex rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
+            className="inline-flex rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5"
             href={`/vendor/${vendor.slug}`}
           >
             Lihat detail

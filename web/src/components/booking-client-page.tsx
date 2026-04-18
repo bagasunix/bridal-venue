@@ -358,7 +358,7 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
 
             <button
               className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold transition-transform duration-200 ${
-                isReady ? "bg-[var(--text)] text-white hover:-translate-y-0.5" : "bg-slate-300 text-slate-500"
+                isReady ? "bg-[var(--brand)] text-slate-950 hover:-translate-y-0.5" : "bg-slate-300 text-slate-500"
               }`}
               disabled={!isReady || submitting}
               onClick={handleSubmit}

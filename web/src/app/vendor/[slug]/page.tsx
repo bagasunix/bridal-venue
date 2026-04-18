@@ -55,11 +55,11 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
                   </div>
                 ))}
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900" href={`/booking/${vendor.slug}`}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 sm:w-auto" href={`/booking/${vendor.slug}`}>
                   Cek tanggal dan booking
                 </Link>
-                <Link className="inline-flex rounded-full border border-white/16 px-5 py-3 text-sm font-semibold text-white" href="/kontak">
+                <Link className="inline-flex w-full items-center justify-center rounded-full border border-white/16 px-5 py-3 text-sm font-semibold text-white sm:w-auto" href="/kontak">
                   Konsultasi dulu
                 </Link>
               </div>
@@ -122,7 +122,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
               <p className="mt-3 text-base leading-7 text-[var(--muted)]">
                 Alur berikutnya dibuat singkat supaya momentum diskusi tetap terjaga. Bisa langsung pilih paket, cek tanggal, dan kirim permintaan.
               </p>
-              <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-white" href={`/booking/${vendor.slug}`}>
+              <Link className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950" href={`/booking/${vendor.slug}`}>
                 Lanjut ke booking
                 <ArrowRight className="h-4 w-4" />
               </Link>
