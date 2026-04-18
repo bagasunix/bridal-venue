@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock3, MessageSquareHeart, ShieldCheck, Sparkles, Star } from "lucide-react";
 
+import { LazyArtImage } from "@/components/lazy-art-image";
 import { SectionTitle } from "@/components/section-title";
 import { VendorCard } from "@/components/vendor-card";
 import { vendors } from "@/lib/vendors";
@@ -106,7 +107,7 @@ export default function HomePage() {
 
         <div className="relative overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[var(--surface-dark)] p-6 shadow-[var(--shadow)]">
           <div className={`absolute inset-0 ${featuredVendor.coverClass}`} />
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${featuredVendor.imageSrc})` }} />
+          <LazyArtImage alt={featuredVendor.name} priority sizes="(max-width: 1024px) 100vw, 44vw" src={featuredVendor.imageSrc} />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.2),rgba(7,17,32,0.74))]" />
           <div className="relative flex h-full min-h-[520px] flex-col justify-between text-white">
             <div className="flex items-start justify-between gap-3">

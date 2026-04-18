@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, BadgeCheck, CalendarDays, MapPin } from "lucide-react";
 
+import { LazyArtImage } from "@/components/lazy-art-image";
 import { SectionTitle } from "@/components/section-title";
 import { fetchAvailability } from "@/lib/api";
 import { formatPrettyDate } from "@/lib/date";
@@ -22,7 +23,7 @@ export default async function VendorDetailPage({ params }: { params: Promise<{ s
       <section className="overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[var(--surface)] shadow-[var(--shadow)]">
         <div className="relative overflow-hidden px-8 py-10 text-white lg:px-10 lg:py-14">
           <div className={`absolute inset-0 ${vendor.coverClass}`} />
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
+          <LazyArtImage alt={vendor.name} priority sizes="100vw" src={vendor.imageSrc} />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,32,0.18),rgba(7,17,32,0.78))]" />
           <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">

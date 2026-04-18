@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
-  allowedDevOrigins: ["127.0.0.1", "localhost"],
+  allowedDevOrigins: ["127.0.0.1", "localhost", "next-ui-demo.cluster-0.preview.emergentcf.cloud"],
   async rewrites() {
     return [
       {

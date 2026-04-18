@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, MapPin } from "lucide-react";
 
+import { LazyArtImage } from "@/components/lazy-art-image";
 import { cn } from "@/lib/utils";
 import type { Vendor } from "@/lib/vendors";
 
@@ -22,7 +23,7 @@ export function VendorCard({
     >
       <Link className={cn("relative overflow-hidden block", featured ? "min-h-[360px]" : "min-h-[280px]")} href={bookingFirst ? `/booking/${vendor.slug}` : `/vendor/${vendor.slug}`}>
         <div className={cn("absolute inset-0", vendor.coverClass)} />
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
+        <LazyArtImage alt={vendor.name} priority={featured} sizes={featured ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 100vw, 33vw"} src={vendor.imageSrc} />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950/65 via-slate-950/28 to-transparent" />
         <div className="relative flex h-full min-h-[inherit] flex-col justify-between p-7 text-white">
           <div className="flex items-center justify-between gap-3">
