@@ -91,7 +91,9 @@ export function BookingClientPage({ bookedDates, vendor }: { bookedDates: string
 
   return (
     <div className="space-y-8">
-      <section className={`relative overflow-hidden rounded-[2.25rem] border border-[var(--line)] px-7 py-8 text-white shadow-[var(--shadow)] lg:px-9 lg:py-9 ${vendor.coverClass}`}>
+      <section className="relative overflow-hidden rounded-[2.25rem] border border-[var(--line)] px-7 py-8 text-white shadow-[var(--shadow)] lg:px-9 lg:py-9">
+        <div className={`absolute inset-0 ${vendor.coverClass}`} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,17,32,0.65),rgba(7,17,32,0.78))]" />
         <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="space-y-6">

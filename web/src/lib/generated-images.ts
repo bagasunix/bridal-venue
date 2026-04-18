@@ -1,0 +1,1 @@
+export const generatedImages = {"hero": "/generated/hero.png", "rosewoodManor": "/generated/rosewoodManor.png", "velvetBloom": "/generated/velvetBloom.png", "goldenFrameStudio": "/generated/goldenFrameStudio.png", "ivoryFeast": "/generated/ivoryFeast.png"} as const;
