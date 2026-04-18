@@ -4,7 +4,15 @@ import { ArrowUpRight, Check, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Vendor } from "@/lib/vendors";
 
-export function VendorCard({ featured = false, vendor }: { featured?: boolean; vendor: Vendor }) {
+export function VendorCard({
+  bookingFirst = false,
+  featured = false,
+  vendor,
+}: {
+  bookingFirst?: boolean;
+  featured?: boolean;
+  vendor: Vendor;
+}) {
   return (
     <article
       className={cn(
@@ -12,7 +20,7 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
         featured ? "lg:grid lg:grid-cols-[1.1fr_0.9fr]" : "h-full",
       )}
     >
-      <div className={cn("relative overflow-hidden", featured ? "min-h-[360px]" : "min-h-[280px]")}> 
+      <Link className={cn("relative overflow-hidden block", featured ? "min-h-[360px]" : "min-h-[280px]")} href={bookingFirst ? `/booking/${vendor.slug}` : `/vendor/${vendor.slug}`}>
         <div className={cn("absolute inset-0", vendor.coverClass)} />
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${vendor.imageSrc})` }} />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950/65 via-slate-950/28 to-transparent" />
@@ -38,7 +46,7 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="flex h-full flex-col justify-between gap-6 p-7">
         <div className="space-y-5">
@@ -60,18 +68,37 @@ export function VendorCard({ featured = false, vendor }: { featured?: boolean; v
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Link
-            className="inline-flex rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5"
-            href={`/vendor/${vendor.slug}`}
-          >
-            Lihat detail vendor
-          </Link>
-          <Link
-            className="inline-flex rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
-            href={`/booking/${vendor.slug}`}
-          >
-            Pilih tanggal & isi form
-          </Link>
+          {bookingFirst ? (
+            <>
+              <Link
+                className="inline-flex rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5"
+                href={`/booking/${vendor.slug}`}
+              >
+                Pilih vendor ini
+              </Link>
+              <Link
+                className="inline-flex rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
+                href={`/vendor/${vendor.slug}`}
+              >
+                Lihat ringkasannya
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className="inline-flex rounded-full bg-[var(--brand)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5"
+                href={`/vendor/${vendor.slug}`}
+              >
+                Lihat detail vendor
+              </Link>
+              <Link
+                className="inline-flex rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
+                href={`/booking/${vendor.slug}`}
+              >
+                Pilih tanggal & isi form
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </article>

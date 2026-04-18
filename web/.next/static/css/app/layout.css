@@ -660,6 +660,9 @@
   .bg-\[linear-gradient\(180deg\,rgba\(7\,17\,32\,0\.18\)\,rgba\(7\,17\,32\,0\.78\)\)\] {
     background-image: linear-gradient(180deg,rgba(7,17,32,0.18),rgba(7,17,32,0.78));
   }
+  .bg-\[linear-gradient\(180deg\,var\(--surface-strong\)\,var\(--surface\)\)\] {
+    background-image: linear-gradient(180deg,var(--surface-strong),var(--surface));
+  }
   .bg-\[radial-gradient\(circle_at_top_left\,_rgba\(227\,202\,151\,0\.42\)\,_transparent_40\%\)\,linear-gradient\(135deg\,_\#0f172a\,_\#475569_48\%\,_\#b08968\)\] {
     background-image: radial-gradient(circle at top left, rgba(227,202,151,0.42), transparent 40%),linear-gradient(135deg, #0f172a, #475569 48%, #b08968);
   }
@@ -1299,6 +1302,16 @@
   .lg\:grid-cols-\[1fr_0\.95fr\] {
     @media (width >= 64rem) {
       grid-template-columns: 1fr 0.95fr;
+    }
+  }
+  .lg\:grid-cols-\[1fr_auto\] {
+    @media (width >= 64rem) {
+      grid-template-columns: 1fr auto;
+    }
+  }
+  .lg\:flex-col {
+    @media (width >= 64rem) {
+      flex-direction: column;
     }
   }
   .lg\:flex-row {

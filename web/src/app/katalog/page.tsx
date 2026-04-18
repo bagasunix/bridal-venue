@@ -52,7 +52,7 @@ export default function CatalogPage() {
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {filteredVendors.map((vendor) => (
-          <VendorCard key={vendor.slug} vendor={vendor} />
+          <VendorCard bookingFirst key={vendor.slug} vendor={vendor} />
         ))}
       </div>
     </main>
