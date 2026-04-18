@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/katalog/page": "/katalog",
+  "/kontak/page": "/kontak",
+  "/booking/[slug]/page": "/booking/[slug]",
+  "/page": "/",
+  "/tentang/page": "/tentang",
+  "/success/page": "/success",
+  "/vendor/[slug]/page": "/vendor/[slug]"
+}

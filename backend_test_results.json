@@ -1,0 +1,74 @@
+{
+  "test_summary": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "tests": [
+    {
+      "endpoint": "GET /api/health",
+      "status_code": 200,
+      "success": true,
+      "response_data": {
+        "status": "ok",
+        "mode": "mock"
+      },
+      "error": null
+    },
+    {
+      "endpoint": "GET /api/availability/rosewood-manor",
+      "status_code": 200,
+      "success": true,
+      "response_data": {
+        "vendor_slug": "rosewood-manor",
+        "booked_dates": [
+          "2026-04-20",
+          "2026-04-24",
+          "2026-04-28"
+        ],
+        "source": "mock",
+        "live_configured": false
+      },
+      "error": null
+    },
+    {
+      "endpoint": "POST /api/bookings (success case)",
+      "status_code": 201,
+      "success": true,
+      "response_data": {
+        "booking_id": "1d80e6b9-9ded-4fb1-95e1-d9179b58e178",
+        "vendor": "rosewood-manor",
+        "date": "2026-05-18",
+        "package": "Premium Wedding Package",
+        "source": "mock",
+        "submitted_to_n8n": false,
+        "message": "Booking confirmed and ready for your workflow.",
+        "created_at": "2026-04-18T20:32:22.558042+00:00"
+      },
+      "error": null,
+      "booking_data": {
+        "name": "Sari Dewi",
+        "phone": "+62812345678",
+        "vendor": "rosewood-manor",
+        "date": "2026-05-18",
+        "package": "Premium Wedding Package"
+      }
+    },
+    {
+      "endpoint": "POST /api/bookings (conflict case)",
+      "status_code": 409,
+      "success": true,
+      "response_data": {
+        "detail": "Date not available"
+      },
+      "error": null,
+      "booking_data": {
+        "name": "Andi Pratama",
+        "phone": "+62812345680",
+        "vendor": "rosewood-manor",
+        "date": "2026-04-20",
+        "package": "Deluxe Wedding Package"
+      }
+    }
+  ]
+}

@@ -101,9 +101,9 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
-user_problem_statement: "Redesign wedding rental demo app to be more elegant and responsive on mobile/web preview with Midnight plum + copper colors, minimal luxury style, dark mode (auto + manual toggle), and subtle animations."
+user_problem_statement: "Build a separate Next.js + Tailwind web demo that feels elegant, modern, informative, dark-mode ready, and fully presentation-ready in Indonesian, while preserving the existing Expo React Native app for future Android/iOS work."
 backend:
-  - task: "mock booking api remains stable after redesign"
+  - task: "mock booking api remains stable after web demo addition"
     implemented: true
     working: true
     file: "/app/backend/server.py"
@@ -113,7 +113,10 @@ backend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Backend endpoints previously verified and redesign work did not modify backend."
+        comment: "Backend endpoints were not modified during the new Next.js web implementation, but /api/availability and /api/bookings are now consumed by the web demo and should be regression-tested."
+      - working: true
+        agent: "testing"
+        comment: "Backend regression testing completed successfully. All 4 API endpoints tested and working: GET /api/health returns healthy status, GET /api/availability/rosewood-manor returns valid JSON with booked_dates array, POST /api/bookings with valid future date creates booking successfully (ID: 1d80e6b9-9ded-4fb1-95e1-d9179b58e178), POST /api/bookings with already-booked date returns HTTP 409 conflict as expected. No regressions found in API contract used by web app."
 frontend:
   - task: "luxury responsive redesign across core screens"
     implemented: true
@@ -157,23 +160,59 @@ frontend:
       - working: true
         agent: "main"
         comment: "Fixed desktop hydration logic for Home hero so the browser layout becomes a true two-column landing page after mount. Also localized calendar/date formatting to Indonesian and self-verified Success date output like 'Jum, 17 April'."
+  - task: "next.js web foundation with deep premium visual system"
+    implemented: true
+    working: true
+    file: "/app/web/src/app/page.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Created separate /app/web Next.js + Tailwind app with navy-gold-stone palette, sticky header, dark mode toggle, premium hero, social proof, process, FAQ, CTA, and human Indonesian copy for client presentations."
+  - task: "complete web presentation pages"
+    implemented: true
+    working: true
+    file: "/app/web/src/app"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Built complete web routes for Home, Katalog, Vendor Detail, Booking, Success, Tentang, and Kontak with coherent navigation and CTA flow."
+  - task: "web booking flow connected to existing backend"
+    implemented: true
+    working: true
+    file: "/app/web/src/lib/api.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added Next.js-side /api proxy rewrites, availability fetch with graceful demo fallback, booking submission flow, success summary page, and local production build verification."
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 2
+  test_sequence: 4
   run_ui: true
 test_plan:
   current_focus:
-    - "luxury responsive redesign across core screens"
-    - "dark mode auto plus manual toggle"
-    - "indonesian copy and premium web landing page refinement"
+    - "mock booking api remains stable after web demo addition"
+    - "next.js web foundation with deep premium visual system"
+    - "complete web presentation pages"
+    - "web booking flow connected to existing backend"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 agent_communication:
   - agent: "main"
-    message: "Please validate the redesigned frontend. Public preview may return 502 because Expo/ngrok tunnel is unstable, but local static build is available at http://127.0.0.1:3456 and has already passed a main-agent visual smoke test."
+    message: "Please regression-test backend /api/health, /api/availability/{vendor}, and booking creation because the new Next.js web app now depends on these existing endpoints."
   - agent: "main"
-    message: "Please test the latest redesign on local static build http://127.0.0.1:3456. Focus on: warm champagne + mocha light theme, Indonesian human copy, desktop landing-page feel on Home, and preserved mobile flow Home -> Detail -> Booking."
-  - agent: "main"
-    message: "Testing-agent issues addressed: desktop Home hero now hydrates into a real two-column layout on wide browser, and date formatting is now Indonesian across calendar/success UI. Main-agent self-test passed on local static build."
+    message: "Frontend target is the separate Next.js app served from /app/web on port 3000. Please validate Home, Katalog, Vendor Detail, Booking, Success, Tentang, Kontak, dark mode toggle, and booking flow with Indonesian copy."
+  - agent: "testing"
+    message: "Backend regression testing completed successfully. All 4 critical API endpoints are working correctly with no regressions found. The backend is stable and ready for the Next.js web app integration. Tested: health check, availability lookup, successful booking creation, and conflict handling. All responses match expected API contract."
+
+
