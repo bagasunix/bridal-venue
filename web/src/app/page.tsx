@@ -257,23 +257,23 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-5 pb-20 lg:px-10">
-        <div className="overflow-hidden rounded-[2.25rem] border border-[var(--line)] bg-[linear-gradient(135deg,#0f172a,#0b1320_48%,#19263d)] p-8 text-white shadow-[var(--shadow)] sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--brand-strong)]">Siap dipilih</p>
-              <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight font-semibold sm:text-5xl">
-                Mau mulai dari katalog dulu, lalu lanjut ke konsultasi saat client sudah tertarik? Semuanya sudah disusun lebih rapi.
+        <div className="rounded-[2.25rem] border border-[var(--line)] bg-[linear-gradient(180deg,var(--surface-strong),var(--surface))] p-8 shadow-[var(--shadow)] sm:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="max-w-3xl space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--brand)]">Langkah berikutnya</p>
+              <h2 className="font-serif text-3xl leading-tight font-semibold text-[var(--text)] sm:text-4xl">
+                Setelah melihat katalog, client bisa langsung memilih vendor yang dirasa paling pas lalu lanjut ke halaman tanggal.
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-white/74 sm:text-lg">
-                Anda bisa arahkan client menjelajahi vendor satu per satu, lalu tutup presentasi dengan ajakan diskusi atau pengecekan tanggal. Semuanya terasa nyambung tanpa perlu pindah ke materi lain.
+              <p className="max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+                Bagian ini saya sederhanakan supaya lebih tenang dilihat, lebih elegan, dan tetap jelas mengarahkan dari katalog ke pemilihan tanggal tanpa terasa berlebihan.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link className="inline-flex rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-transform duration-200 hover:-translate-y-0.5" href="/katalog">
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-end">
+              <Link className="inline-flex items-center justify-center rounded-full bg-[var(--brand)] px-6 py-3.5 text-sm font-semibold text-slate-950 transition-transform duration-200 hover:-translate-y-0.5" href="/katalog">
                 Buka katalog
               </Link>
-              <Link className="inline-flex rounded-full border border-white/18 px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/8" href="/kontak">
-                Hubungi untuk presentasi
+              <Link className="inline-flex items-center justify-center rounded-full border border-[var(--line)] px-6 py-3.5 text-sm font-semibold text-[var(--text)] transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]" href="/booking/rosewood-manor">
+                Langsung pilih tanggal
               </Link>
             </div>
           </div>
