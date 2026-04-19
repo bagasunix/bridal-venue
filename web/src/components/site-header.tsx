@@ -17,13 +17,13 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4">
           <Link className="flex min-w-0 items-center gap-3" href="/">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--brand-soft)] text-sm font-semibold uppercase tracking-[0.28em] text-[var(--brand)]">
-              AR
+              AW
             </div>
             <div className="min-w-0">
               <p className="truncate text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[var(--brand)]">
-                Atelier Resepsi
+                Aurevia Wedding
               </p>
-              <p className="truncate text-sm text-[var(--muted)]">Pendamping pilihan vendor dan arah hari istimewa Anda</p>
+              <p className="truncate text-sm text-[var(--muted)]">Pendamping pilihan vendor untuk hari istimewa Anda</p>
             </div>
           </Link>
 

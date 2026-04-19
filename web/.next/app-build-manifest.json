@@ -73,14 +73,6 @@
       "static/chunks/239-4aa86f2d7893dea8.js",
       "static/chunks/app/page-43250d8b310f68c0.js"
     ],
-    "/success/page": [
-      "static/chunks/webpack-2eb758dea75faf50.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-4f212684648fcab9.js",
-      "static/chunks/main-app-3ce6dc73667f7de0.js",
-      "static/chunks/619-ba102abea3e3d0e4.js",
-      "static/chunks/app/success/page-b5e542db21a167cc.js"
-    ],
     "/tentang/page": [
       "static/chunks/webpack-2eb758dea75faf50.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
@@ -88,6 +80,14 @@
       "static/chunks/main-app-3ce6dc73667f7de0.js",
       "static/chunks/619-ba102abea3e3d0e4.js",
       "static/chunks/app/tentang/page-b5e542db21a167cc.js"
+    ],
+    "/success/page": [
+      "static/chunks/webpack-2eb758dea75faf50.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-4f212684648fcab9.js",
+      "static/chunks/main-app-3ce6dc73667f7de0.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/success/page-b5e542db21a167cc.js"
     ],
     "/vendor/[slug]/page": [
       "static/chunks/webpack-2eb758dea75faf50.js",

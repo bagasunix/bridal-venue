@@ -8,13 +8,13 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Atelier Resepsi",
-  description: "Katalog vendor pernikahan yang elegan, hangat, dan mudah membantu client memilih.",
+  title: "Aurevia Wedding",
+  description: "Pilihan vendor pernikahan yang elegan, ringkas, dan membantu Anda melangkah dengan lebih tenang.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Atelier Resepsi",
+    title: "Aurevia Wedding",
   },
   icons: {
     apple: "/apple-touch-icon.png",

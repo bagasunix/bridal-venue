@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Atelier Resepsi",
-    short_name: "Atelier",
-    description: "Katalog vendor pernikahan yang elegan, hangat, dan mudah membantu client memilih.",
+    name: "Aurevia Wedding",
+    short_name: "Aurevia",
+    description: "Pilihan vendor pernikahan yang elegan, ringkas, dan membantu Anda melangkah dengan lebih tenang.",
     start_url: "/",
     display: "standalone",
     background_color: "#f4efe9",

@@ -63,15 +63,15 @@ export default function HomePage() {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--muted)] shadow-[var(--shadow)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-[var(--brand)]" />
-            Atelier Resepsi hadir untuk membantu Anda menata hari istimewa dengan lebih tenang
+            Aurevia Wedding membantu Anda menata hari istimewa dengan lebih tenang
           </div>
 
           <div className="space-y-6">
             <h1 className="max-w-3xl font-serif text-4xl leading-[1.04] font-semibold text-[var(--text)] sm:text-5xl lg:text-7xl">
-              Atelier Resepsi membantu Anda menemukan venue, dekorasi, foto, dan jamuan yang terasa selaras dalam satu cerita yang utuh.
+              Aurevia Wedding membantu Anda menemukan vendor yang serasi untuk hari yang ingin dikenang.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
-              Kami merangkai pilihan yang hangat, elegan, dan mudah dipahami agar Anda bisa melihat gambaran hari pernikahan dengan lebih jelas. Dari suasana acara sampai detail vendor, semuanya disusun supaya keputusan terasa lebih ringan.
+              Venue, dekorasi, foto, dan jamuan kami rangkai lebih ringkas agar Anda cepat melihat gambaran acara dan merasa yakin melangkah.
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export default function HomePage() {
           <div className="relative flex h-full min-h-[520px] flex-col justify-between text-white">
             <div className="flex items-start justify-between gap-3">
               <div className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/85">
-                Pilihan Atelier Resepsi
+                Pilihan Aurevia Wedding
               </div>
               <div className="rounded-full bg-white/92 px-4 py-2 text-sm font-semibold text-slate-900">
                 {featuredVendor.category}
@@ -138,7 +138,7 @@ export default function HomePage() {
               <div className="rounded-[1.75rem] bg-white/92 p-5 text-slate-900 shadow-xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-700">Mengapa pasangan biasanya cepat merasa cocok</p>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Atelier Resepsi membantu Anda melihat suasana acara, kisaran paket, dan jalur memilih tanggal dalam satu alur yang terasa utuh. Jadi sejak awal, Anda sudah bisa membayangkan arah hari spesial yang ingin diwujudkan.
+                  Aurevia Wedding membantu Anda melihat suasana acara, kisaran paket, dan jalur memilih tanggal dengan lebih jelas sejak awal.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <Link className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-4 py-2.5 text-sm font-semibold text-slate-950" href={`/booking/${featuredVendor.slug}`}>
@@ -161,12 +161,12 @@ export default function HomePage() {
           {
             icon: ShieldCheck,
             title: "Pilihan terasa lebih terarah",
-            copy: "Atelier Resepsi membantu Anda melihat mana layanan yang saling melengkapi, jadi keputusan tidak terasa tercecer.",
+            copy: "Aurevia Wedding membantu Anda melihat mana layanan yang saling melengkapi, jadi keputusan tidak terasa tercecer.",
           },
           {
             icon: MessageSquareHeart,
             title: "Bahasa yang lebih hangat",
-            copy: "Setiap penjelasan disusun supaya terasa dekat, mudah dipahami, dan mencerminkan cara Atelier Resepsi mendampingi Anda.",
+            copy: "Setiap penjelasan disusun supaya terasa dekat, mudah dipahami, dan mencerminkan cara Aurevia Wedding mendampingi Anda.",
           },
           {
             icon: Clock3,
@@ -186,8 +186,8 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
-          description="Atelier Resepsi memilih layanan yang saling melengkapi supaya Anda tidak perlu memulai semuanya dari nol. Setiap kategori dirancang untuk membantu membentuk hari pernikahan yang terasa utuh, hangat, dan nyaman dikenang."
-          eyebrow="Pilihan Atelier Resepsi"
+          description="Aurevia Wedding memilih layanan yang saling melengkapi supaya Anda tidak perlu memulai semuanya dari nol. Setiap kategori membantu Anda melihat gambaran acara dengan lebih cepat dan lebih tenang."
+          eyebrow="Pilihan Aurevia Wedding"
           title="Empat bagian penting yang kami rangkai untuk membantu Anda melihat keseluruhan cerita acara"
         />
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
