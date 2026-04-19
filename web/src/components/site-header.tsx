@@ -23,7 +23,7 @@ export function SiteHeader() {
               <p className="truncate text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[var(--brand)]">
                 Atelier Resepsi
               </p>
-              <p className="truncate text-sm text-[var(--muted)]">Pilihan vendor yang tertata hangat dan rapi</p>
+              <p className="truncate text-sm text-[var(--muted)]">Pendamping pilihan vendor dan arah hari istimewa Anda</p>
             </div>
           </Link>
 

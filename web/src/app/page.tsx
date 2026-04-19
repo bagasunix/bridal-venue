@@ -63,15 +63,15 @@ export default function HomePage() {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--muted)] shadow-[var(--shadow)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-[var(--brand)]" />
-            Pilihan web yang siap menemani percakapan dengan client
+            Atelier Resepsi hadir untuk membantu Anda menata hari istimewa dengan lebih tenang
           </div>
 
           <div className="space-y-6">
             <h1 className="max-w-3xl font-serif text-4xl leading-[1.04] font-semibold text-[var(--text)] sm:text-5xl lg:text-7xl">
-              Katalog vendor pernikahan yang terasa premium, rapi, dan langsung enak dipresentasikan.
+              Atelier Resepsi membantu Anda menemukan venue, dekorasi, foto, dan jamuan yang terasa selaras dalam satu cerita yang utuh.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
-              Dibuat untuk membantu Anda menunjukkan kurasi layanan dengan cara yang lebih meyakinkan. Tampilannya elegan, informasinya jelas, dan alurnya tetap nyaman saat client ingin lanjut melihat detail atau cek tanggal.
+              Kami merangkai pilihan yang hangat, elegan, dan mudah dipahami agar Anda bisa melihat gambaran hari pernikahan dengan lebih jelas. Dari suasana acara sampai detail vendor, semuanya disusun supaya keputusan terasa lebih ringan.
             </p>
           </div>
 
@@ -93,9 +93,9 @@ export default function HomePage() {
 
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              { label: "Kategori utama", value: "4 layanan" },
-              { label: "Langkah utama", value: "Katalog ke tanggal" },
-              { label: "Nuansa", value: "Terang & gelap" },
+              { label: "Pilihan utama", value: "4 layanan" },
+              { label: "Dari awal sampai akhir", value: "Vendor ke tanggal" },
+              { label: "Rasa yang dihadirkan", value: "Hangat & elegan" },
             ].map((item) => (
               <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[var(--shadow)] backdrop-blur" key={item.label}>
                 <p className="text-2xl font-semibold text-[var(--text)]">{item.value}</p>
@@ -112,7 +112,7 @@ export default function HomePage() {
           <div className="relative flex h-full min-h-[520px] flex-col justify-between text-white">
             <div className="flex items-start justify-between gap-3">
               <div className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/85">
-                Pilihan yang paling sering dipresentasikan
+                Pilihan Atelier Resepsi
               </div>
               <div className="rounded-full bg-white/92 px-4 py-2 text-sm font-semibold text-slate-900">
                 {featuredVendor.category}
@@ -121,7 +121,7 @@ export default function HomePage() {
 
             <div className="space-y-6">
               <div className="space-y-4">
-                <p className="text-sm uppercase tracking-[0.34em] text-white/72">Featured highlight</p>
+                <p className="text-sm uppercase tracking-[0.34em] text-white/72">Pilihan unggulan</p>
                 <h2 className="max-w-xl font-serif text-4xl leading-tight font-semibold">{featuredVendor.name}</h2>
                 <p className="max-w-xl text-base leading-7 text-white/78">{featuredVendor.summary}</p>
               </div>
@@ -136,9 +136,9 @@ export default function HomePage() {
               </div>
 
               <div className="rounded-[1.75rem] bg-white/92 p-5 text-slate-900 shadow-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-700">Kenapa bagian ini cepat terasa meyakinkan</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-700">Mengapa pasangan biasanya cepat merasa cocok</p>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Client langsung bisa menangkap nuansanya, tahu kisaran paketnya, lalu bisa langsung lanjut memilih tanggal saat suasananya sudah terasa cocok.
+                  Atelier Resepsi membantu Anda melihat suasana acara, kisaran paket, dan jalur memilih tanggal dalam satu alur yang terasa utuh. Jadi sejak awal, Anda sudah bisa membayangkan arah hari spesial yang ingin diwujudkan.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <Link className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-4 py-2.5 text-sm font-semibold text-slate-950" href={`/booking/${featuredVendor.slug}`}>
@@ -160,18 +160,18 @@ export default function HomePage() {
         {[
           {
             icon: ShieldCheck,
-            title: "Visual terasa matang",
-            copy: "Palet navy, gold, dan stone membuat presentasi lebih dewasa dan tetap nyaman dipandang dalam sesi yang panjang.",
+            title: "Pilihan terasa lebih terarah",
+            copy: "Atelier Resepsi membantu Anda melihat mana layanan yang saling melengkapi, jadi keputusan tidak terasa tercecer.",
           },
           {
             icon: MessageSquareHeart,
-            title: "Bahasa lebih manusiawi",
-            copy: "Copy dibuat hangat dan informatif, jadi client merasa dibimbing, bukan sedang membaca katalog yang kaku.",
+            title: "Bahasa yang lebih hangat",
+            copy: "Setiap penjelasan disusun supaya terasa dekat, mudah dipahami, dan mencerminkan cara Atelier Resepsi mendampingi Anda.",
           },
           {
             icon: Clock3,
-            title: "Cepat dipakai meeting",
-            copy: "Strukturnya ringkas, alurnya jelas, dan setiap halaman terasa seperti materi presentasi yang sudah siap pakai.",
+            title: "Lebih mudah membayangkan hasil akhirnya",
+            copy: "Dari pilihan vendor sampai langkah memilih tanggal, semuanya dirangkai supaya Anda lebih cepat merasa cocok dengan arah acara yang diinginkan.",
           },
         ].map((item) => (
           <div className="rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[var(--shadow)] backdrop-blur" key={item.title}>
@@ -186,9 +186,9 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-10">
         <SectionTitle
-          description="Semua layanan ini disusun supaya mudah dibaca saat presentasi dan tetap terasa meyakinkan ketika client ingin membuka detail lebih jauh."
-          eyebrow="Katalog pilihan"
-          title="Empat kategori inti yang paling sering dicari untuk membangun cerita acara yang utuh"
+          description="Atelier Resepsi memilih layanan yang saling melengkapi supaya Anda tidak perlu memulai semuanya dari nol. Setiap kategori dirancang untuk membantu membentuk hari pernikahan yang terasa utuh, hangat, dan nyaman dikenang."
+          eyebrow="Pilihan Atelier Resepsi"
+          title="Empat bagian penting yang kami rangkai untuk membantu Anda melihat keseluruhan cerita acara"
         />
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {vendors.map((vendor, index) => (
